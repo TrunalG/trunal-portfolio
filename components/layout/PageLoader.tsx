@@ -55,13 +55,10 @@ export function PageLoader() {
       className={`page-loader-overlay ${stage}`}
       aria-hidden="true"
     >
-      {/* Centered Brand Title & Circled R Badge */}
+      {/* Centered Website Navbar T® Logo */}
       <div className="loader-brand-logo">
-        <span className="loader-brand-text">
-          TRUNAL
-          <span className="loader-registered-symbol">
-            <span>R</span>
-          </span>
+        <span className="loader-wordmark">
+          T<span>®</span>
         </span>
       </div>
 
