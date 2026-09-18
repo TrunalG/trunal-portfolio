@@ -9,7 +9,7 @@ const SERVICES: ServiceItem[] = [
     number: '01',
     title: 'Shape',
     description: 'Turn an idea into a product with a clear purpose, structure, and direction.',
-    image: '/capabilities/1st box.png',
+    image: '/capabilities/1st box.webp',
     tags: ['Product Design', 'UX Architecture', 'User Flows', 'Prototyping'],
   },
   {
@@ -17,7 +17,7 @@ const SERVICES: ServiceItem[] = [
     number: '02',
     title: 'Clarify',
     description: 'Make complex ideas easier to understand, navigate, and use.',
-    image: '/capabilities/2nd box.png',
+    image: '/capabilities/2nd box.webp',
     tags: ['UI/UX Design', 'Interface Design', 'Interaction Design', 'Responsive Design'],
   },
   {
@@ -25,7 +25,7 @@ const SERVICES: ServiceItem[] = [
     number: '03',
     title: 'Build',
     description: 'Design and build websites that make your product or business easier to understand.',
-    image: '/capabilities/3rd box.jpeg',
+    image: '/capabilities/3rd box.webp',
     tags: ['Web Design', 'Landing Pages', 'Frontend Development', 'CMS', 'SEO'],
   },
   {
@@ -33,7 +33,7 @@ const SERVICES: ServiceItem[] = [
     number: '04',
     title: 'Launch',
     description: 'Take an early idea from concept to a working product people can actually use.',
-    image: '/capabilities/4th box.png',
+    image: '/capabilities/4th box.webp',
     tags: ['MVP Development', 'SaaS Products', 'Full-Stack Development', 'Web Applications'],
   },
   {
@@ -41,7 +41,7 @@ const SERVICES: ServiceItem[] = [
     number: '05',
     title: 'Systemize',
     description: 'Create a reusable foundation that keeps digital products consistent as they grow.',
-    image: '/capabilities/5th box.png',
+    image: '/capabilities/5th box.webp',
     tags: ['Design Systems', 'UI Libraries', 'Design Tokens', 'Reusable Components'],
   },
 ]

@@ -107,6 +107,7 @@ export function ServiceCardBox({ service, isHovered, onMouseEnter }: ServiceCard
               src={service.image}
               alt={service.title}
               fill
+              priority
               className="object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, 520px"
             />
