@@ -1,0 +1,88 @@
+'use client'
+
+import React, { useState, useEffect } from 'react'
+import { usePageTransition } from './PageTransition'
+import { usePathname } from 'next/navigation'
+
+interface NavbarProps {
+  variant?: 'light' | 'dark'
+}
+
+export function Navbar({ variant = 'light' }: NavbarProps) {
+  const [menuOpen, setMenuOpen] = useState(false)
+  const { navigateWithTransition } = usePageTransition()
+  const pathname = usePathname()
+
+  useEffect(() => {
+    let ticking = false
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    setMenuOpen(false)
+    if (href.startsWith('/') && !href.includes('#') && href !== pathname) {
+      e.preventDefault()
+      navigateWithTransition(href)
+    } else if (href === '/' && pathname !== '/') {
+      e.preventDefault()
+      navigateWithTransition('/')
+    }
+  }
+
+  const navItems = [
+    { label: 'Work', href: '/#work' },
+    { label: 'About', href: '/#about' },
+    { label: 'Playground', href: '/#playground' },
+    { label: 'Contact', href: '/#contact' },
+  ]
+
+  return (
+    <nav
+      className={`site-nav hero-reveal-nav ${menuOpen ? 'is-open' : ''} ${variant === 'dark' ? 'is-dark' : ''}`}
+      aria-label="Main navigation"
+    >
+      <a className="wordmark" href="/" onClick={(e) => handleNavClick(e, '/')}>
+        T<span>®</span>
+      </a>
+      <div className="nav-links">
+        {navItems.map((item) => (
+          <a
+            key={item.label}
+            className="nav-link-item"
+            href={item.href}
+            onClick={(e) => handleNavClick(e, item.href)}
+          >
+            <span className="nav-link-roll">
+              <span className="nav-link-text">{item.label}</span>
+              <span className="nav-link-text" aria-hidden="true">
+                {item.label}
+              </span>
+            </span>
+          </a>
+        ))}
+      </div>
+      <button
+        className="menu-toggle"
+        aria-label="Toggle menu"
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        <span />
+        <span />
+      </button>
+    </nav>
+  )
+}
+
