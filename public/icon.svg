@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <rect width="512" height="512" rx="128" fill="#171715"/>
+  <g transform="translate(135, 130)">
+    <!-- Bold 'T' -->
+    <text x="0" y="240" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="270" font-weight="900" fill="#eeeae2" letter-spacing="-16">T</text>
+    <!-- Circled '®' -->
+    <g transform="translate(175, 25)">
+      <circle cx="34" cy="34" r="30" fill="none" stroke="#eeeae2" stroke-width="9"/>
+      <text x="34" y="45" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="32" font-weight="800" fill="#eeeae2" text-anchor="middle">R</text>
+    </g>
+  </g>
+</svg>
