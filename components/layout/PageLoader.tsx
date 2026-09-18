@@ -55,6 +55,16 @@ export function PageLoader() {
       className={`page-loader-overlay ${stage}`}
       aria-hidden="true"
     >
+      {/* Centered Brand Title & Circled R Badge */}
+      <div className="loader-brand-logo">
+        <span className="loader-brand-text">
+          TRUNAL
+          <span className="loader-registered-symbol">
+            <span>R</span>
+          </span>
+        </span>
+      </div>
+
       <div className="loader-strips-container">
         <div className="loader-strip strip-1" />
         <div className="loader-strip strip-2" />
