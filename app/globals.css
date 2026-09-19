@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500;1,600&family=Caveat:wght@600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,500;1,600&family=Alex+Brush&family=Italianno&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
 
-.font-signature { font-family: 'Caveat', cursive, sans-serif; }
+.font-signature-alex { font-family: 'Alex Brush', cursive, sans-serif; font-weight: 400; }
+.font-signature-italianno { font-family: 'Italianno', cursive, sans-serif; font-weight: 400; }
 
 @custom-variant dark (&:is(.dark *));
 
