@@ -32,8 +32,8 @@ export function AboutSection() {
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: el,
-        start: 'top 70%',
-        end: 'top 10%',
+        start: 'top 75%',
+        end: 'center 35%',
         scrub: 0.8,
         onUpdate: (self) => {
           setScrollProgress(self.progress)
@@ -49,11 +49,11 @@ export function AboutSection() {
   const p2Words = PARAGRAPH_2.split(' ')
   const totalWords = p1Words.length + p2Words.length
 
-  // Body text reveal completes 100% as section takes over the viewport
-  const textProgress = Math.min(1, scrollProgress / 0.90)
+  // Body text reveal completes 100% within the first 88% of scroll progress
+  const textProgress = Math.min(1, scrollProgress / 0.88)
 
-  // Signature animation starts right as text completes when section takes over viewport
-  const isSignatureActive = scrollProgress >= 0.90
+  // Signature animation starts strictly AFTER body text completes (scrollProgress >= 0.88)
+  const isSignatureActive = scrollProgress >= 0.88
 
   return (
     <section
