@@ -2,10 +2,10 @@
 
 import React, { useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
-import { Alex_Brush } from 'next/font/google'
+import { The_Nautigal } from 'next/font/google'
 
-const alexBrushFont = Alex_Brush({
-  weight: '400',
+const nautigalFont = The_Nautigal({
+  weight: ['400', '700'],
   subsets: ['latin'],
   display: 'swap',
 })
@@ -47,8 +47,8 @@ export function AboutMeReel() {
             </span>
           </div>
 
-          {/* Giant Title in #CCCCCC Color */}
-          <h1 className="text-[14vw] sm:text-[14vw] md:text-[15vw] lg:text-[175px] xl:text-[200px] font-bold tracking-[-0.05em] leading-[0.82] uppercase text-[#CCCCCC] opacity-95">
+          {/* Tighter Giant Title in #CCCCCC Color */}
+          <h1 className="text-[14vw] sm:text-[14vw] md:text-[15vw] lg:text-[175px] xl:text-[200px] font-bold tracking-[-0.075em] leading-[0.78] uppercase text-[#CCCCCC] opacity-95">
             ABOUT ME
           </h1>
         </div>
@@ -86,17 +86,17 @@ export function AboutMeReel() {
               </p>
             </div>
 
-            {/* Native Alex Brush Google Font Signature: Trunal Gangera */}
+            {/* Native The Nautigal Google Font Signature: Trunal */}
             <div
               className={`pt-2 transition-all duration-1000 delay-250 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
               <span
-                style={{ fontFamily: "'Alex Brush', cursive, sans-serif" }}
-                className={`font-signature-alex ${alexBrushFont.className} text-4xl sm:text-5xl md:text-6xl lg:text-[68px] text-[#171715]/95 select-none block font-normal text-left leading-none tracking-normal`}
+                style={{ fontFamily: "'The Nautigal', cursive, sans-serif" }}
+                className={`font-signature-nautigal ${nautigalFont.className} text-5xl sm:text-6xl md:text-7xl lg:text-[78px] text-[#171715]/95 select-none block font-bold text-left leading-none tracking-normal`}
               >
-                Trunal Gangera
+                Trunal
               </span>
             </div>
           </div>
