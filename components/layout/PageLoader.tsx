@@ -18,8 +18,7 @@ export function PageLoader() {
     if (typeof window !== 'undefined') {
       initialPageLoaded = true
       ;(window as any).__initialPageLoaded = true
-      window.scrollTo(0, 0)
-      document.documentElement.style.setProperty('--scroll-y', '0px')
+      document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`)
       document.body.classList.remove('loader-wiping', 'loader-done', 'page-reveal-active')
     }
 
@@ -34,11 +33,29 @@ export function PageLoader() {
       document.body.classList.add('loader-done')
       document.body.classList.add('page-reveal-active')
       document.body.classList.add('nav-revealed')
+
+      if (typeof window !== 'undefined') {
+        const hash = window.location.hash
+        if (hash) {
+          const targetEl = document.querySelector(hash)
+          if (targetEl) {
+            if ((window as any).__lenis) {
+              ;(window as any).__lenis.scrollTo(targetEl, { immediate: true })
+            } else {
+              targetEl.scrollIntoView()
+            }
+          }
+        }
+        document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`)
+      }
     }, 1100)
 
-    // Stage 3: Unmount loader overlay cleanly
+    // Stage 3: Unmount loader overlay cleanly & refresh GSAP triggers
     const timer3 = setTimeout(() => {
       setStage('done')
+      if (typeof window !== 'undefined' && (window as any).gsap && (window as any).gsap.plugins?.ScrollTrigger) {
+        ;(window as any).gsap.plugins.ScrollTrigger.refresh()
+      }
     }, 1500)
 
     return () => {
