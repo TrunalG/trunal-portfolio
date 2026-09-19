@@ -31,27 +31,28 @@ export function AboutMeReel() {
       className="about-me-editorial bg-[#eeeae2] text-[#171715] min-h-screen py-24 md:py-36 lg:py-44 px-6 md:px-16 lg:px-24 relative z-30 overflow-hidden flex flex-col justify-center"
     >
       <div className="max-w-7xl mx-auto w-full relative">
-        {/* Top Kicker Sub-header */}
-        <div className="text-center md:text-left mb-6 md:mb-8">
-          <span className="text-xs md:text-sm font-semibold tracking-[0.25em] text-[#77746d] uppercase inline-block">
-            PASSIONATE ABOUT DESIGN, CREATING, AND CODE
-          </span>
-        </div>
+        {/* Header Stack: Kicker Centered Directly Over Giant Title */}
+        <div className="relative w-full text-center select-none pointer-events-none mb-8 md:mb-10">
+          {/* Spaced Kicker Line centered over the big title */}
+          <div className="mb-2 md:mb-3">
+            <span className="text-xs md:text-sm font-semibold tracking-[0.25em] md:tracking-[0.3em] text-[#77746d] uppercase inline-block">
+              PASSIONATE ABOUT DESIGN, CREATING, AND ART
+            </span>
+          </div>
 
-        {/* Giant Background Title "ABOUT ME" */}
-        <div className="relative w-full select-none pointer-events-none z-0">
-          <h1 className="text-[14vw] sm:text-[13vw] md:text-[15vw] lg:text-[170px] xl:text-[200px] font-bold tracking-[-0.05em] leading-[0.8] uppercase text-[#ffffff] drop-shadow-sm transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] opacity-90">
+          {/* Giant Off-White Title */}
+          <h1 className="text-[14vw] sm:text-[14vw] md:text-[15vw] lg:text-[175px] xl:text-[200px] font-bold tracking-[-0.05em] leading-[0.82] uppercase text-[#ffffff] drop-shadow-sm opacity-95">
             ABOUT ME
           </h1>
         </div>
 
-        {/* Layered Content Composite (Cutout in Front + Copy Aligned to Right Edge) */}
-        <div className="relative z-10 -mt-12 sm:-mt-16 md:-mt-24 lg:-mt-32 grid grid-cols-1 md:grid-cols-12 items-end gap-8 md:gap-4 lg:gap-8">
-          {/* Left / Middle: Portrait Cutout overlapping lower half of ABOUT ME */}
-          <div className="md:col-span-5 lg:col-span-5 relative flex justify-center md:justify-start">
+        {/* 2-Column Row: Cutout PNG Left + Body Text Right (Directly Touching Right Edge, Gap 0) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 items-start gap-0 w-full">
+          {/* Left Block: Cutout Portrait PNG (Static, No Hover Effect) */}
+          <div className="md:col-span-5 lg:col-span-5 flex justify-center md:justify-start pr-0">
             <div
-              className={`relative w-[280px] sm:w-[340px] md:w-[400px] lg:w-[460px] aspect-[3/4] transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-95'
+              className={`relative w-[280px] sm:w-[340px] md:w-[380px] lg:w-[430px] aspect-[3/4] flex-shrink-0 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
               <Image
@@ -59,14 +60,14 @@ export function AboutMeReel() {
                 alt="Trunal Portrait Cutout"
                 fill
                 priority
-                className="object-contain object-bottom filter drop-shadow-2xl transition-transform duration-700 hover:scale-[1.02]"
-                sizes="(max-width: 768px) 100vw, 460px"
+                className="object-contain object-bottom pointer-events-none select-none filter drop-shadow-xl"
+                sizes="(max-width: 768px) 100vw, 430px"
               />
             </div>
           </div>
 
-          {/* Right: Bio Text starting right at the right edge of the Cutout */}
-          <div className="md:col-span-7 lg:col-span-7 space-y-6 md:space-y-8 md:pb-6">
+          {/* Right Block: Body Text (Flush against Right Edge of Cutout, Gap 0) */}
+          <div className="md:col-span-7 lg:col-span-7 pl-0 md:pl-0 pt-4 md:pt-2 space-y-6 md:space-y-8">
             {/* Title / Sub-header Tag */}
             <div
               className={`transition-all duration-1000 delay-100 ease-[cubic-bezier(0.16,1,0.3,1)] ${
@@ -92,13 +93,13 @@ export function AboutMeReel() {
               </p>
             </div>
 
-            {/* Focus Tags */}
+            {/* Skill / Focus Tags */}
             <div
               className={`flex flex-wrap gap-2.5 pt-2 transition-all duration-1000 delay-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
-              {['UX Architecture', 'Product Design', 'Full-Stack Development', 'Design Systems'].map((tag, idx) => (
+              {['UX Architecture', 'Product Design', 'Full-Stack Craft', 'Design Systems'].map((tag, idx) => (
                 <span
                   key={idx}
                   className="px-4 py-1.5 rounded-full border border-[#171715]/20 text-xs md:text-sm font-medium text-[#171715]/90 bg-[#171715]/5 tracking-normal select-none pointer-events-none"
@@ -108,7 +109,7 @@ export function AboutMeReel() {
               ))}
             </div>
 
-            {/* Contact CTA */}
+            {/* Contact Link */}
             <div
               className={`pt-4 transition-all duration-1000 delay-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
