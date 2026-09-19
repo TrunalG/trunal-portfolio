@@ -35,9 +35,11 @@ export default function Page() {
           <CapabilitiesSection className="capabilities section-pad bg-[#eeeae2]" />
         </div>
         <AboutSection />
+        {/*
         <CurrentlySection />
         <ArchiveSection />
         <PlaygroundSection />
+        */}
         <ContactSection />
       </div>
     </main>
