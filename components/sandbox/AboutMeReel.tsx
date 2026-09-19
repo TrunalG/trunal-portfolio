@@ -33,7 +33,7 @@ export function AboutMeReel() {
       ScrollTrigger.create({
         trigger: el,
         start: 'top 75%',
-        end: 'center 40%',
+        end: 'center 35%',
         scrub: 0.8,
         onUpdate: (self) => {
           setScrollProgress(self.progress)
@@ -49,10 +49,11 @@ export function AboutMeReel() {
   const p2Words = PARAGRAPH_2.split(' ')
   const totalWords = p1Words.length + p2Words.length
 
-  // Calculate signature stroke reveal progress (animates during final 15% of scroll progress)
-  const sigRawProgress = Math.max(0, (scrollProgress - 0.82) / 0.18)
-  const sigProgress = Math.min(1, sigRawProgress)
-  const sigClipWidth = (1 - sigProgress) * 100
+  // Body text reveal completes 100% within the first 88% of scroll progress
+  const textProgress = Math.min(1, scrollProgress / 0.88)
+
+  // Signature animation starts strictly AFTER body text completes (scrollProgress >= 0.88)
+  const isSignatureActive = scrollProgress >= 0.88
 
   return (
     <section
@@ -81,9 +82,9 @@ export function AboutMeReel() {
           <div className="md:col-span-5 lg:col-span-5 flex justify-center md:justify-end pr-0">
             <div
               style={{
-                opacity: Math.min(1, scrollProgress * 1.25),
-                transform: `translateY(${(1 - Math.min(1, scrollProgress * 1.25)) * 32}px)`,
-                transition: 'opacity 0.1s linear, transform 0.1s linear',
+                opacity: Math.min(1, textProgress * 1.15),
+                transform: `translateY(${(1 - Math.min(1, textProgress * 1.15)) * 32}px)`,
+                transition: 'opacity 0.15s linear, transform 0.15s linear',
               }}
               className="relative w-[240px] sm:w-[300px] md:w-[360px] lg:w-[410px] aspect-[3/4] flex-shrink-0"
             >
@@ -108,8 +109,8 @@ export function AboutMeReel() {
                   const startThresh = index / totalWords
                   const endThresh = (index + 1) / totalWords
                   let fill = 0
-                  if (scrollProgress > startThresh) {
-                    fill = Math.min(1, (scrollProgress - startThresh) / (endThresh - startThresh))
+                  if (textProgress > startThresh) {
+                    fill = Math.min(1, (textProgress - startThresh) / (endThresh - startThresh))
                   }
                   const isLast = index === p1Words.length - 1
 
@@ -136,8 +137,8 @@ export function AboutMeReel() {
                   const startThresh = globalIdx / totalWords
                   const endThresh = (globalIdx + 1) / totalWords
                   let fill = 0
-                  if (scrollProgress > startThresh) {
-                    fill = Math.min(1, (scrollProgress - startThresh) / (endThresh - startThresh))
+                  if (textProgress > startThresh) {
+                    fill = Math.min(1, (textProgress - startThresh) / (endThresh - startThresh))
                   }
                   const isLast = index === p2Words.length - 1
 
@@ -158,14 +159,15 @@ export function AboutMeReel() {
               </p>
             </div>
 
-            {/* Signature: Animates like an authentic handwritten signature when text finishes writing */}
+            {/* Signature: Starts AFTER text completion with a smooth, unhurried 1.2s calligraphic pen stroke reveal */}
             <div className="pt-2 overflow-hidden">
               <span
                 style={{
                   fontFamily: "'The Nautigal', cursive, sans-serif",
-                  clipPath: `inset(0 ${sigClipWidth}% 0 0)`,
-                  transform: `skewX(${-(1 - sigProgress) * 6}deg)`,
-                  transition: 'clip-path 0.08s ease-out, transform 0.08s ease-out',
+                  clipPath: isSignatureActive ? 'inset(0 0% 0 0)' : 'inset(0 100% 0 0)',
+                  opacity: isSignatureActive ? 1 : 0,
+                  transform: isSignatureActive ? 'translateY(0) skewX(0deg)' : 'translateY(6px) skewX(-5deg)',
+                  transition: 'clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease',
                 }}
                 className={`font-signature-nautigal ${nautigalFont.className} text-5xl sm:text-6xl md:text-7xl lg:text-[78px] text-[#171715]/95 select-none block font-bold text-left leading-none tracking-normal`}
               >
