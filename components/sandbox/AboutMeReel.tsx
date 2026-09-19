@@ -79,13 +79,13 @@ export function AboutMeReel() {
               </p>
             </div>
 
-            {/* Organic Calligraphic Alex Brush Signature: Trunal Gangera */}
+            {/* Italianno Signature: Trunal Gangera */}
             <div
-              className={`pt-2 transition-all duration-1000 delay-250 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`pt-1 transition-all duration-1000 delay-250 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
-              <span className="font-signature-alex text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#171715]/95 select-none block tracking-wide font-normal">
+              <span className="font-signature-italianno text-3xl sm:text-4xl md:text-5xl text-[#171715]/90 select-none block tracking-tight font-normal text-left leading-none">
                 Trunal Gangera
               </span>
             </div>
