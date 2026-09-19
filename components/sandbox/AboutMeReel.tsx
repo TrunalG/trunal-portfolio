@@ -40,8 +40,8 @@ export function AboutMeReel() {
             </span>
           </div>
 
-          {/* Giant Off-White Title (Flat, No Drop Shadow) */}
-          <h1 className="text-[14vw] sm:text-[14vw] md:text-[15vw] lg:text-[175px] xl:text-[200px] font-bold tracking-[-0.05em] leading-[0.82] uppercase text-[#ffffff] opacity-95">
+          {/* Giant Title in #CCCCCC Color */}
+          <h1 className="text-[14vw] sm:text-[14vw] md:text-[15vw] lg:text-[175px] xl:text-[200px] font-bold tracking-[-0.05em] leading-[0.82] uppercase text-[#CCCCCC] opacity-95">
             ABOUT ME
           </h1>
         </div>
@@ -68,20 +68,9 @@ export function AboutMeReel() {
 
           {/* Right: Body Text starting right next to Cutout, wrapping cleanly before Red Line Boundary */}
           <div className="md:col-span-7 lg:col-span-7 pl-0 pt-6 md:pt-16 space-y-6 md:space-y-7 max-w-[560px] lg:max-w-[620px]">
-            {/* Title: Trunal */}
+            {/* Editorial Single Combined Bio Copy (Starts directly without headline) */}
             <div
-              className={`transition-all duration-1000 delay-100 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[#171715]">
-                Trunal
-              </h2>
-            </div>
-
-            {/* Editorial Single Combined Bio Copy */}
-            <div
-              className={`text-base md:text-lg lg:text-[19px] text-[#171715]/85 leading-relaxed font-medium transition-all duration-1000 delay-200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`text-base md:text-lg lg:text-[19px] text-[#171715]/85 leading-relaxed font-medium transition-all duration-1000 delay-100 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
@@ -90,35 +79,15 @@ export function AboutMeReel() {
               </p>
             </div>
 
-            {/* Skill / Focus Tags */}
+            {/* Organic Handwritten Signature: Trunal Gangera */}
             <div
-              className={`flex flex-wrap gap-2.5 pt-1 transition-all duration-1000 delay-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`pt-2 transition-all duration-1000 delay-250 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
-              {['UX Architecture', 'Product Design', 'Full-Stack Craft', 'Design Systems'].map((tag, idx) => (
-                <span
-                  key={idx}
-                  className="px-4 py-1.5 rounded-full border border-[#171715]/20 text-xs md:text-sm font-medium text-[#171715]/90 bg-[#171715]/5 tracking-normal select-none pointer-events-none"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            {/* Contact Link */}
-            <div
-              className={`pt-2 transition-all duration-1000 delay-400 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-            >
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 text-lg md:text-xl font-bold text-[#171715] border-b-2 border-[#171715] pb-0.5 hover:text-[#590711] hover:border-[#590711] transition-colors group"
-              >
-                <span>Say hello</span>
-                <span className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">↗</span>
-              </a>
+              <span className="font-signature text-3xl sm:text-4xl md:text-5xl text-[#171715] select-none block tracking-wide font-bold">
+                Trunal Gangera
+              </span>
             </div>
           </div>
         </div>
