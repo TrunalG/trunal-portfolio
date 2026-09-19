@@ -13,10 +13,10 @@ const nautigalFont = The_Nautigal({
 })
 
 const PARAGRAPH_1 =
-  "I’ve always been curious about how things work. Sometimes it’s a website, sometimes it’s a camera, a game, or a completely random idea that I can’t stop thinking about. That curiosity is probably what pulled me toward design and development in the first place."
+  "I’m Trunal, a designer and developer who enjoys turning ideas into things people can actually use. I started with design, but over time I found myself wanting to understand more of what happens behind the interface, which naturally led me into development. Now I enjoy working across product design, UI/UX, and web development, moving between the small details and the bigger picture of how a product should work."
 
 const PARAGRAPH_2 =
-  "I like making things, but I also like understanding how they work. I enjoy taking something confusing and making it feel simple, finding the small details that make an experience better, and turning an idea that exists only in my head into something real. I’m still figuring a lot of things out, but that’s part of what I enjoy. There’s always something new to learn, build, break, and build again."
+  "What I enjoy most is that space between design and technology, where an idea slowly turns into something real. I like figuring out how things should work, making them feel simple to use, and paying attention to the details that often go unnoticed. Outside of work, I’m usually taking photographs, playing games, reading, or building something just because I’m curious about how it works."
 
 export function AboutSection() {
   const containerRef = useRef<HTMLDivElement | null>(null)
