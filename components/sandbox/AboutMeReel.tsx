@@ -2,6 +2,13 @@
 
 import React, { useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
+import { Italianno } from 'next/font/google'
+
+const italiannoFont = Italianno({
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export function AboutMeReel() {
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -79,13 +86,16 @@ export function AboutMeReel() {
               </p>
             </div>
 
-            {/* Italianno Signature: Trunal Gangera */}
+            {/* Native Italianno Google Font Signature: Trunal Gangera */}
             <div
-              className={`pt-1 transition-all duration-1000 delay-250 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`pt-2 transition-all duration-1000 delay-250 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
-              <span className="font-signature-italianno text-3xl sm:text-4xl md:text-5xl text-[#171715]/90 select-none block tracking-tight font-normal text-left leading-none">
+              <span
+                style={{ fontFamily: "'Italianno', cursive, sans-serif" }}
+                className={`font-signature-italianno ${italiannoFont.className} text-5xl sm:text-6xl md:text-7xl lg:text-[76px] text-[#171715]/95 select-none block font-normal text-left leading-none tracking-normal`}
+              >
                 Trunal Gangera
               </span>
             </div>
