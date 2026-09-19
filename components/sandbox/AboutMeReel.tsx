@@ -43,7 +43,7 @@ export function AboutMeReel() {
           {/* Spaced Light Kicker Line */}
           <div className="mb-2 md:mb-4">
             <span className="text-xs md:text-sm font-normal tracking-[0.25em] md:tracking-[0.32em] text-[#77746d] uppercase inline-block">
-              PASSIONATE ABOUT DESIGN, CREATING, AND ART
+              PASSIONATE ABOUT CREATING, DEVELOPING AND ART
             </span>
           </div>
 
@@ -75,14 +75,17 @@ export function AboutMeReel() {
 
           {/* Right: Body Text starting right next to Cutout with balanced vertical hierarchy spacing */}
           <div className="md:col-span-7 lg:col-span-7 pl-0 pt-6 md:pt-14 lg:pt-18 space-y-6 md:space-y-8 max-w-[560px] lg:max-w-[620px]">
-            {/* Editorial Single Combined Bio Copy */}
+            {/* Editorial Two-Paragraph Combined Bio Copy */}
             <div
-              className={`text-base md:text-lg lg:text-[19px] text-[#171715]/85 leading-relaxed font-medium transition-all duration-1000 delay-100 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`text-base md:text-lg lg:text-[19px] text-[#171715]/85 leading-relaxed font-medium space-y-4 md:space-y-5 transition-all duration-1000 delay-100 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
               <p className="leading-[1.68]">
-                I’m a designer and developer dedicated to creating digital experiences that spark curiosity, purpose, and clarity. With a background in UI/UX architecture and full-stack craft, I blend my love for structure with interactive design to build meaningful web applications that people love to use. Outside of product work, I enjoy photography, games, books, and building projects simply to understand how things work under the hood. Beyond code, I’m passionate about clean aesthetics, art, and self-expression.
+                I’ve always been curious about how things work. Sometimes it’s a website, sometimes it’s a camera, a game, or a completely random idea that I can’t stop thinking about. That curiosity is probably what pulled me toward design and development in the first place.
+              </p>
+              <p className="leading-[1.68]">
+                I like making things, but I also like understanding how they work. I enjoy taking something confusing and making it feel simple, finding the small details that make an experience better, and turning an idea that exists only in my head into something real. I’m still figuring a lot of things out, but that’s part of what I enjoy. There’s always something new to learn, build, break, and build again.
               </p>
             </div>
 
