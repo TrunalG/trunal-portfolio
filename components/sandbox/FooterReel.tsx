@@ -15,9 +15,9 @@ export function FooterReel() {
         <SectionKicker title="Contact" />
         <span className="contact-note">Have a good one.</span>
       </div>
-      <div className="mb-8 md:mb-12">
-        <ScrollText as="h2" text="Have something" className="text-4xl sm:text-5xl md:text-6xl lg:text-[76px] font-bold uppercase tracking-[-0.05em] leading-[0.92] text-white block mb-2" />
-        <ScrollText as="h2" text="worth building?" emphasisWords={['worth', 'building?']} className="text-2xl sm:text-3xl md:text-4xl lg:text-[48px] font-normal block pl-1 opacity-90" />
+      <div className="mb-8 md:mb-12 space-y-1">
+        <ScrollText as="h2" text="Have something" className="whitespace-nowrap text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-bold uppercase tracking-[-0.05em] leading-[0.92] text-white block" />
+        <ScrollText as="h2" text="worth building?" emphasisWords={['worth', 'building?']} className="whitespace-nowrap text-xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[48px] font-normal block pl-1 opacity-90" />
       </div>
       <ScrollText as="p" text="Whether you have a product idea, an existing product that needs work, or you're looking for someone who can design and build, I'd like to hear about it." />
       <div className="contact-actions">
