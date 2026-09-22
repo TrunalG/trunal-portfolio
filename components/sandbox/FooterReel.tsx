@@ -1,32 +1,19 @@
 'use client'
 
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect } from 'react'
+import { The_Nautigal } from 'next/font/google'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+const nautigalFont = The_Nautigal({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export function FooterReel() {
   const footerRef = useRef<HTMLElement | null>(null)
   const giantTextRef = useRef<HTMLDivElement | null>(null)
-  const [currentTime, setCurrentTime] = useState<string>('')
-
-  // Live IST / India Clock
-  useEffect(() => {
-    const updateClock = () => {
-      const now = new Date()
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: 'Asia/Kolkata',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false,
-      }
-      setCurrentTime(new Intl.DateTimeFormat('en-GB', options).format(now) + ' IST')
-    }
-
-    updateClock()
-    const timer = setInterval(updateClock, 1000)
-    return () => clearInterval(timer)
-  }, [])
 
   // GSAP ScrollTrigger for vertical expansion of giant "TRUNAL" text
   useEffect(() => {
@@ -41,8 +28,8 @@ export function FooterReel() {
       gsap.fromTo(
         textEl,
         {
-          scaleY: 0.18,
-          opacity: 0.4,
+          scaleY: 0.15,
+          opacity: 0.35,
           transformOrigin: 'bottom center',
         },
         {
@@ -51,7 +38,7 @@ export function FooterReel() {
           ease: 'power2.out',
           scrollTrigger: {
             trigger: footerEl,
-            start: 'top 85%',
+            start: 'top 75%',
             end: 'bottom bottom',
             scrub: 0.8,
           },
@@ -79,33 +66,30 @@ export function FooterReel() {
     <footer
       ref={footerRef}
       id="contact"
-      className="relative z-30 bg-[#0f0f0e] text-[#eeeae2] pt-20 md:pt-32 pb-8 px-6 md:px-16 lg:px-24 overflow-hidden flex flex-col justify-between min-h-screen"
+      className="relative z-30 bg-[#0f0f0e] text-[#eeeae2] pt-16 md:pt-24 lg:pt-32 pb-6 px-6 md:px-16 lg:px-24 overflow-hidden flex flex-col justify-between min-h-screen"
     >
       <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between">
-        {/* Header Stack / Top Line */}
-        <div className="flex justify-between items-center border-b border-white/15 pb-6 mb-12 md:mb-16">
-          <span className="text-xs uppercase tracking-[0.25em] text-[#77746d] font-semibold">
-            GET IN TOUCH
-          </span>
-          <span className="text-xs uppercase tracking-[0.2em] text-[#cbbd8a] font-mono">
-            {currentTime || 'INDIA / IST'}
-          </span>
-        </div>
-
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-16 md:mb-24">
-          {/* Left Column: Personalized Hook, Subheadline & Direct Interactive Email */}
+        {/* Main Content Grid starting cleanly without top thin border line */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-12 md:mb-20">
+          {/* Left Column: Overlapping Calligraphic Kicker + Headline + Interactive Email Link */}
           <div className="lg:col-span-7 space-y-6 md:space-y-8">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-[-0.04em] leading-[1.1] text-white">
-              Got a project in mind, an idea, or just want to chat?
-            </h2>
-            
-            <p className="text-base md:text-lg text-[#eeeae2]/75 max-w-xl leading-relaxed font-normal">
-              I’m always open to discussing new opportunities, creative product design, or full-stack development collaborations. Drop me a message and let’s turn your vision into something real.
-            </p>
+            <div className="relative pt-2">
+              {/* Calligraphic Script Kicker Overlapping the Headline below */}
+              <span
+                style={{ fontFamily: "'The Nautigal', cursive, sans-serif" }}
+                className={`font-signature-nautigal ${nautigalFont.className} text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#cbbd8a] font-normal block -mb-4 sm:-mb-5 md:-mb-6 relative z-10 select-none tracking-normal leading-none pl-1`}
+              >
+                HAVE AN IDEA?
+              </span>
 
-            {/* Interactive Email Link (Triggers default mail client with pre-filled address) */}
-            <div className="pt-4">
+              {/* Bold Section Headline */}
+              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.04em] leading-[0.96] uppercase text-white relative z-0">
+                LET’S MAKE SOMETHING REAL.
+              </h2>
+            </div>
+
+            {/* Direct Interactive Email Link (Triggers default mail client with pre-filled address) */}
+            <div className="pt-2">
               <a
                 href="mailto:dsgnclave@gmail.com"
                 className="group inline-flex items-center gap-3 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-[#eeeae2] hover:text-[#cbbd8a] transition-colors duration-300 relative"
@@ -167,24 +151,24 @@ export function FooterReel() {
             </div>
           </div>
         </div>
-
-        {/* Bottom Bar: Copyright & Back to top */}
-        <div className="flex justify-between items-center border-t border-white/10 pt-6 pb-4 text-xs text-[#77746d] uppercase tracking-[0.15em]">
-          <span>© TRUNAL 2026</span>
-          <a href="#top" className="hover:text-white transition-colors duration-200">
-            BACK TO TOP ↑
-          </a>
-        </div>
       </div>
 
-      {/* Bottom Giant Expanding Typography ("TRUNAL") */}
-      <div className="w-full overflow-hidden pt-4 pointer-events-none select-none">
+      {/* Giant Expanding Typography ("TRUNAL") directly below content grid across an invisible baseline */}
+      <div className="w-full overflow-hidden pt-2 pointer-events-none select-none">
         <div
           ref={giantTextRef}
-          className="w-full text-center leading-[0.75] font-black tracking-tight uppercase text-[#eeeae2] text-[20vw] sm:text-[21vw] md:text-[22vw] lg:text-[23vw] will-change-transform"
+          className="w-full text-center leading-[0.72] font-black tracking-tighter uppercase text-[#eeeae2] text-[21vw] sm:text-[22vw] md:text-[23vw] lg:text-[24vw] will-change-transform"
         >
           TRUNAL
         </div>
+      </div>
+
+      {/* Copyright Bar placed at the VERY BOTTOM underneath everything */}
+      <div className="flex justify-between items-center border-t border-white/10 pt-4 text-xs text-[#77746d] uppercase tracking-[0.15em] max-w-7xl mx-auto w-full mt-4">
+        <span>© TRUNAL 2026</span>
+        <a href="#top" className="hover:text-white transition-colors duration-200">
+          BACK TO TOP ↑
+        </a>
       </div>
     </footer>
   )
