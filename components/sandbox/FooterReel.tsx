@@ -1,33 +1,56 @@
 'use client'
 
 import React, { useRef, useEffect, useState } from 'react'
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { AnimatedCTA } from '@/components/AnimatedCTA'
 import { ScrollText } from '@/components/ScrollText'
 
 export function FooterReel() {
-  const containerRef = useRef<HTMLDivElement | null>(null)
   const footerRef = useRef<HTMLElement | null>(null)
+  const textRef = useRef<HTMLHeadingElement | null>(null)
 
+  const [mounted, setMounted] = useState(false)
+  const [isFooterVisible, setIsFooterVisible] = useState(false)
   const [fadeInProgress, setFadeInProgress] = useState(0)
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [maxBrandHeight, setMaxBrandHeight] = useState(300)
 
-  // Track scroll on footerRef as its bottom edge leaves the viewport
-  const { scrollYProgress } = useScroll({
-    target: footerRef,
-    offset: ['end end', 'end start'],
-  })
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
-  // Apply liquid spring physics smoothing to scrollYProgress (eliminates stutter & jank)
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 30,
-    restDelta: 0.001,
-  })
+  // Only enable fixed bottom TRUNAL layer when footer is near or in viewport
+  useEffect(() => {
+    const el = footerRef.current
+    if (!el) return
 
-  // Map spring progress to GPU transform scaleY & opacity (zero layout reflows!)
-  const brandScaleY = useTransform(smoothProgress, [0, 0.85], [0, 1])
-  const brandOpacity = useTransform(smoothProgress, [0, 0.3], [0, 1])
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsFooterVisible(entry.isIntersecting)
+      },
+      {
+        rootMargin: '500px 0px 500px 0px',
+      }
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  // Measure text height on load & resize for exact curtain reveal distance
+  useEffect(() => {
+    const updateBrandHeight = () => {
+      if (textRef.current) {
+        const h = textRef.current.offsetHeight
+        if (h > 0) {
+          setMaxBrandHeight(h + 24)
+        }
+      }
+    }
+
+    updateBrandHeight()
+    window.addEventListener('resize', updateBrandHeight)
+    return () => window.removeEventListener('resize', updateBrandHeight)
+  }, [])
 
   useEffect(() => {
     const el = footerRef.current
@@ -41,13 +64,13 @@ export function FooterReel() {
           const rect = el.getBoundingClientRect()
           const windowHeight = window.innerHeight
 
-          // Phase 1: Entrance Skeleton Fade-In (as section first appears from 98% to 85% of window height)
+          // Entrance Skeleton Fade-In
           const fadeStart = windowHeight * 0.98
           const fadeEnd = windowHeight * 0.85
           const rawFade = Math.max(0, Math.min(1, (fadeStart - rect.top) / (fadeStart - fadeEnd)))
           setFadeInProgress(1 - Math.pow(1 - rawFade, 2))
 
-          // Phase 2: Word Fill & Link Boxes Reveal (as user scrolls from 85% to 42% of window height)
+          // Word Fill & Link Boxes Reveal
           const fillStart = windowHeight * 0.85
           const fillEnd = windowHeight * 0.42
           const rawFill = Math.max(0, Math.min(1, (fillStart - rect.top) / (fillStart - fillEnd)))
@@ -79,16 +102,16 @@ export function FooterReel() {
   ]
 
   return (
-    <div ref={containerRef} className="relative w-full bg-[#0f0f0e]">
-      {/* Top Contact Content Card */}
+    <div className="relative w-full bg-[#0f0f0e]" suppressHydrationWarning>
+      {/* Higher Z-Index Main Footer Card (z-10) */}
       <footer
         ref={footerRef}
         id="contact"
-        className="relative z-20 bg-[#0f0f0e] text-[#eeeae2] min-h-screen py-12 md:py-16 px-6 md:px-16 lg:px-24 flex flex-col justify-between shadow-[0_25px_60px_rgba(0,0,0,0.9)] mb-[45vh] lg:mb-[50vh]"
+        style={{ marginBottom: maxBrandHeight }}
+        className="relative z-10 w-full bg-[#0f0f0e] text-[#eeeae2] min-h-screen pt-12 md:pt-16 pb-8 px-6 md:px-16 lg:px-24 flex flex-col justify-between"
       >
         <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between pt-6 md:pt-10 mb-8 md:mb-12">
-
-          {/* Descending Typographic Headline Stack: Entrance Fade-In first, then Scroll Word Fill */}
+          {/* Descending Typographic Headline Stack */}
           <div
             style={{
               opacity: fadeInProgress,
@@ -118,20 +141,18 @@ export function FooterReel() {
             </div>
           </div>
 
-          {/* Content Row: Subheadline + Email CTA (Left) & Symmetrically Aligned Directories (Right) */}
+          {/* Content Row: Subheadline + Email CTA (Left) & Directories (Right) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start mb-8 md:mb-12">
-            {/* Left Column: Subheadline & Interactive Email CTA guiding the eye */}
+            {/* Left Column */}
             <div className="lg:col-span-7 flex flex-col justify-start">
-              {/* Subheadline with Scroll-Based Skeleton Fill */}
               <ScrollText
                 as="p"
-                text="Whether you have a product idea, an existing product that needs work, or you're looking for someone who can design and build, I'd like to hear about it."
+                text="Whether you’re starting with an idea or improving something that already exists, I can help shape it into a product people can actually use. From idea to live, I like being involved in the process."
                 scrollStart={0.85}
                 scrollEnd={0.42}
                 className="text-base md:text-lg lg:text-[19px] text-[#eeeae2] max-w-xl leading-relaxed font-normal mb-8 md:mb-10"
               />
 
-              {/* Direct Interactive Email Link CTA synchronized with scroll progress */}
               <div
                 style={{
                   opacity: Math.max(0.18, scrollProgress),
@@ -149,7 +170,7 @@ export function FooterReel() {
               </div>
             </div>
 
-            {/* Right Column: Navigation & Socials with synchronized smooth scroll fade-in & slide-up */}
+            {/* Right Column */}
             <div
               style={{
                 opacity: scrollProgress,
@@ -158,7 +179,7 @@ export function FooterReel() {
               }}
               className="lg:col-span-5 flex items-stretch justify-start gap-6 sm:gap-8 border-t lg:border-t-0 pt-8 lg:pt-0 lg:pl-4"
             >
-              {/* Quick Navigation Box with healthy padding */}
+              {/* Quick Navigation Box */}
               <div className="space-y-4 pr-6 sm:pr-8 md:pr-10">
                 <span className="text-xs uppercase tracking-[0.2em] text-[#77746d] font-semibold block mb-4">
                   Navigation
@@ -177,10 +198,10 @@ export function FooterReel() {
                 </ul>
               </div>
 
-              {/* Thin Vertical Line (Positioned dead-center between padded boxes) */}
+              {/* Thin Vertical Line */}
               <div className="w-[1px] bg-white/10 self-stretch flex-shrink-0" />
 
-              {/* Social Links Box with healthy padding */}
+              {/* Social Links Box */}
               <div className="space-y-4 pl-6 sm:pl-8 md:pl-10">
                 <span className="text-xs uppercase tracking-[0.2em] text-[#77746d] font-semibold block mb-4">
                   Socials
@@ -207,23 +228,30 @@ export function FooterReel() {
           </div>
 
           {/* Baseline Copyright Bar */}
-          <div className="border-t border-white/10 pt-6 pb-2 text-xs text-[#77746d] uppercase tracking-[0.15em] w-full">
+          <div className="border-t border-white/10 pt-6 pb-4 text-xs text-[#77746d] uppercase tracking-[0.15em] w-full">
             <span>© TRUNAL 2026</span>
           </div>
         </div>
       </footer>
 
-      {/* Fixed Bottom Brand Wordmark Panel ("TRUNAL") */}
-      <div className="fixed bottom-0 left-0 right-0 z-10 w-full h-[45vh] lg:h-[50vh] bg-[#0f0f0e] border-t border-white/10 flex items-end justify-center select-none overflow-hidden">
-        <motion.div
-          style={{ scaleY: brandScaleY, opacity: brandOpacity, transformOrigin: 'bottom' }}
-          className="w-full h-full flex justify-center items-end pb-3 sm:pb-6 md:pb-8 px-4 md:px-12 lg:px-16"
+      {/* Lower Z-Index Fixed Bottom Brand Wordmark Layer (z-0) - Only visible when footer is near viewport */}
+      <div
+        style={{
+          height: maxBrandHeight,
+          visibility: isFooterVisible ? 'visible' : 'hidden',
+          opacity: isFooterVisible ? 1 : 0,
+        }}
+        className="fixed bottom-0 left-0 right-0 z-0 w-full bg-[#0f0f0e] flex items-end justify-center select-none overflow-hidden pb-3 md:pb-6 px-4 md:px-12 lg:px-16 transition-opacity duration-300"
+      >
+        <h1
+          ref={textRef}
+          className="text-[clamp(75px,18.5vw,360px)] font-extrabold uppercase tracking-[-0.07em] leading-[0.72] text-[#eeeae2]/55 whitespace-nowrap text-center block w-full"
         >
-          <h1 className="text-[clamp(65px,17.8vw,330px)] font-extrabold uppercase tracking-[-0.07em] leading-[0.72] text-[#eeeae2] whitespace-nowrap text-center block w-full">
-            TRUNAL
-          </h1>
-        </motion.div>
+          TRUNAL
+        </h1>
       </div>
     </div>
   )
 }
+
+

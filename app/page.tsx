@@ -11,7 +11,12 @@ import { AboutSection } from '@/components/sections/AboutSection'
 import { CurrentlySection } from '@/components/sections/CurrentlySection'
 import { ArchiveSection } from '@/components/sections/ArchiveSection'
 import { PlaygroundSection } from '@/components/sections/PlaygroundSection'
-import { ContactSection } from '@/components/sections/ContactSection'
+import dynamic from 'next/dynamic'
+
+const FooterReel = dynamic(
+  () => import('@/components/sandbox/FooterReel').then((mod) => mod.FooterReel),
+  { ssr: false }
+)
 
 export default function Page() {
   return (
@@ -40,8 +45,9 @@ export default function Page() {
         <ArchiveSection />
         <PlaygroundSection />
         */}
-        <ContactSection />
+        <FooterReel />
       </div>
     </main>
   )
 }
+
