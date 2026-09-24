@@ -31,14 +31,14 @@ export function FooterReel() {
           </span>
         </div>
 
-        {/* Descending Typographic Headline Stack: Perfect breathing gap between Line 1 & Line 2 */}
+        {/* Descending Typographic Headline Stack: Relaxed letter tracking on Line 1 */}
         <div className="mb-10 md:mb-14 select-none">
-          {/* Line 1: Have something */}
-          <h2 className="text-[clamp(44px,7.5vw,110px)] font-bold leading-[0.88] tracking-[-0.07em] uppercase text-white whitespace-nowrap block">
+          {/* Line 1: Have something (Loosened tracking from -0.07em to -0.03em) */}
+          <h2 className="text-[clamp(44px,7.5vw,110px)] font-bold leading-[0.88] tracking-[-0.03em] uppercase text-white whitespace-nowrap block">
             Have something
           </h2>
 
-          {/* Line 2: worth building? (Clean, elegant margin below Line 1, no overlap) */}
+          {/* Line 2: worth building? */}
           <span
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
             className="text-[clamp(36px,6vw,88px)] font-normal italic leading-[0.88] text-[#eeeae2] block mt-1 sm:mt-2 md:mt-3 whitespace-nowrap"
@@ -72,10 +72,10 @@ export function FooterReel() {
             </div>
           </div>
 
-          {/* Right Column: Navigation & Socials with perfectly balanced centered vertical line */}
-          <div className="lg:col-span-5 flex items-stretch justify-start lg:justify-end gap-8 sm:gap-10 md:gap-12 border-t lg:border-t-0 pt-8 lg:pt-0">
-            {/* Quick Navigation Box */}
-            <div className="space-y-4">
+          {/* Right Column: Navigation & Socials with healthy padding & shifted slightly left */}
+          <div className="lg:col-span-5 flex items-stretch justify-start gap-6 sm:gap-8 border-t lg:border-t-0 pt-8 lg:pt-0 lg:pl-4">
+            {/* Quick Navigation Box with healthy padding */}
+            <div className="space-y-4 pr-6 sm:pr-8 md:pr-10">
               <span className="text-xs uppercase tracking-[0.2em] text-[#77746d] font-semibold block mb-4">
                 Navigation
               </span>
@@ -93,11 +93,11 @@ export function FooterReel() {
               </ul>
             </div>
 
-            {/* Thin Vertical Line (Positioned dead-center with exact equal gap to both text blocks) */}
+            {/* Thin Vertical Line (Positioned dead-center between padded boxes) */}
             <div className="w-[1px] bg-white/10 self-stretch flex-shrink-0" />
 
-            {/* Social Links Box */}
-            <div className="space-y-4">
+            {/* Social Links Box with healthy padding */}
+            <div className="space-y-4 pl-6 sm:pl-8 md:pl-10">
               <span className="text-xs uppercase tracking-[0.2em] text-[#77746d] font-semibold block mb-4">
                 Socials
               </span>
