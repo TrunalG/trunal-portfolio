@@ -33,8 +33,8 @@ export function FooterReel() {
 
         {/* Descending Typographic Headline Stack: Exact 2 lines without unwanted breaking + smaller italic 2nd line */}
         <div className="mb-12 md:mb-16 select-none">
-          {/* Line 1: Have something (Exact display sans-serif, fits on 1 line) */}
-          <h2 className="text-[clamp(44px,7.5vw,110px)] font-extrabold leading-[0.88] tracking-[-0.07em] uppercase text-white whitespace-nowrap block">
+          {/* Line 1: Have something (Medium/Semibold display sans-serif matching original weight) */}
+          <h2 className="text-[clamp(44px,7.5vw,110px)] font-bold leading-[0.88] tracking-[-0.07em] uppercase text-white whitespace-nowrap block">
             Have something
           </h2>
 
@@ -72,10 +72,10 @@ export function FooterReel() {
             </div>
           </div>
 
-          {/* Right Column (Pink Boxes): Navigation & Socials split by thin vertical line BETWEEN them */}
-          <div className="lg:col-span-5 grid grid-cols-2 gap-0 border-t lg:border-t-0 pt-8 lg:pt-0">
-            {/* Quick Navigation Box (Pink Box 1 - Left side of thin vertical line) */}
-            <div className="space-y-4 pr-6 lg:pr-10 border-r border-white/10">
+          {/* Right Column (Pink Boxes): Navigation & Socials with clean, breathable spacing (no stiff vertical line) */}
+          <div className="lg:col-span-5 grid grid-cols-2 gap-8 lg:gap-12 border-t lg:border-t-0 pt-8 lg:pt-0">
+            {/* Quick Navigation Box (Pink Box 1) */}
+            <div className="space-y-4">
               <span className="text-xs uppercase tracking-[0.2em] text-[#77746d] font-semibold block mb-4">
                 Navigation
               </span>
@@ -93,8 +93,8 @@ export function FooterReel() {
               </ul>
             </div>
 
-            {/* Social Links Box (Pink Box 2 - Right side of thin vertical line) */}
-            <div className="space-y-4 pl-6 lg:pl-10">
+            {/* Social Links Box (Pink Box 2) */}
+            <div className="space-y-4">
               <span className="text-xs uppercase tracking-[0.2em] text-[#77746d] font-semibold block mb-4">
                 Socials
               </span>
@@ -120,11 +120,8 @@ export function FooterReel() {
         </div>
 
         {/* Baseline Copyright Bar */}
-        <div className="flex justify-between items-center border-t border-white/10 pt-6 text-xs text-[#77746d] uppercase tracking-[0.15em] w-full">
+        <div className="border-t border-white/10 pt-6 text-xs text-[#77746d] uppercase tracking-[0.15em] w-full">
           <span>© TRUNAL 2026</span>
-          <a href="#top" className="hover:text-white transition-colors duration-200">
-            BACK TO TOP ↑
-          </a>
         </div>
       </div>
     </footer>
