@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { AnimatedCTA } from '@/components/AnimatedCTA'
+import { ScrollText } from '@/components/ScrollText'
 
 export function FooterReel() {
   const navLinks = [
@@ -20,34 +21,39 @@ export function FooterReel() {
   return (
     <footer
       id="contact"
-      className="relative z-30 bg-[#0f0f0e] text-[#eeeae2] py-20 md:py-28 lg:py-32 px-6 md:px-16 lg:px-24 flex flex-col justify-between"
+      className="relative z-30 bg-[#0f0f0e] text-[#eeeae2] min-h-screen py-12 md:py-16 px-6 md:px-16 lg:px-24 flex flex-col justify-between"
     >
-      <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between">
+      <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between pt-6 md:pt-10">
 
-        {/* Descending Typographic Headline Stack: Relaxed letter tracking on Line 1 */}
-        <div className="mb-10 md:mb-14 select-none">
-          {/* Line 1: Have something (Loosened tracking from -0.07em to -0.03em) */}
-          <h2 className="text-[clamp(44px,7.5vw,110px)] font-bold leading-[0.88] tracking-[-0.03em] uppercase text-white whitespace-nowrap block">
-            Have something
-          </h2>
+        {/* Descending Typographic Headline Stack with Scroll-Based Fill Animation */}
+        <div className="mb-8 md:mb-12 select-none">
+          {/* Line 1: HAVE SOMETHING */}
+          <ScrollText
+            as="h2"
+            text="HAVE SOMETHING"
+            className="text-[clamp(44px,7.5vw,110px)] font-bold leading-[0.88] tracking-[-0.03em] uppercase text-white whitespace-nowrap block"
+          />
 
           {/* Line 2: worth building? */}
-          <span
-            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-            className="text-[clamp(36px,6vw,88px)] font-normal italic leading-[0.88] text-[#eeeae2] block mt-1 sm:mt-2 md:mt-3 whitespace-nowrap"
-          >
-            worth building?
-          </span>
+          <div style={{ fontFamily: "'Playfair Display', Georgia, serif" }} className="mt-1 sm:mt-2 md:mt-3">
+            <ScrollText
+              as="span"
+              text="worth building?"
+              className="text-[clamp(36px,6vw,88px)] font-normal italic leading-[0.88] text-[#eeeae2] whitespace-nowrap block"
+            />
+          </div>
         </div>
 
         {/* Content Row: Subheadline + Email CTA (Left) & Symmetrically Aligned Directories (Right) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start mb-16 md:mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start mb-8 md:mb-12">
           {/* Left Column: Subheadline & Interactive Email CTA guiding the eye */}
           <div className="lg:col-span-7 flex flex-col justify-start">
-            {/* Subheadline */}
-            <p className="text-base md:text-lg lg:text-[19px] text-[#eeeae2]/80 max-w-xl leading-relaxed font-normal mb-8 md:mb-10">
-              Whether you have a product idea, an existing product that needs work, or you&apos;re looking for someone who can design and build, I&apos;d like to hear about it.
-            </p>
+            {/* Subheadline with Scroll-Based Skeleton Fill */}
+            <ScrollText
+              as="p"
+              text="Whether you have a product idea, an existing product that needs work, or you're looking for someone who can design and build, I'd like to hear about it."
+              className="text-base md:text-lg lg:text-[19px] text-[#eeeae2] max-w-xl leading-relaxed font-normal mb-8 md:mb-10"
+            />
 
             {/* Direct Interactive Email Link CTA using website's official AnimatedCTA component */}
             <div>
