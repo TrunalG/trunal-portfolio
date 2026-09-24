@@ -8,6 +8,7 @@ export function FooterReel() {
   const footerRef = useRef<HTMLElement | null>(null)
   const [fadeInProgress, setFadeInProgress] = useState(0)
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [expandProgress, setExpandProgress] = useState(0)
 
   useEffect(() => {
     const el = footerRef.current
@@ -34,6 +35,13 @@ export function FooterReel() {
           const rawFill = Math.max(0, Math.min(1, (fillStart - rect.top) / (fillStart - fillEnd)))
           const easedFill = 1 - Math.pow(1 - rawFill, 3)
           setScrollProgress(easedFill)
+
+          // Phase 3: Giant TRUNAL Text Height Expansion (as user scrolls past copyright bar)
+          const maxExpandScroll = windowHeight * 0.45
+          const bottomDistance = windowHeight - rect.bottom
+          const rawExpand = Math.max(0, Math.min(1, bottomDistance / maxExpandScroll))
+          const easedExpand = 1 - Math.pow(1 - rawExpand, 2.5)
+          setExpandProgress(easedExpand)
 
           ticking = false
         })
@@ -64,9 +72,9 @@ export function FooterReel() {
     <footer
       ref={footerRef}
       id="contact"
-      className="relative z-30 bg-[#0f0f0e] text-[#eeeae2] min-h-screen py-12 md:py-16 px-6 md:px-16 lg:px-24 flex flex-col justify-between"
+      className="relative z-30 bg-[#0f0f0e] text-[#eeeae2] min-h-screen pt-12 md:pt-16 pb-0 px-6 md:px-16 lg:px-24 flex flex-col justify-between"
     >
-      <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between pt-6 md:pt-10">
+      <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between pt-6 md:pt-10 mb-8 md:mb-12">
 
         {/* Descending Typographic Headline Stack: Entrance Fade-In first, then Scroll Word Fill */}
         <div
@@ -187,8 +195,31 @@ export function FooterReel() {
         </div>
 
         {/* Baseline Copyright Bar */}
-        <div className="border-t border-white/10 pt-6 text-xs text-[#77746d] uppercase tracking-[0.15em] w-full">
+        <div className="border-t border-white/10 pt-6 pb-2 text-xs text-[#77746d] uppercase tracking-[0.15em] w-full">
           <span>© TRUNAL 2026</span>
+        </div>
+      </div>
+
+      {/* Expanding Giant Brand Wordmark ("TRUNAL") */}
+      <div
+        className="w-full bg-[#0f0f0e] border-t border-white/10 overflow-hidden flex items-end justify-center select-none -mx-6 md:-mx-16 lg:-mx-24 px-6 md:px-16 lg:px-24"
+        style={{
+          height: `${expandProgress * 320}px`,
+          transition: 'height 0.1s ease-out',
+        }}
+      >
+        <div
+          className="w-full flex justify-center items-end pb-2 sm:pb-4 md:pb-6"
+          style={{
+            transform: `scaleY(${0.15 + expandProgress * 0.85})`,
+            transformOrigin: 'bottom',
+            opacity: Math.max(0.05, expandProgress),
+            transition: 'transform 0.1s ease-out, opacity 0.1s ease-out',
+          }}
+        >
+          <h1 className="text-[clamp(80px,21vw,360px)] font-extrabold uppercase tracking-[-0.05em] leading-[0.72] text-[#eeeae2] whitespace-nowrap text-center block w-full">
+            TRUNAL
+          </h1>
         </div>
       </div>
     </footer>
