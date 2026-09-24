@@ -12,10 +12,10 @@ export function FooterReel() {
   const [fadeInProgress, setFadeInProgress] = useState(0)
   const [scrollProgress, setScrollProgress] = useState(0)
 
-  // Track scroll on footerRef as its bottom edge moves up the viewport
+  // Track scroll on footerRef as its bottom edge leaves the viewport
   const { scrollYProgress } = useScroll({
     target: footerRef,
-    offset: ['end 98%', 'end 10%'],
+    offset: ['end end', 'end start'],
   })
 
   // Apply liquid spring physics smoothing to scrollYProgress (eliminates stutter & jank)
@@ -26,8 +26,8 @@ export function FooterReel() {
   })
 
   // Map spring progress to GPU transform scaleY & opacity (zero layout reflows!)
-  const brandScaleY = useTransform(smoothProgress, [0, 1], [0, 1])
-  const brandOpacity = useTransform(smoothProgress, [0, 0.4], [0, 1])
+  const brandScaleY = useTransform(smoothProgress, [0, 0.85], [0, 1])
+  const brandOpacity = useTransform(smoothProgress, [0, 0.3], [0, 1])
 
   useEffect(() => {
     const el = footerRef.current
@@ -79,12 +79,12 @@ export function FooterReel() {
   ]
 
   return (
-    <div ref={containerRef} className="relative w-full bg-[#0f0f0e] pb-[45vh] lg:pb-[50vh]">
+    <div ref={containerRef} className="relative w-full bg-[#0f0f0e]">
       {/* Top Contact Content Card */}
       <footer
         ref={footerRef}
         id="contact"
-        className="relative z-20 bg-[#0f0f0e] text-[#eeeae2] min-h-screen py-12 md:py-16 px-6 md:px-16 lg:px-24 flex flex-col justify-between shadow-2xl"
+        className="relative z-20 bg-[#0f0f0e] text-[#eeeae2] min-h-screen py-12 md:py-16 px-6 md:px-16 lg:px-24 flex flex-col justify-between shadow-[0_25px_60px_rgba(0,0,0,0.9)] mb-[45vh] lg:mb-[50vh]"
       >
         <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between pt-6 md:pt-10 mb-8 md:mb-12">
 
@@ -213,8 +213,8 @@ export function FooterReel() {
         </div>
       </footer>
 
-      {/* Sticky Bottom Brand Wordmark Panel ("TRUNAL") */}
-      <div className="sticky bottom-0 z-10 w-full h-[45vh] lg:h-[50vh] bg-[#0f0f0e] border-t border-white/10 flex items-end justify-center select-none overflow-hidden">
+      {/* Fixed Bottom Brand Wordmark Panel ("TRUNAL") */}
+      <div className="fixed bottom-0 left-0 right-0 z-10 w-full h-[45vh] lg:h-[50vh] bg-[#0f0f0e] border-t border-white/10 flex items-end justify-center select-none overflow-hidden">
         <motion.div
           style={{ scaleY: brandScaleY, opacity: brandOpacity, transformOrigin: 'bottom' }}
           className="w-full h-full flex justify-center items-end pb-3 sm:pb-6 md:pb-8 px-4 md:px-12 lg:px-16"
