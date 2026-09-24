@@ -12,16 +12,16 @@ export function FooterReel() {
   const [fadeInProgress, setFadeInProgress] = useState(0)
   const [scrollProgress, setScrollProgress] = useState(0)
 
-  // Track scroll inside containerRef using Framer Motion
+  // Track scroll on footerRef as its bottom edge moves up the viewport
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end end'],
+    target: footerRef,
+    offset: ['end 95%', 'end 30%'],
   })
 
   // Map scroll progress to sticky brand panel height, scaleY, and opacity
-  const brandHeight = useTransform(scrollYProgress, [0.6, 0.98], ['0px', '280px'])
-  const brandScaleY = useTransform(scrollYProgress, [0.6, 0.98], [0, 1])
-  const brandOpacity = useTransform(scrollYProgress, [0.6, 0.85], [0, 1])
+  const brandHeight = useTransform(scrollYProgress, [0, 1], ['0px', '280px'])
+  const brandScaleY = useTransform(scrollYProgress, [0, 1], [0, 1])
+  const brandOpacity = useTransform(scrollYProgress, [0, 0.7], [0, 1])
 
   useEffect(() => {
     const el = footerRef.current
