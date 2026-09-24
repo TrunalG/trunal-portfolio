@@ -31,17 +31,17 @@ export function FooterReel() {
           </span>
         </div>
 
-        {/* Descending Typographic Headline Stack: Tighter gap between Line 1 & Line 2 */}
+        {/* Descending Typographic Headline Stack: Perfect breathing gap between Line 1 & Line 2 */}
         <div className="mb-10 md:mb-14 select-none">
           {/* Line 1: Have something */}
-          <h2 className="text-[clamp(44px,7.5vw,110px)] font-bold leading-[0.82] tracking-[-0.07em] uppercase text-white whitespace-nowrap block">
+          <h2 className="text-[clamp(44px,7.5vw,110px)] font-bold leading-[0.88] tracking-[-0.07em] uppercase text-white whitespace-nowrap block">
             Have something
           </h2>
 
-          {/* Line 2: worth building? (Tighter negative top margin to lock lines closely) */}
+          {/* Line 2: worth building? (Clean, elegant margin below Line 1, no overlap) */}
           <span
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-            className="text-[clamp(36px,6vw,88px)] font-normal italic leading-[0.82] text-[#eeeae2] block -mt-2 sm:-mt-4 md:-mt-6 lg:-mt-7 whitespace-nowrap"
+            className="text-[clamp(36px,6vw,88px)] font-normal italic leading-[0.88] text-[#eeeae2] block mt-1 sm:mt-2 md:mt-3 whitespace-nowrap"
           >
             worth building?
           </span>
@@ -72,10 +72,10 @@ export function FooterReel() {
             </div>
           </div>
 
-          {/* Right Column: Navigation & Socials with perfectly centered & aligned thin vertical line */}
+          {/* Right Column: Navigation & Socials with line shifted slightly left for optical balance */}
           <div className="lg:col-span-5 flex items-stretch border-t lg:border-t-0 pt-8 lg:pt-0">
             {/* Quick Navigation Box */}
-            <div className="flex-1 pr-6 lg:pr-8 space-y-4">
+            <div className="flex-[0.85] pr-4 lg:pr-5 space-y-4">
               <span className="text-xs uppercase tracking-[0.2em] text-[#77746d] font-semibold block mb-4">
                 Navigation
               </span>
@@ -93,7 +93,7 @@ export function FooterReel() {
               </ul>
             </div>
 
-            {/* Perfectly Centered & Aligned Thin Vertical Line */}
+            {/* Thin Vertical Line (Shifted slightly left for optical composition) */}
             <div className="w-[1px] bg-white/10 self-stretch flex-shrink-0" />
 
             {/* Social Links Box */}
