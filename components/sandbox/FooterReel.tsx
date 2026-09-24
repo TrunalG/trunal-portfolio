@@ -204,20 +204,20 @@ export function FooterReel() {
       <div
         className="w-full bg-[#0f0f0e] border-t border-white/10 overflow-hidden flex items-end justify-center select-none -mx-6 md:-mx-16 lg:-mx-24 px-6 md:px-16 lg:px-24"
         style={{
-          height: `${expandProgress * 320}px`,
-          transition: 'height 0.1s ease-out',
+          height: `${expandProgress * 290}px`,
+          transition: 'height 0.08s ease-out',
         }}
       >
         <div
           className="w-full flex justify-center items-end pb-2 sm:pb-4 md:pb-6"
           style={{
-            transform: `scaleY(${0.15 + expandProgress * 0.85})`,
+            transform: `scaleY(${expandProgress})`,
             transformOrigin: 'bottom',
-            opacity: Math.max(0.05, expandProgress),
-            transition: 'transform 0.1s ease-out, opacity 0.1s ease-out',
+            opacity: Math.max(0.02, expandProgress),
+            transition: 'transform 0.08s ease-out, opacity 0.08s ease-out',
           }}
         >
-          <h1 className="text-[clamp(80px,21vw,360px)] font-extrabold uppercase tracking-[-0.05em] leading-[0.72] text-[#eeeae2] whitespace-nowrap text-center block w-full">
+          <h1 className="text-[clamp(50px,16.2vw,285px)] font-extrabold uppercase tracking-[-0.08em] leading-[0.72] text-[#eeeae2] whitespace-nowrap text-center block w-full px-2">
             TRUNAL
           </h1>
         </div>
