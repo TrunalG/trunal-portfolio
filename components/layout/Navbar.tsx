@@ -10,7 +10,7 @@ interface NavbarProps {
 
 export function Navbar({ variant = 'light' }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false)
-  const { navigateWithTransition } = usePageTransition()
+  const { navigateWithTransition, triggerSectionTransition } = usePageTransition()
   const pathname = usePathname()
 
   useEffect(() => {
@@ -32,19 +32,29 @@ export function Navbar({ variant = 'light' }: NavbarProps) {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setMenuOpen(false)
-    if (href.startsWith('/') && !href.includes('#') && href !== pathname) {
+
+    const isHash = href.includes('#')
+    const targetId = isHash ? href.split('#')[1] : null
+
+    // If on the home page and clicking a section link or home link
+    if (pathname === '/' && (isHash || href === '/' || href === '/#home')) {
+      e.preventDefault()
+      const target = targetId || 'home'
+      triggerSectionTransition(target)
+      return
+    }
+
+    // If on a different page and navigating to a section or page
+    if (href.startsWith('/') && href !== pathname) {
       e.preventDefault()
       navigateWithTransition(href)
-    } else if (href === '/' && pathname !== '/') {
-      e.preventDefault()
-      navigateWithTransition('/')
     }
   }
 
   const navItems = [
+    { label: 'Home', href: '/#home' },
     { label: 'Work', href: '/#work' },
     { label: 'About', href: '/#about' },
-    { label: 'Playground', href: '/#playground' },
     { label: 'Contact', href: '/#contact' },
   ]
 

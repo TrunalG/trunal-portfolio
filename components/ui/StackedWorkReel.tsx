@@ -161,7 +161,7 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
   }
 
   return (
-    <section ref={triggerRef} className="stacked-reel-section bg-[#EEEAE2] text-[#1a1a1a] relative z-20">
+    <section id="work" ref={triggerRef} className="stacked-reel-section bg-[#EEEAE2] text-[#1a1a1a] relative z-20">
       <div className="stacked-reel-container">
         {/* Sticky Centered 2-Line Header with Mask Reveal & Dual Scroll Fill */}
         <div ref={headerRef} className="stacked-reel-header">

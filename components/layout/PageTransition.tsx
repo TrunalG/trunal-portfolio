@@ -11,23 +11,46 @@ if (typeof window !== 'undefined') {
 
 interface PageTransitionContextType {
   navigateWithTransition: (href: string) => void
+  triggerSectionTransition: (target: string | number) => void
 }
 
 const PageTransitionContext = createContext<PageTransitionContextType>({
   navigateWithTransition: () => {},
+  triggerSectionTransition: () => {},
 })
 
 export const usePageTransition = () => useContext(PageTransitionContext)
 
-const resetScrollToTop = () => {
-  if (typeof window !== 'undefined') {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
-    if ((window as any).__lenis) {
-      ;(window as any).__lenis.scrollTo(0, { immediate: true })
-    }
-    setTimeout(() => {
-      ScrollTrigger.refresh()
-    }, 50)
+const getSectionTargetY = (targetId: string): number => {
+  if (typeof window === 'undefined') return 0
+  if (!targetId || targetId === 'home' || targetId === 'top') return 0
+
+  const targetEl = document.getElementById(targetId)
+  if (!targetEl) return 0
+
+  // Calculate exact scroll position where top of target section aligns with top of viewport
+  const rect = targetEl.getBoundingClientRect()
+  const scrollTop = window.scrollY || document.documentElement.scrollTop
+  return Math.max(0, rect.top + scrollTop)
+}
+
+const scrollToTargetSection = (hrefOrHash?: string | null) => {
+  if (typeof window === 'undefined') return
+
+  const isHash = hrefOrHash && hrefOrHash.includes('#')
+  const targetId = isHash
+    ? hrefOrHash.split('#')[1]
+    : typeof hrefOrHash === 'string' && !hrefOrHash.startsWith('/')
+    ? hrefOrHash
+    : null
+
+  const targetY = getSectionTargetY(targetId || 'home')
+  const lenis = (window as any).__lenis
+
+  // Perform instant scroll directly to target section Y position
+  window.scrollTo({ top: targetY, left: 0, behavior: 'instant' })
+  if (lenis) {
+    lenis.scrollTo(targetY, { immediate: true, force: true })
   }
 }
 
@@ -114,8 +137,8 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
   // Trigger page transition: Cover screen from bottom to top
   const navigateWithTransition = (href: string) => {
     if (href === pathname || transitionState !== 'idle') {
-      resetScrollToTop()
-      if (href !== pathname) {
+      scrollToTargetSection(href)
+      if (href !== pathname && !href.includes('#')) {
         router.push(href)
       }
       return
@@ -126,8 +149,35 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
     setTransitionState('covering')
   }
 
+  // Trigger 5-strip cover & reveal transition for in-page section scrolling
+  const triggerSectionTransition = (target: string | number) => {
+    if (transitionState !== 'idle') return
+
+    clearAllTimers()
+    setTransitionState('covering')
+
+    const timerCover = setTimeout(() => {
+      scrollToTargetSection(String(target))
+
+      setTransitionState('uncovering')
+
+      const timerReveal = setTimeout(() => {
+        document.body.classList.add('page-reveal-active')
+        document.body.classList.add('nav-revealed')
+      }, 250)
+      addTimer(timerReveal)
+
+      const timerIdle = setTimeout(() => {
+        setTransitionState('idle')
+      }, 800)
+      addTimer(timerIdle)
+    }, 750)
+
+    addTimer(timerCover)
+  }
+
   // After cover animation finishes (800ms for all 5 staggered strips to reach translateY(0%)),
-  // push route & reset scroll
+  // push route & scroll to section
   useEffect(() => {
     if (transitionState === 'covering' && pendingHref) {
       const timer = setTimeout(() => {
@@ -135,7 +185,7 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
         document.body.classList.remove('loader-done')
         document.body.classList.remove('loader-wiping')
         
-        resetScrollToTop()
+        scrollToTargetSection(pendingHref)
         router.push(pendingHref)
       }, 800)
 
@@ -157,7 +207,7 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
     if (transitionState === 'covering') {
       // Flow A: Programmatic link click navigation
       removeFreezeOverlay()
-      resetScrollToTop()
+      scrollToTargetSection(pendingHref || (typeof window !== 'undefined' ? window.location.hash : null))
       setTransitionState('uncovering')
 
       const timerReveal = setTimeout(() => {
@@ -174,7 +224,6 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
 
     } else {
       // Flow B: Browser Back or Forward button navigation
-      // Current page is held by .page-freeze-overlay while red strips slide UP from bottom (800ms)
       document.body.classList.remove('page-reveal-active')
       document.body.classList.remove('loader-done')
       document.body.classList.remove('loader-wiping')
@@ -182,9 +231,8 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
       setTransitionState('covering')
       
       const timerCover = setTimeout(() => {
-        // Red strips have fully covered screen (800ms). Now remove frozen snapshot of old page & uncover target page!
         removeFreezeOverlay()
-        resetScrollToTop()
+        scrollToTargetSection(typeof window !== 'undefined' ? window.location.hash : null)
         setTransitionState('uncovering')
         
         const timerReveal = setTimeout(() => {
@@ -204,7 +252,7 @@ export function PageTransitionProvider({ children }: { children: React.ReactNode
   }, [pathname])
 
   return (
-    <PageTransitionContext.Provider value={{ navigateWithTransition }}>
+    <PageTransitionContext.Provider value={{ navigateWithTransition, triggerSectionTransition }}>
       {children}
 
       {/* Page Navigation Loader Overlay */}

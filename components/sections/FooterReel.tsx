@@ -3,10 +3,12 @@
 import React, { useRef, useEffect, useState } from 'react'
 import { AnimatedCTA } from '@/components/AnimatedCTA'
 import { ScrollText } from '@/components/ScrollText'
+import { usePageTransition } from '@/components/layout/PageTransition'
 
 export function FooterReel() {
   const footerRef = useRef<HTMLElement | null>(null)
   const textRef = useRef<HTMLHeadingElement | null>(null)
+  const { triggerSectionTransition } = usePageTransition()
 
   const [mounted, setMounted] = useState(false)
   const [isFooterVisible, setIsFooterVisible] = useState(false)
@@ -88,10 +90,18 @@ export function FooterReel() {
     return () => window.removeEventListener('scroll', updateScroll)
   }, [])
 
+  const handleFooterNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.includes('#')) {
+      e.preventDefault()
+      const targetId = href.split('#')[1]
+      triggerSectionTransition(targetId)
+    }
+  }
+
   const navLinks = [
+    { label: 'Home', href: '/#home' },
     { label: 'Work', href: '/#work' },
     { label: 'About', href: '/#about' },
-    { label: 'Playground', href: '/#playground' },
     { label: 'Contact', href: '/#contact' },
   ]
 
@@ -189,6 +199,7 @@ export function FooterReel() {
                     <li key={link.label}>
                       <a
                         href={link.href}
+                        onClick={(e) => handleFooterNavClick(e, link.href)}
                         className="text-sm md:text-base text-[#eeeae2]/80 hover:text-white transition-colors duration-200 block"
                       >
                         {link.label}

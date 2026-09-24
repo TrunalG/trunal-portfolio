@@ -5,7 +5,7 @@ import { TextReveal } from '@/components/TextReveal'
 
 export function Hero() {
   return (
-    <section className="hero" id="top">
+    <section className="hero" id="home">
       <div className="hero-bg-image" aria-hidden="true" />
       <div className="hero-atmosphere" aria-hidden="true" />
       <div className="hero-grid" aria-hidden="true" />

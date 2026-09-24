@@ -40,7 +40,7 @@ export function StickyIntro() {
   const totalWords = words.length
 
   return (
-    <section ref={sectionRef} className="sticky-intro-section" id="about">
+    <section ref={sectionRef} className="sticky-intro-section">
       <div className="sticky-intro-content">
         <h2 ref={textRef} className="sticky-intro-text">
           {words.map((word, index) => {
