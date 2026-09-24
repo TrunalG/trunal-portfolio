@@ -15,13 +15,13 @@ export function FooterReel() {
   // Track scroll on footerRef as its bottom edge moves up the viewport
   const { scrollYProgress } = useScroll({
     target: footerRef,
-    offset: ['end 95%', 'end 30%'],
+    offset: ['end 98%', 'end 10%'],
   })
 
   // Map scroll progress to sticky brand panel height, scaleY, and opacity
-  const brandHeight = useTransform(scrollYProgress, [0, 1], ['0px', '280px'])
+  const brandHeight = useTransform(scrollYProgress, [0, 1], ['0px', '360px'])
   const brandScaleY = useTransform(scrollYProgress, [0, 1], [0, 1])
-  const brandOpacity = useTransform(scrollYProgress, [0, 0.7], [0, 1])
+  const brandOpacity = useTransform(scrollYProgress, [0, 0.6], [0, 1])
 
   useEffect(() => {
     const el = footerRef.current
@@ -215,9 +215,9 @@ export function FooterReel() {
         >
           <motion.div
             style={{ scaleY: brandScaleY, opacity: brandOpacity, transformOrigin: 'bottom' }}
-            className="w-full flex justify-center items-end pb-2 sm:pb-4 md:pb-6 px-6 md:px-16 lg:px-24"
+            className="w-full flex justify-center items-end pb-3 sm:pb-6 md:pb-8 px-6 md:px-16 lg:px-24"
           >
-            <h1 className="text-[clamp(50px,16.2vw,285px)] font-extrabold uppercase tracking-[-0.08em] leading-[0.72] text-[#eeeae2] whitespace-nowrap text-center block w-full">
+            <h1 className="text-[clamp(65px,17.8vw,330px)] font-extrabold uppercase tracking-[-0.07em] leading-[0.72] text-[#eeeae2] whitespace-nowrap text-center block w-full">
               TRUNAL
             </h1>
           </motion.div>
