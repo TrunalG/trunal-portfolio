@@ -14,7 +14,7 @@ import { PlaygroundSection } from '@/components/sections/PlaygroundSection'
 import dynamic from 'next/dynamic'
 
 const FooterReel = dynamic(
-  () => import('@/components/sandbox/FooterReel').then((mod) => mod.FooterReel),
+  () => import('@/components/sections/FooterReel').then((mod) => mod.FooterReel),
   { ssr: false }
 )
 
