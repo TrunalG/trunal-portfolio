@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import { AnimatedCTA } from '@/components/AnimatedCTA'
 
 export function FooterReel() {
   const navLinks = [
@@ -48,18 +49,15 @@ export function FooterReel() {
               Whether you have a product idea, an existing product that needs work, or you&apos;re looking for someone who can design and build, I&apos;d like to hear about it.
             </p>
 
-            {/* Direct Interactive Email Link CTA with progressive left-to-right underline hover animation */}
+            {/* Direct Interactive Email Link CTA using website's official AnimatedCTA component */}
             <div>
-              <a
+              <AnimatedCTA
                 href="mailto:dsgnclave@gmail.com"
-                className="group relative inline-block text-xl sm:text-2xl md:text-3xl font-medium text-[#eeeae2] hover:text-[#cbbd8a] transition-colors duration-300 pb-1"
-              >
-                <span>dsgnclave@gmail.com</span>
-                {/* Subtle static guide line */}
-                <span className="absolute bottom-0 left-0 w-full h-[1px] bg-[#eeeae2]/25" />
-                {/* Progressive active underline filling left-to-right on hover */}
-                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#cbbd8a] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-350 ease-out" />
-              </a>
+                text="dsgnclave@gmail.com"
+                variant="light"
+                showArrow={false}
+                className="!text-xl sm:!text-2xl md:!text-3xl font-medium"
+              />
             </div>
           </div>
 

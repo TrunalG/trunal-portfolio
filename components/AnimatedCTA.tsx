@@ -8,13 +8,15 @@ interface AnimatedCTAProps {
   text: string
   className?: string
   variant?: 'light' | 'dark'
+  showArrow?: boolean
 }
 
 export function AnimatedCTA({
   href,
   text,
   className = '',
-  variant = 'light'
+  variant = 'light',
+  showArrow = true
 }: AnimatedCTAProps) {
   const { navigateWithTransition } = usePageTransition()
 
@@ -28,13 +30,17 @@ export function AnimatedCTA({
   return (
     <a href={href} onClick={handleClick} className={`animated-cta ${variant} ${className}`}>
       <span className="cta-content">
-        <span className="cta-arrow cta-arrow-left" aria-hidden="true">
-          →
-        </span>
+        {showArrow && (
+          <span className="cta-arrow cta-arrow-left" aria-hidden="true">
+            →
+          </span>
+        )}
         <span className="cta-text">{text}</span>
-        <span className="cta-arrow cta-arrow-right" aria-hidden="true">
-          →
-        </span>
+        {showArrow && (
+          <span className="cta-arrow cta-arrow-right" aria-hidden="true">
+            →
+          </span>
+        )}
       </span>
       <span className="cta-line-track">
         <span className="cta-line-base" />
