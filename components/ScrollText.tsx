@@ -9,6 +9,8 @@ interface ScrollTextProps {
   mode?: 'words' | 'chars'
   emphasisWords?: string[]
   accentDot?: boolean
+  scrollStart?: number
+  scrollEnd?: number
 }
 
 export function ScrollText({
@@ -17,7 +19,9 @@ export function ScrollText({
   className = '',
   mode = 'words',
   emphasisWords = [],
-  accentDot = false
+  accentDot = false,
+  scrollStart = 0.85,
+  scrollEnd = 0.5
 }: ScrollTextProps) {
   const containerRef = useRef<HTMLElement | null>(null)
   const [progress, setProgress] = useState(0)
@@ -34,8 +38,8 @@ export function ScrollText({
           const rect = el.getBoundingClientRect()
           const windowHeight = window.innerHeight
 
-          const start = windowHeight * 0.85
-          const end = windowHeight * 0.35
+          const start = windowHeight * scrollStart
+          const end = windowHeight * scrollEnd
 
           let currentProgress = (start - rect.top) / (start - end)
           currentProgress = Math.max(0, Math.min(1, currentProgress))
@@ -53,7 +57,7 @@ export function ScrollText({
     return () => {
       window.removeEventListener('scroll', updateScroll)
     }
-  }, [])
+  }, [scrollStart, scrollEnd])
 
   const units = mode === 'chars' ? text.split('') : text.split(' ')
   const total = units.length

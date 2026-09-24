@@ -1,10 +1,44 @@
 'use client'
 
-import React from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { AnimatedCTA } from '@/components/AnimatedCTA'
 import { ScrollText } from '@/components/ScrollText'
 
 export function FooterReel() {
+  const footerRef = useRef<HTMLElement | null>(null)
+  const [scrollProgress, setScrollProgress] = useState(0)
+
+  useEffect(() => {
+    const el = footerRef.current
+    if (!el) return
+
+    let ticking = false
+    const updateScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (!el) return
+          const rect = el.getBoundingClientRect()
+          const windowHeight = window.innerHeight
+
+          const start = windowHeight * 0.85
+          const end = windowHeight * 0.48
+
+          let currentProgress = (start - rect.top) / (start - end)
+          currentProgress = Math.max(0, Math.min(1, currentProgress))
+
+          setScrollProgress(currentProgress)
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', updateScroll, { passive: true })
+    updateScroll()
+
+    return () => window.removeEventListener('scroll', updateScroll)
+  }, [])
+
   const navLinks = [
     { label: 'Work', href: '/#work' },
     { label: 'About', href: '/#about' },
@@ -20,6 +54,7 @@ export function FooterReel() {
 
   return (
     <footer
+      ref={footerRef}
       id="contact"
       className="relative z-30 bg-[#0f0f0e] text-[#eeeae2] min-h-screen py-12 md:py-16 px-6 md:px-16 lg:px-24 flex flex-col justify-between"
     >
@@ -31,6 +66,8 @@ export function FooterReel() {
           <ScrollText
             as="h2"
             text="HAVE SOMETHING"
+            scrollStart={0.85}
+            scrollEnd={0.48}
             className="text-[clamp(44px,7.5vw,110px)] font-bold leading-[0.88] tracking-[-0.03em] uppercase text-white whitespace-nowrap block"
           />
 
@@ -39,6 +76,8 @@ export function FooterReel() {
             <ScrollText
               as="span"
               text="worth building?"
+              scrollStart={0.85}
+              scrollEnd={0.48}
               className="text-[clamp(36px,6vw,88px)] font-normal italic leading-[0.88] text-[#eeeae2] whitespace-nowrap block"
             />
           </div>
@@ -52,11 +91,19 @@ export function FooterReel() {
             <ScrollText
               as="p"
               text="Whether you have a product idea, an existing product that needs work, or you're looking for someone who can design and build, I'd like to hear about it."
+              scrollStart={0.85}
+              scrollEnd={0.48}
               className="text-base md:text-lg lg:text-[19px] text-[#eeeae2] max-w-xl leading-relaxed font-normal mb-8 md:mb-10"
             />
 
-            {/* Direct Interactive Email Link CTA using website's official AnimatedCTA component */}
-            <div>
+            {/* Direct Interactive Email Link CTA synchronized with scroll progress */}
+            <div
+              style={{
+                opacity: Math.max(0.18, scrollProgress),
+                transform: `translateY(${(1 - scrollProgress) * 12}px)`,
+                transition: 'opacity 0.1s ease-out, transform 0.1s ease-out',
+              }}
+            >
               <AnimatedCTA
                 href="mailto:dsgnclave@gmail.com"
                 text="dsgnclave@gmail.com"
@@ -67,8 +114,15 @@ export function FooterReel() {
             </div>
           </div>
 
-          {/* Right Column: Navigation & Socials with healthy padding & shifted slightly left */}
-          <div className="lg:col-span-5 flex items-stretch justify-start gap-6 sm:gap-8 border-t lg:border-t-0 pt-8 lg:pt-0 lg:pl-4">
+          {/* Right Column: Navigation & Socials with synchronized scroll fade-in & slide-up */}
+          <div
+            style={{
+              opacity: scrollProgress,
+              transform: `translateY(${(1 - scrollProgress) * 20}px)`,
+              transition: 'opacity 0.15s ease-out, transform 0.15s ease-out',
+            }}
+            className="lg:col-span-5 flex items-stretch justify-start gap-6 sm:gap-8 border-t lg:border-t-0 pt-8 lg:pt-0 lg:pl-4"
+          >
             {/* Quick Navigation Box with healthy padding */}
             <div className="space-y-4 pr-6 sm:pr-8 md:pr-10">
               <span className="text-xs uppercase tracking-[0.2em] text-[#77746d] font-semibold block mb-4">
