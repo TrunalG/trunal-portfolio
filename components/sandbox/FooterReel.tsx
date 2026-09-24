@@ -72,10 +72,10 @@ export function FooterReel() {
             </div>
           </div>
 
-          {/* Right Column: Navigation & Socials with line shifted slightly left for optical balance */}
-          <div className="lg:col-span-5 flex items-stretch border-t lg:border-t-0 pt-8 lg:pt-0">
+          {/* Right Column: Navigation & Socials with perfectly balanced centered vertical line */}
+          <div className="lg:col-span-5 flex items-stretch justify-start lg:justify-end gap-8 sm:gap-10 md:gap-12 border-t lg:border-t-0 pt-8 lg:pt-0">
             {/* Quick Navigation Box */}
-            <div className="flex-[0.85] pr-4 lg:pr-5 space-y-4">
+            <div className="space-y-4">
               <span className="text-xs uppercase tracking-[0.2em] text-[#77746d] font-semibold block mb-4">
                 Navigation
               </span>
@@ -93,11 +93,11 @@ export function FooterReel() {
               </ul>
             </div>
 
-            {/* Thin Vertical Line (Shifted slightly left for optical composition) */}
+            {/* Thin Vertical Line (Positioned dead-center with exact equal gap to both text blocks) */}
             <div className="w-[1px] bg-white/10 self-stretch flex-shrink-0" />
 
             {/* Social Links Box */}
-            <div className="flex-1 pl-6 lg:pl-8 space-y-4">
+            <div className="space-y-4">
               <span className="text-xs uppercase tracking-[0.2em] text-[#77746d] font-semibold block mb-4">
                 Socials
               </span>
