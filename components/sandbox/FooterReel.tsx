@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useRef, useEffect, useState } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import { AnimatedCTA } from '@/components/AnimatedCTA'
 import { ScrollText } from '@/components/ScrollText'
 
@@ -18,10 +18,17 @@ export function FooterReel() {
     offset: ['end end', 'end 10%'],
   })
 
-  // Map scroll progress to sticky brand panel height, scaleY, and opacity
-  const brandHeight = useTransform(scrollYProgress, [0, 1], ['0px', '360px'])
-  const brandScaleY = useTransform(scrollYProgress, [0, 1], [0, 1])
-  const brandOpacity = useTransform(scrollYProgress, [0, 0.6], [0, 1])
+  // Smooth raw scroll steps with spring physics for 60fps buttery glide
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 85,
+    damping: 22,
+    restDelta: 0.001,
+  })
+
+  // Map smooth spring progress to sticky brand panel height, scaleY, and opacity
+  const brandHeight = useTransform(smoothProgress, [0, 1], ['0px', '340px'])
+  const brandScaleY = useTransform(smoothProgress, [0, 1], [0, 1])
+  const brandOpacity = useTransform(smoothProgress, [0, 0.5], [0, 1])
 
   useEffect(() => {
     const el = footerRef.current
@@ -211,13 +218,18 @@ export function FooterReel() {
       <div className="sticky bottom-0 z-10 w-full bg-[#0f0f0e] border-t border-white/10 flex items-end justify-center select-none overflow-hidden">
         <motion.div
           style={{ height: brandHeight }}
-          className="w-full flex items-end justify-center overflow-hidden"
+          className="w-full flex items-end justify-center overflow-hidden will-change-[height]"
         >
           <motion.div
-            style={{ scaleY: brandScaleY, opacity: brandOpacity, transformOrigin: 'bottom' }}
+            style={{
+              scaleY: brandScaleY,
+              opacity: brandOpacity,
+              transformOrigin: 'bottom',
+              willChange: 'transform, opacity',
+            }}
             className="w-full flex justify-center items-end pb-3 sm:pb-6 md:pb-8 px-6 md:px-16 lg:px-24"
           >
-            <h1 className="text-[clamp(65px,17.8vw,330px)] font-extrabold uppercase tracking-[-0.07em] leading-[0.72] text-[#eeeae2] whitespace-nowrap text-center block w-full">
+            <h1 className="text-[clamp(65px,17.8vw,330px)] font-extrabold uppercase tracking-[-0.07em] leading-[0.72] text-[#eeeae2] whitespace-nowrap text-center block w-full select-none">
               TRUNAL
             </h1>
           </motion.div>
