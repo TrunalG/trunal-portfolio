@@ -6,6 +6,7 @@ import { ScrollText } from '@/components/ScrollText'
 
 export function FooterReel() {
   const footerRef = useRef<HTMLElement | null>(null)
+  const [fadeInProgress, setFadeInProgress] = useState(0)
   const [scrollProgress, setScrollProgress] = useState(0)
 
   useEffect(() => {
@@ -20,14 +21,20 @@ export function FooterReel() {
           const rect = el.getBoundingClientRect()
           const windowHeight = window.innerHeight
 
-          const start = windowHeight * 0.9
-          const end = windowHeight * 0.42
+          // Phase 1: Entrance Skeleton Fade-In (as section first appears from 98% to 85% of window height)
+          const fadeStart = windowHeight * 0.98
+          const fadeEnd = windowHeight * 0.85
+          const rawFade = Math.max(0, Math.min(1, (fadeStart - rect.top) / (fadeStart - fadeEnd)))
+          const easedFade = 1 - Math.pow(1 - rawFade, 2)
+          setFadeInProgress(easedFade)
 
-          const rawProgress = Math.max(0, Math.min(1, (start - rect.top) / (start - end)))
-          // Silky smooth easeOutCubic curve
-          const easedProgress = 1 - Math.pow(1 - rawProgress, 3)
+          // Phase 2: Word Fill & Link Boxes Reveal (as user scrolls from 85% to 42% of window height)
+          const fillStart = windowHeight * 0.85
+          const fillEnd = windowHeight * 0.42
+          const rawFill = Math.max(0, Math.min(1, (fillStart - rect.top) / (fillStart - fillEnd)))
+          const easedFill = 1 - Math.pow(1 - rawFill, 3)
+          setScrollProgress(easedFill)
 
-          setScrollProgress(easedProgress)
           ticking = false
         })
         ticking = true
@@ -61,13 +68,20 @@ export function FooterReel() {
     >
       <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between pt-6 md:pt-10">
 
-        {/* Descending Typographic Headline Stack with Scroll-Based Fill Animation */}
-        <div className="mb-8 md:mb-12 select-none">
+        {/* Descending Typographic Headline Stack: Entrance Fade-In first, then Scroll Word Fill */}
+        <div
+          style={{
+            opacity: fadeInProgress,
+            transform: `translateY(${(1 - fadeInProgress) * 24}px)`,
+            transition: 'opacity 0.35s cubic-bezier(0.25, 1, 0.5, 1), transform 0.35s cubic-bezier(0.25, 1, 0.5, 1)',
+          }}
+          className="mb-8 md:mb-12 select-none"
+        >
           {/* Line 1: HAVE SOMETHING */}
           <ScrollText
             as="h2"
             text="HAVE SOMETHING"
-            scrollStart={0.9}
+            scrollStart={0.85}
             scrollEnd={0.42}
             className="text-[clamp(44px,7.5vw,110px)] font-bold leading-[0.88] tracking-[-0.03em] uppercase text-white whitespace-nowrap block"
           />
@@ -77,7 +91,7 @@ export function FooterReel() {
             <ScrollText
               as="span"
               text="worth building?"
-              scrollStart={0.9}
+              scrollStart={0.85}
               scrollEnd={0.42}
               className="text-[clamp(36px,6vw,88px)] font-normal italic leading-[0.88] text-[#eeeae2] whitespace-nowrap block"
             />
@@ -92,7 +106,7 @@ export function FooterReel() {
             <ScrollText
               as="p"
               text="Whether you have a product idea, an existing product that needs work, or you're looking for someone who can design and build, I'd like to hear about it."
-              scrollStart={0.9}
+              scrollStart={0.85}
               scrollEnd={0.42}
               className="text-base md:text-lg lg:text-[19px] text-[#eeeae2] max-w-xl leading-relaxed font-normal mb-8 md:mb-10"
             />
