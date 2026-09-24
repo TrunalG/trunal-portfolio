@@ -15,7 +15,7 @@ export function FooterReel() {
   // Track scroll on footerRef as its bottom edge moves up the viewport
   const { scrollYProgress } = useScroll({
     target: footerRef,
-    offset: ['end 98%', 'end 10%'],
+    offset: ['end end', 'end 10%'],
   })
 
   // Map scroll progress to sticky brand panel height, scaleY, and opacity
@@ -73,7 +73,7 @@ export function FooterReel() {
   ]
 
   return (
-    <div ref={containerRef} className="relative w-full bg-[#0f0f0e]">
+    <div ref={containerRef} className="relative w-full bg-[#0f0f0e] pb-[360px]">
       {/* Top Contact Content Card */}
       <footer
         ref={footerRef}
