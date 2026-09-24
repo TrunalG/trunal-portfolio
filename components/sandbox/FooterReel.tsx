@@ -15,20 +15,19 @@ export function FooterReel() {
   // Track scroll on footerRef as its bottom edge moves up the viewport
   const { scrollYProgress } = useScroll({
     target: footerRef,
-    offset: ['end end', 'end 10%'],
+    offset: ['end 98%', 'end 10%'],
   })
 
-  // Smooth raw scroll steps with spring physics for 60fps buttery glide
+  // Apply liquid spring physics smoothing to scrollYProgress (eliminates stutter & jank)
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 85,
-    damping: 22,
+    stiffness: 120,
+    damping: 30,
     restDelta: 0.001,
   })
 
-  // Map smooth spring progress to sticky brand panel height, scaleY, and opacity
-  const brandHeight = useTransform(smoothProgress, [0, 1], ['0px', '340px'])
+  // Map spring progress to GPU transform scaleY & opacity (zero layout reflows!)
   const brandScaleY = useTransform(smoothProgress, [0, 1], [0, 1])
-  const brandOpacity = useTransform(smoothProgress, [0, 0.5], [0, 1])
+  const brandOpacity = useTransform(smoothProgress, [0, 0.4], [0, 1])
 
   useEffect(() => {
     const el = footerRef.current
@@ -80,7 +79,7 @@ export function FooterReel() {
   ]
 
   return (
-    <div ref={containerRef} className="relative w-full bg-[#0f0f0e] pb-[360px]">
+    <div ref={containerRef} className="relative w-full bg-[#0f0f0e] pb-[45vh] lg:pb-[50vh]">
       {/* Top Contact Content Card */}
       <footer
         ref={footerRef}
@@ -215,24 +214,14 @@ export function FooterReel() {
       </footer>
 
       {/* Sticky Bottom Brand Wordmark Panel ("TRUNAL") */}
-      <div className="sticky bottom-0 z-10 w-full bg-[#0f0f0e] border-t border-white/10 flex items-end justify-center select-none overflow-hidden">
+      <div className="sticky bottom-0 z-10 w-full h-[45vh] lg:h-[50vh] bg-[#0f0f0e] border-t border-white/10 flex items-end justify-center select-none overflow-hidden">
         <motion.div
-          style={{ height: brandHeight }}
-          className="w-full flex items-end justify-center overflow-hidden will-change-[height]"
+          style={{ scaleY: brandScaleY, opacity: brandOpacity, transformOrigin: 'bottom' }}
+          className="w-full h-full flex justify-center items-end pb-3 sm:pb-6 md:pb-8 px-4 md:px-12 lg:px-16"
         >
-          <motion.div
-            style={{
-              scaleY: brandScaleY,
-              opacity: brandOpacity,
-              transformOrigin: 'bottom',
-              willChange: 'transform, opacity',
-            }}
-            className="w-full flex justify-center items-end pb-3 sm:pb-6 md:pb-8 px-6 md:px-16 lg:px-24"
-          >
-            <h1 className="text-[clamp(65px,17.8vw,330px)] font-extrabold uppercase tracking-[-0.07em] leading-[0.72] text-[#eeeae2] whitespace-nowrap text-center block w-full select-none">
-              TRUNAL
-            </h1>
-          </motion.div>
+          <h1 className="text-[clamp(65px,17.8vw,330px)] font-extrabold uppercase tracking-[-0.07em] leading-[0.72] text-[#eeeae2] whitespace-nowrap text-center block w-full">
+            TRUNAL
+          </h1>
         </motion.div>
       </div>
     </div>
