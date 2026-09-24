@@ -20,13 +20,14 @@ export function FooterReel() {
           const rect = el.getBoundingClientRect()
           const windowHeight = window.innerHeight
 
-          const start = windowHeight * 0.85
-          const end = windowHeight * 0.48
+          const start = windowHeight * 0.9
+          const end = windowHeight * 0.42
 
-          let currentProgress = (start - rect.top) / (start - end)
-          currentProgress = Math.max(0, Math.min(1, currentProgress))
+          const rawProgress = Math.max(0, Math.min(1, (start - rect.top) / (start - end)))
+          // Silky smooth easeOutCubic curve
+          const easedProgress = 1 - Math.pow(1 - rawProgress, 3)
 
-          setScrollProgress(currentProgress)
+          setScrollProgress(easedProgress)
           ticking = false
         })
         ticking = true
@@ -66,8 +67,8 @@ export function FooterReel() {
           <ScrollText
             as="h2"
             text="HAVE SOMETHING"
-            scrollStart={0.85}
-            scrollEnd={0.48}
+            scrollStart={0.9}
+            scrollEnd={0.42}
             className="text-[clamp(44px,7.5vw,110px)] font-bold leading-[0.88] tracking-[-0.03em] uppercase text-white whitespace-nowrap block"
           />
 
@@ -76,8 +77,8 @@ export function FooterReel() {
             <ScrollText
               as="span"
               text="worth building?"
-              scrollStart={0.85}
-              scrollEnd={0.48}
+              scrollStart={0.9}
+              scrollEnd={0.42}
               className="text-[clamp(36px,6vw,88px)] font-normal italic leading-[0.88] text-[#eeeae2] whitespace-nowrap block"
             />
           </div>
@@ -91,8 +92,8 @@ export function FooterReel() {
             <ScrollText
               as="p"
               text="Whether you have a product idea, an existing product that needs work, or you're looking for someone who can design and build, I'd like to hear about it."
-              scrollStart={0.85}
-              scrollEnd={0.48}
+              scrollStart={0.9}
+              scrollEnd={0.42}
               className="text-base md:text-lg lg:text-[19px] text-[#eeeae2] max-w-xl leading-relaxed font-normal mb-8 md:mb-10"
             />
 
@@ -100,8 +101,8 @@ export function FooterReel() {
             <div
               style={{
                 opacity: Math.max(0.18, scrollProgress),
-                transform: `translateY(${(1 - scrollProgress) * 12}px)`,
-                transition: 'opacity 0.1s ease-out, transform 0.1s ease-out',
+                transform: `translateY(${(1 - scrollProgress) * 16}px)`,
+                transition: 'opacity 0.45s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)',
               }}
             >
               <AnimatedCTA
@@ -114,12 +115,12 @@ export function FooterReel() {
             </div>
           </div>
 
-          {/* Right Column: Navigation & Socials with synchronized scroll fade-in & slide-up */}
+          {/* Right Column: Navigation & Socials with synchronized smooth scroll fade-in & slide-up */}
           <div
             style={{
               opacity: scrollProgress,
               transform: `translateY(${(1 - scrollProgress) * 20}px)`,
-              transition: 'opacity 0.15s ease-out, transform 0.15s ease-out',
+              transition: 'opacity 0.45s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)',
             }}
             className="lg:col-span-5 flex items-stretch justify-start gap-6 sm:gap-8 border-t lg:border-t-0 pt-8 lg:pt-0 lg:pl-4"
           >
