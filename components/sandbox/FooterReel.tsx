@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { SectionKicker } from '@/components/SectionKicker'
 
 export function FooterReel() {
   const navLinks = [
@@ -20,16 +19,9 @@ export function FooterReel() {
   return (
     <footer
       id="contact"
-      className="relative z-30 bg-[#0f0f0e] text-[#eeeae2] pt-20 md:pt-28 pb-12 px-6 md:px-16 lg:px-24 flex flex-col justify-between min-h-screen"
+      className="relative z-30 bg-[#0f0f0e] text-[#eeeae2] py-20 md:py-28 lg:py-32 px-6 md:px-16 lg:px-24 flex flex-col justify-between"
     >
       <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between">
-        {/* Top Header / Kicker */}
-        <div className="flex justify-between items-center border-b border-white/10 pb-6 mb-12 md:mb-16">
-          <SectionKicker title="Contact" />
-          <span className="text-xs uppercase tracking-[0.2em] text-[#77746d] font-mono">
-            Have a good one.
-          </span>
-        </div>
 
         {/* Descending Typographic Headline Stack: Relaxed letter tracking on Line 1 */}
         <div className="mb-10 md:mb-14 select-none">
