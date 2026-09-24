@@ -31,33 +31,33 @@ export function FooterReel() {
           </span>
         </div>
 
-        {/* Descending Typographic Headline Stack: Exact 2 lines without unwanted breaking + smaller italic 2nd line */}
-        <div className="mb-12 md:mb-16 select-none">
-          {/* Line 1: Have something (Medium/Semibold display sans-serif matching original weight) */}
-          <h2 className="text-[clamp(44px,7.5vw,110px)] font-bold leading-[0.88] tracking-[-0.07em] uppercase text-white whitespace-nowrap block">
+        {/* Descending Typographic Headline Stack: Tighter gap between Line 1 & Line 2 */}
+        <div className="mb-10 md:mb-14 select-none">
+          {/* Line 1: Have something */}
+          <h2 className="text-[clamp(44px,7.5vw,110px)] font-bold leading-[0.82] tracking-[-0.07em] uppercase text-white whitespace-nowrap block">
             Have something
           </h2>
 
-          {/* Line 2: worth building? (Italic Playfair Display, scaled slightly smaller) */}
+          {/* Line 2: worth building? (Tighter negative top margin to lock lines closely) */}
           <span
             style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-            className="text-[clamp(36px,6vw,88px)] font-normal italic leading-[0.94] text-[#eeeae2] block mt-1 sm:mt-2 whitespace-nowrap"
+            className="text-[clamp(36px,6vw,88px)] font-normal italic leading-[0.82] text-[#eeeae2] block -mt-2 sm:-mt-4 md:-mt-6 lg:-mt-7 whitespace-nowrap"
           >
             worth building?
           </span>
         </div>
 
-        {/* Content Row: Subheadline + Email CTA (Left) & Right-Side Directories (Pink Boxes) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-16 md:mb-24">
-          {/* Left Column (Green Box + Blue Box): Subheadline & Interactive Email CTA */}
-          <div className="lg:col-span-7 space-y-6 md:space-y-8">
-            {/* Subheadline (Green Box) styled for portfolio font consistency */}
-            <p className="text-base md:text-lg lg:text-[19px] text-[#eeeae2]/80 max-w-xl leading-relaxed font-normal">
+        {/* Content Row: Subheadline + Email CTA (Left) & Symmetrically Aligned Directories (Right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start mb-16 md:mb-24">
+          {/* Left Column: Subheadline & Interactive Email CTA guiding the eye */}
+          <div className="lg:col-span-7 flex flex-col justify-start">
+            {/* Subheadline */}
+            <p className="text-base md:text-lg lg:text-[19px] text-[#eeeae2]/80 max-w-xl leading-relaxed font-normal mb-8 md:mb-10">
               Whether you have a product idea, an existing product that needs work, or you&apos;re looking for someone who can design and build, I&apos;d like to hear about it.
             </p>
 
-            {/* Direct Interactive Email Link (Blue Box) with hover animation */}
-            <div className="pt-2">
+            {/* Direct Interactive Email Link CTA */}
+            <div>
               <a
                 href="mailto:dsgnclave@gmail.com"
                 className="group inline-flex items-center gap-3 text-xl sm:text-2xl md:text-3xl font-medium text-[#eeeae2] hover:text-[#cbbd8a] transition-colors duration-300 relative"
@@ -72,10 +72,10 @@ export function FooterReel() {
             </div>
           </div>
 
-          {/* Right Column (Pink Boxes): Navigation & Socials with clean, breathable spacing (no stiff vertical line) */}
-          <div className="lg:col-span-5 grid grid-cols-2 gap-8 lg:gap-12 border-t lg:border-t-0 pt-8 lg:pt-0">
-            {/* Quick Navigation Box (Pink Box 1) */}
-            <div className="space-y-4">
+          {/* Right Column: Navigation & Socials with perfectly centered & aligned thin vertical line */}
+          <div className="lg:col-span-5 flex items-stretch border-t lg:border-t-0 pt-8 lg:pt-0">
+            {/* Quick Navigation Box */}
+            <div className="flex-1 pr-6 lg:pr-8 space-y-4">
               <span className="text-xs uppercase tracking-[0.2em] text-[#77746d] font-semibold block mb-4">
                 Navigation
               </span>
@@ -93,8 +93,11 @@ export function FooterReel() {
               </ul>
             </div>
 
-            {/* Social Links Box (Pink Box 2) */}
-            <div className="space-y-4">
+            {/* Perfectly Centered & Aligned Thin Vertical Line */}
+            <div className="w-[1px] bg-white/10 self-stretch flex-shrink-0" />
+
+            {/* Social Links Box */}
+            <div className="flex-1 pl-6 lg:pl-8 space-y-4">
               <span className="text-xs uppercase tracking-[0.2em] text-[#77746d] font-semibold block mb-4">
                 Socials
               </span>
