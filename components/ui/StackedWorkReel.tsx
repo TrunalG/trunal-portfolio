@@ -253,9 +253,8 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
                       />
                     </div>
 
-                    {/* Left-Aligned Metadata Block matching reference screenshot */}
+                    {/* Left-Aligned Metadata Block: Title & Subheadline/Tagline */}
                     <div className="stacked-card-meta-block">
-                      <span className="card-meta-year">{project.year || '©2025'}</span>
                       <h3 className="card-meta-title">{project.title}</h3>
                       <p className="card-meta-subhead">{project.tagline || project.type || project.role}</p>
                     </div>

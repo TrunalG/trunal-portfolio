@@ -96,7 +96,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           <StickyCaseStudySection
             challenge={project.challenge}
             client={project.client}
-            year={project.year}
+            type={project.type || project.role}
             services={project.services}
             gallery={project.gallery}
           />

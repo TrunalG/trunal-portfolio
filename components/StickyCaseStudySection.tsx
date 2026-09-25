@@ -11,7 +11,7 @@ if (typeof window !== 'undefined') {
 interface StickyCaseStudySectionProps {
   challenge: string
   client: string
-  year: string
+  type: string
   services: string
   gallery: string[]
 }
@@ -19,7 +19,7 @@ interface StickyCaseStudySectionProps {
 export function StickyCaseStudySection({
   challenge,
   client,
-  year,
+  type,
   services,
   gallery,
 }: StickyCaseStudySectionProps) {
@@ -70,8 +70,8 @@ export function StickyCaseStudySection({
             <span className="metadata-value">{client}</span>
           </div>
           <div className="metadata-row">
-            <span className="metadata-key">(Year)</span>
-            <span className="metadata-value">{year}</span>
+            <span className="metadata-key">(Type)</span>
+            <span className="metadata-value">{type}</span>
           </div>
           <div className="metadata-row">
             <span className="metadata-key">(Services)</span>
