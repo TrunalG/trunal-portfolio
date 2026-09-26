@@ -12,23 +12,10 @@ interface ProjectCardProps {
 export function ProjectCard({ project, className = '' }: ProjectCardProps) {
   const { navigateWithTransition } = usePageTransition()
   const targetHref = `/work/${project.slug}`
-  const [pointerState, setPointerState] = React.useState({ x: 0, y: 0, visible: false })
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     navigateWithTransition(targetHref)
-  }
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    setPointerState({ x: e.clientX, y: e.clientY, visible: true })
-  }
-
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-    setPointerState({ x: e.clientX, y: e.clientY, visible: true })
-  }
-
-  const handleMouseLeave = () => {
-    setPointerState((prev) => ({ ...prev, visible: false }))
   }
 
   return (
@@ -38,12 +25,7 @@ export function ProjectCard({ project, className = '' }: ProjectCardProps) {
       className={`project-card-wrapper ${className}`}
     >
       <article className="project-card">
-        <div
-          className={`project-card-image ${project.className || ''}`}
-          onMouseMove={handleMouseMove}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
+        <div className={`project-card-image ${project.className || ''}`}>
           {project.image ? (
             <img src={project.image} alt={project.title} className="card-img" />
           ) : (
@@ -75,17 +57,6 @@ export function ProjectCard({ project, className = '' }: ProjectCardProps) {
           <span className="project-card-role">{project.role}</span>
         </div>
       </article>
-
-      {/* Custom Dynamic Inverting Monochromatic Pill Pointer */}
-      <div
-        className={`custom-card-pointer ${pointerState.visible ? 'is-active' : ''}`}
-        style={{
-          left: `${pointerState.x}px`,
-          top: `${pointerState.y}px`,
-        }}
-      >
-        <span>view project</span>
-      </div>
     </a>
   )
 }

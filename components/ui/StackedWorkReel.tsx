@@ -18,8 +18,12 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
   const charFillsRef = useRef<(HTMLSpanElement | null)[]>([])
   const maskItemsRef = useRef<(HTMLSpanElement | null)[]>([])
   const cardsRef = useRef<(HTMLDivElement | null)[]>([])
-  const [pointerState, setPointerState] = React.useState({ x: 0, y: 0, visible: false })
   const { navigateWithTransition } = usePageTransition()
+
+  const handleCardClick = (e: React.MouseEvent<HTMLAnchorElement>, slug: string) => {
+    e.preventDefault()
+    navigateWithTransition(`/work/${slug}`)
+  }
 
   // Dynamic projects or fall back to featured projects
   const featuredProjects =
@@ -143,23 +147,6 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
     return () => ctx.revert()
   }, [featuredProjects.length])
 
-  const handleCardClick = (e: React.MouseEvent<HTMLAnchorElement>, slug: string) => {
-    e.preventDefault()
-    navigateWithTransition(`/work/${slug}`)
-  }
-
-  const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    setPointerState({ x: e.clientX, y: e.clientY, visible: true })
-  }
-
-  const handleCardMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
-    setPointerState({ x: e.clientX, y: e.clientY, visible: true })
-  }
-
-  const handleCardMouseLeave = () => {
-    setPointerState((prev) => ({ ...prev, visible: false }))
-  }
-
   return (
     <section id="work" ref={triggerRef} className="stacked-reel-section bg-[#EEEAE2] text-[#1a1a1a] relative z-20">
       <div className="stacked-reel-container">
@@ -239,12 +226,7 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
                 >
                   <article className="stacked-card-clean">
                     {/* Frame Aspect Ratio 16/10 matching mockup images */}
-                    <div
-                      className="stacked-card-img-wrap"
-                      onMouseMove={handleCardMouseMove}
-                      onMouseEnter={handleCardMouseEnter}
-                      onMouseLeave={handleCardMouseLeave}
-                    >
+                    <div className="stacked-card-img-wrap">
                       <img
                         src={
                           project.image ||
@@ -270,17 +252,6 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
         {/* Fixed View All Work CTA at Bottom Center */}
         <div className="stacked-reel-cta-wrap">
           <AnimatedCTA href="/work" text="View all work" variant="dark" />
-        </div>
-
-        {/* Custom Dynamic Inverting Monochromatic Pill Pointer */}
-        <div
-          className={`custom-card-pointer ${pointerState.visible ? 'is-active' : ''}`}
-          style={{
-            left: `${pointerState.x}px`,
-            top: `${pointerState.y}px`,
-          }}
-        >
-          <span>view project</span>
         </div>
       </div>
     </section>
