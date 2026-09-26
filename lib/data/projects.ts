@@ -29,7 +29,7 @@ export const projectsData: Project[] = [
     role: 'Product Design & Development',
     type: 'Product Design / Development / MVP',
     description: 'A peer-to-peer platform where people can share what they know, discover skills they want to learn, and connect with others to grow.',
-    image: '/selected work projects/agora.png',
+    image: '/selected work projects/agora/agora.png',
     className: 'project-agora',
     featured: true,
     year: '(©26)',
@@ -41,10 +41,12 @@ export const projectsData: Project[] = [
     services: 'UI/UX, Web Development',
     finalThoughts: 'Agora started with a simple belief: knowledge becomes more valuable when people share it. Building it turned that idea into a real product, where learning is no longer something you do alone, but something you discover through other people.',
     liveUrl: 'https://agora-skill-exchange-network.vercel.app',
-    heroImage: '/selected work projects/agora.png',
+    heroImage: '/selected work projects/agora/agora.png',
     gallery: [
-      '/selected work projects/agora.png',
-      '/selected work projects/agora.png',
+      '/selected work projects/agora/homepage.png',
+      '/selected work projects/agora/profile view.png',
+      '/selected work projects/agora/request section.png',
+      '/selected work projects/agora/DM chat.png',
     ]
   },
   {
@@ -54,7 +56,7 @@ export const projectsData: Project[] = [
     role: 'Product Design & Strategy',
     type: 'Development / Web App',
     description: 'A quoting tool for freelancers that helps them understand what a project really means before putting a price on it.',
-    image: '/selected work projects/ledger studio.png',
+    image: '/selected work projects/ledger studio/ledger studio.png',
     className: 'project-ledger',
     featured: true,
     year: '(©26)',
@@ -66,10 +68,9 @@ export const projectsData: Project[] = [
     services: 'Web Development',
     finalThoughts: 'Ledger Studio turns quoting from a simple pricing task into a clearer way to understand the work behind a project. It helps freelancers see the numbers, scope, and hidden work before the quote reaches the client.',
     liveUrl: '#live-project',
-    heroImage: '/selected work projects/ledger studio.png',
+    heroImage: '/selected work projects/ledger studio/ledger studio.png',
     gallery: [
-      '/selected work projects/ledger studio.png',
-      '/selected work projects/ledger studio.png',
+      '/selected work projects/ledger studio/ledger studio.png',
     ]
   },
   {
@@ -79,7 +80,7 @@ export const projectsData: Project[] = [
     role: 'Product Concept & UX',
     type: 'Product Design / Development / Web App',
     description: 'A financial decision tool that helps users think beyond the price of a purchase.',
-    image: '/selected work projects/should i buy this.png',
+    image: '/selected work projects/should i buy this/should i buy this.png',
     className: 'project-should-i-buy',
     featured: true,
     year: '(©26)',
@@ -91,10 +92,9 @@ export const projectsData: Project[] = [
     services: 'Product Design, UI/UX, Web Development',
     finalThoughts: 'Should I Buy This? turns a simple “should I get it?” into a moment to actually think. It’s a small tool, but the idea behind it is simple: make better decisions before spending, not after.',
     liveUrl: '#live-project',
-    heroImage: '/selected work projects/should i buy this.png',
+    heroImage: '/selected work projects/should i buy this/should i buy this.png',
     gallery: [
-      '/selected work projects/should i buy this.png',
-      '/selected work projects/should i buy this.png',
+      '/selected work projects/should i buy this/should i buy this.png',
     ]
   },
   {
@@ -104,7 +104,7 @@ export const projectsData: Project[] = [
     role: 'Tool Design & Interactive Dev',
     type: 'Development / Web App',
     description: 'A job-posting analysis tool that helps people spot potential ghost jobs before applying.',
-    image: '/selected work projects/ghost filter.png',
+    image: '/selected work projects/ghost filter/ghost filter.png',
     className: 'project-ghost',
     featured: true,
     year: '(©26)',
@@ -116,10 +116,9 @@ export const projectsData: Project[] = [
     services: 'Web Development',
     finalThoughts: 'GhostFilter turns a vague feeling about a job posting into something you can actually examine. It’s a simple way to look past the listing and understand the signals hiding underneath it.',
     liveUrl: '#live-project',
-    heroImage: '/selected work projects/ghost filter.png',
+    heroImage: '/selected work projects/ghost filter/ghost filter.png',
     gallery: [
-      '/selected work projects/ghost filter.png',
-      '/selected work projects/ghost filter.png',
+      '/selected work projects/ghost filter/ghost filter.png',
     ]
   }
 ]

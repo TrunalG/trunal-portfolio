@@ -32,6 +32,9 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     projectsData[(currentIndex + 2) % projectsData.length],
   ]
 
+  const stage2Gallery = project.gallery.length > 2 ? project.gallery.slice(0, 2) : project.gallery
+  const stage3Gallery = project.gallery.length > 2 ? project.gallery.slice(2) : project.gallery
+
   return (
     <main className="site-shell">
       <div className="main-content-relative" style={{ paddingTop: '120px' }}>
@@ -100,7 +103,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             client={project.client}
             type={project.type || project.role}
             services={project.services}
-            gallery={project.gallery}
+            gallery={stage2Gallery}
           />
 
           {/* STAGE 3: Full-Width Showcase & Conclusion (5.png bottom & 6.png) */}
@@ -111,7 +114,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               gap: '24px',
               marginBottom: '100px'
             }}>
-              {project.gallery.slice(0, 2).map((imgSrc, idx) => (
+              {stage3Gallery.map((imgSrc, idx) => (
                 <div key={idx} className="gallery-image-wrap" style={{ aspectRatio: '16 / 10' }}>
                   <img src={imgSrc} alt={`${project.title} detail ${idx + 1}`} />
                 </div>
