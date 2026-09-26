@@ -133,7 +133,7 @@ body.nav-revealed .hero-bg-image {
 .accent-dot { color: #590711; opacity: 1 !important; font-weight: 700; display: inline-block; }
 .thinking .scroll-fill-dim, .contact .scroll-fill-dim { opacity: 0.15; }
 
-.main-content-relative { position: relative; z-index: 2; background: var(--paper); }
+.main-content-relative { position: relative; z-index: 20; background: var(--paper); }
 
 /* Intro Section Styles (GSAP ScrollTrigger Pinning) */
 .sticky-intro-section { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--paper); padding: 0 max(20px, 6vw); z-index: 2; box-sizing: border-box; }

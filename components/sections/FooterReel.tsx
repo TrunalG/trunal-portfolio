@@ -20,7 +20,7 @@ export function FooterReel() {
     setMounted(true)
   }, [])
 
-  // Only enable fixed bottom TRUNAL layer when footer is near or in viewport
+  // Only enable fixed bottom TRUNAL layer when footer card is actually in viewport
   useEffect(() => {
     const el = footerRef.current
     if (!el) return
@@ -30,7 +30,8 @@ export function FooterReel() {
         setIsFooterVisible(entry.isIntersecting)
       },
       {
-        rootMargin: '500px 0px 500px 0px',
+        rootMargin: '0px 0px 0px 0px',
+        threshold: 0.02,
       }
     )
 
