@@ -947,12 +947,13 @@ body.page-reveal-active .mask-reveal-item {
   border-radius: 9999px;
   white-space: nowrap;
   flex-shrink: 0;
-  transform: translate(-50%, -50%) scale(0);
-  transition: transform 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  will-change: transform, left, top;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.85);
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .custom-card-pointer.is-active {
+  opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
 
