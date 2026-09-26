@@ -20,6 +20,8 @@ export function AnimatedCTA({
 }: AnimatedCTAProps) {
   const { navigateWithTransition } = usePageTransition()
 
+  const isExternal = href.startsWith('http://') || href.startsWith('https://')
+
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (href.startsWith('/')) {
       e.preventDefault()
@@ -28,7 +30,13 @@ export function AnimatedCTA({
   }
 
   return (
-    <a href={href} onClick={handleClick} className={`animated-cta ${variant} ${className}`}>
+    <a
+      href={href}
+      onClick={handleClick}
+      target={isExternal ? '_blank' : undefined}
+      rel={isExternal ? 'noopener noreferrer' : undefined}
+      className={`animated-cta ${variant} ${className}`}
+    >
       <span className="cta-content">
         {showArrow && (
           <span className="cta-arrow cta-arrow-left" aria-hidden="true">
