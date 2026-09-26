@@ -67,7 +67,7 @@ export const projectsData: Project[] = [
     client: 'Ledger Studio',
     services: 'Web Development',
     finalThoughts: 'Ledger Studio turns quoting from a simple pricing task into a clearer way to understand the work behind a project. It helps freelancers see the numbers, scope, and hidden work before the quote reaches the client.',
-    liveUrl: '#live-project',
+    liveUrl: 'https://ledger-studio-ashen.vercel.app',
     heroImage: '/selected work projects/ledger studio/ledger studio.png',
     gallery: [
       '/selected work projects/ledger studio/homepage.png',
@@ -94,7 +94,7 @@ export const projectsData: Project[] = [
     client: 'Should I Buy This?',
     services: 'Product Design, UI/UX, Web Development',
     finalThoughts: 'Should I Buy This? turns a simple “should I get it?” into a moment to actually think. It’s a small tool, but the idea behind it is simple: make better decisions before spending, not after.',
-    liveUrl: '#live-project',
+    liveUrl: 'https://should-i-buy-this-liard.vercel.app',
     heroImage: '/selected work projects/should i buy this/should i buy this.png',
     gallery: [
       '/selected work projects/should i buy this/homepage.png',
@@ -121,7 +121,7 @@ export const projectsData: Project[] = [
     client: 'GhostFilter',
     services: 'Web Development',
     finalThoughts: 'GhostFilter turns a vague feeling about a job posting into something you can actually examine. It’s a simple way to look past the listing and understand the signals hiding underneath it.',
-    liveUrl: '#live-project',
+    liveUrl: 'https://ghost-filter-seven.vercel.app',
     heroImage: '/selected work projects/ghost filter/ghost filter.png',
     gallery: [
       '/selected work projects/ghost filter/home.png',
