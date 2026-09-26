@@ -265,12 +265,13 @@ body.page-reveal-active .mask-reveal-item {
   display: block;
   text-decoration: none;
   color: inherit;
+  cursor: none;
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
-  cursor: pointer;
+  cursor: none;
 }
 
 .project-card-image {
