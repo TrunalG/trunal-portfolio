@@ -32,9 +32,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     projectsData[(currentIndex + 2) % projectsData.length],
   ]
 
-  const stage2Gallery = project.gallery.length > 2 ? project.gallery.slice(0, 2) : project.gallery
-  const stage3Gallery = project.gallery.length > 2 ? project.gallery.slice(2) : project.gallery
-
   return (
     <main className="site-shell">
       <div className="main-content-relative" style={{ paddingTop: '120px' }}>
@@ -97,16 +94,16 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             )}
           </div>
 
-          {/* STAGE 2: Two-Column Sticky Case Study Layout (3.png, 4.png, 5.png, work sec. anim.mp4) */}
+          {/* STAGE 2: Two-Column Sticky Case Study Layout */}
           <StickyCaseStudySection
             challenge={project.challenge}
             client={project.client}
             type={project.type || project.role}
             services={project.services}
-            gallery={stage2Gallery}
+            gallery={project.gallery.slice(0, 2)}
           />
 
-          {/* STAGE 3: Full-Width Showcase & Conclusion (5.png bottom & 6.png) */}
+          {/* STAGE 3: Full-Width Showcase & Conclusion */}
           <div style={{ margin: '140px 0 100px' }}>
             <div style={{
               display: 'grid',
@@ -114,7 +111,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               gap: '24px',
               marginBottom: '100px'
             }}>
-              {stage3Gallery.map((imgSrc, idx) => (
+              {(project.gallery.length >= 4 ? project.gallery.slice(2, 4) : project.gallery.slice(0, 2)).map((imgSrc, idx) => (
                 <div key={idx} className="gallery-image-wrap" style={{ aspectRatio: '16 / 10' }}>
                   <img src={imgSrc} alt={`${project.title} detail ${idx + 1}`} />
                 </div>

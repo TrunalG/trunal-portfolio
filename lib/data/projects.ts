@@ -44,9 +44,9 @@ export const projectsData: Project[] = [
     heroImage: '/selected work projects/agora/agora.png',
     gallery: [
       '/selected work projects/agora/homepage.png',
+      '/selected work projects/agora/request page.png',
       '/selected work projects/agora/profile view.png',
-      '/selected work projects/agora/request section.png',
-      '/selected work projects/agora/DM chat.png',
+      '/selected work projects/agora/message chat.png',
     ]
   },
   {
@@ -70,7 +70,10 @@ export const projectsData: Project[] = [
     liveUrl: '#live-project',
     heroImage: '/selected work projects/ledger studio/ledger studio.png',
     gallery: [
-      '/selected work projects/ledger studio/ledger studio.png',
+      '/selected work projects/ledger studio/homepage.png',
+      '/selected work projects/ledger studio/quote page.png',
+      '/selected work projects/ledger studio/lab page.png',
+      '/selected work projects/ledger studio/playbook page.png',
     ]
   },
   {
@@ -94,7 +97,10 @@ export const projectsData: Project[] = [
     liveUrl: '#live-project',
     heroImage: '/selected work projects/should i buy this/should i buy this.png',
     gallery: [
-      '/selected work projects/should i buy this/should i buy this.png',
+      '/selected work projects/should i buy this/homepage.png',
+      '/selected work projects/should i buy this/step 1.png',
+      '/selected work projects/should i buy this/step 2.png',
+      '/selected work projects/should i buy this/verdic.png',
     ]
   },
   {
@@ -118,7 +124,10 @@ export const projectsData: Project[] = [
     liveUrl: '#live-project',
     heroImage: '/selected work projects/ghost filter/ghost filter.png',
     gallery: [
-      '/selected work projects/ghost filter/ghost filter.png',
+      '/selected work projects/ghost filter/home.png',
+      '/selected work projects/ghost filter/filter.png',
+      '/selected work projects/ghost filter/history.png',
+      '/selected work projects/ghost filter/privacy.png',
     ]
   }
 ]
