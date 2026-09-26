@@ -270,7 +270,7 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
           <AnimatedCTA href="/work" text="View all work" variant="dark" />
         </div>
 
-        {/* Custom Isolated Difference Pill Pointer Badge */}
+        {/* Custom Dynamic Inverting Monochromatic Pill Pointer */}
         <div
           className={`custom-card-pointer ${pointerState.visible ? 'is-active' : ''}`}
           style={{
@@ -278,9 +278,7 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
             top: `${pointerState.y}px`,
           }}
         >
-          <div className="custom-card-pointer-pill">
-            <span className="custom-card-pointer-text">view project</span>
-          </div>
+          <span>view project</span>
         </div>
       </div>
     </section>

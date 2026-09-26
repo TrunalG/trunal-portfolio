@@ -74,7 +74,7 @@ export function ProjectCard({ project, className = '' }: ProjectCardProps) {
         </div>
       </article>
 
-      {/* Custom Isolated Difference Pill Pointer Badge */}
+      {/* Custom Dynamic Inverting Monochromatic Pill Pointer */}
       <div
         className={`custom-card-pointer ${pointerState.visible ? 'is-active' : ''}`}
         style={{
@@ -82,9 +82,7 @@ export function ProjectCard({ project, className = '' }: ProjectCardProps) {
           top: `${pointerState.y}px`,
         }}
       >
-        <div className="custom-card-pointer-pill">
-          <span className="custom-card-pointer-text">view project</span>
-        </div>
+        <span>view project</span>
       </div>
     </a>
   )
