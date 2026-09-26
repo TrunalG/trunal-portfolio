@@ -397,9 +397,9 @@ body.page-reveal-active .mask-reveal-item {
 }
 
 .case-study-heading {
-  font-size: clamp(20px, 2.4vw, 34px);
-  line-height: 1.35;
-  letter-spacing: -.055em;
+  font-size: clamp(18px, 2.2vw, 28px);
+  line-height: 1.4;
+  letter-spacing: -.03em;
   font-weight: 500;
   color: var(--ink);
   margin: 0;
