@@ -36,11 +36,11 @@ export function CustomCursor() {
       const target = e.target as HTMLElement | null
       if (!target) return
 
-      // Hide global cursor when hovering over Selected Work project cards
-      const isProjectCard = target.closest(
-        '.stacked-card-anchor, .horizontal-card-wrapper, .project-card-wrapper, .project-card, .custom-card-pointer'
+      // Hide global cursor when hovering over project card image containers (where pill badge is active)
+      const isProjectCardImage = target.closest(
+        '.project-card-image, .stacked-card-img-wrap, .custom-card-pointer'
       )
-      if (isProjectCard) {
+      if (isProjectCardImage) {
         setCursorState('hidden')
         return
       }
