@@ -397,10 +397,10 @@ body.page-reveal-active .mask-reveal-item {
 }
 
 .case-study-heading {
-  font-size: clamp(16px, 1.6vw, 22px);
-  line-height: 1.45;
-  letter-spacing: -.02em;
-  font-weight: 450;
+  font-size: clamp(20px, 2.4vw, 34px);
+  line-height: 1.35;
+  letter-spacing: -.055em;
+  font-weight: 500;
   color: var(--ink);
   margin: 0;
 }
