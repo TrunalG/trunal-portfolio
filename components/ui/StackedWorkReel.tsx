@@ -148,11 +148,11 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
     navigateWithTransition(`/work/${slug}`)
   }
 
-  const handleCardMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleCardMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     setPointerState({ x: e.clientX, y: e.clientY, visible: true })
   }
 
-  const handleCardMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleCardMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     setPointerState({ x: e.clientX, y: e.clientY, visible: true })
   }
 
@@ -235,14 +235,16 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
                 <a
                   href={`/work/${project.slug}`}
                   onClick={(e) => handleCardClick(e, project.slug)}
-                  onMouseMove={handleCardMouseMove}
-                  onMouseEnter={handleCardMouseEnter}
-                  onMouseLeave={handleCardMouseLeave}
                   className="stacked-card-anchor"
                 >
                   <article className="stacked-card-clean">
                     {/* Frame Aspect Ratio 16/10 matching mockup images */}
-                    <div className="stacked-card-img-wrap">
+                    <div
+                      className="stacked-card-img-wrap"
+                      onMouseMove={handleCardMouseMove}
+                      onMouseEnter={handleCardMouseEnter}
+                      onMouseLeave={handleCardMouseLeave}
+                    >
                       <img
                         src={
                           project.image ||

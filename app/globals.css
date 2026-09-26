@@ -265,13 +265,11 @@ body.page-reveal-active .mask-reveal-item {
   display: block;
   text-decoration: none;
   color: inherit;
-  cursor: none;
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
-  cursor: none;
 }
 
 .project-card-image {
@@ -281,6 +279,7 @@ body.page-reveal-active .mask-reveal-item {
   background: var(--paper-dark, #1a1a18);
   aspect-ratio: 16 / 10;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: none;
 }
 
 .project-card-image .product-ui {

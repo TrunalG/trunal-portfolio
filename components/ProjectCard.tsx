@@ -19,11 +19,11 @@ export function ProjectCard({ project, className = '' }: ProjectCardProps) {
     navigateWithTransition(targetHref)
   }
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     setPointerState({ x: e.clientX, y: e.clientY, visible: true })
   }
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
     setPointerState({ x: e.clientX, y: e.clientY, visible: true })
   }
 
@@ -35,13 +35,15 @@ export function ProjectCard({ project, className = '' }: ProjectCardProps) {
     <a
       href={targetHref}
       onClick={handleClick}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       className={`project-card-wrapper ${className}`}
     >
       <article className="project-card">
-        <div className={`project-card-image ${project.className || ''}`}>
+        <div
+          className={`project-card-image ${project.className || ''}`}
+          onMouseMove={handleMouseMove}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           {project.image ? (
             <img src={project.image} alt={project.title} className="card-img" />
           ) : (
