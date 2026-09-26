@@ -25,10 +25,12 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
     notFound()
   }
 
-  // Find 2 suggested/related projects (excluding current project)
-  const relatedProjects = projectsData
-    .filter((p) => p.id !== project.id)
-    .slice(0, 2)
+  // Find 2 suggested/related projects using circular indexing so all projects rotate
+  const currentIndex = projectsData.findIndex((p) => p.slug === slug)
+  const relatedProjects = [
+    projectsData[(currentIndex + 1) % projectsData.length],
+    projectsData[(currentIndex + 2) % projectsData.length],
+  ]
 
   return (
     <main className="site-shell">
@@ -145,7 +147,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           {/* STAGE 4: Related Works Section (7.png, 8.png, 9.png) */}
           <div style={{ paddingTop: '120px', borderTop: '1px solid var(--line)' }}>
             <div className="related-works-header">
-              <span className="case-study-label">(Portfolio 23-26©)</span>
+              <span className="case-study-label">(SELECTED CASE STUDIES)</span>
               <h2>Related Works</h2>
             </div>
 

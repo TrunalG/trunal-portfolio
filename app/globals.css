@@ -397,10 +397,10 @@ body.page-reveal-active .mask-reveal-item {
 }
 
 .case-study-heading {
-  font-size: clamp(20px, 2.4vw, 34px);
-  line-height: 1.35;
-  letter-spacing: -.055em;
-  font-weight: 500;
+  font-size: clamp(16px, 1.6vw, 22px);
+  line-height: 1.45;
+  letter-spacing: -.02em;
+  font-weight: 450;
   color: var(--ink);
   margin: 0;
 }
@@ -491,9 +491,9 @@ body.page-reveal-active .mask-reveal-item {
 }
 
 .project-detail-heading {
-  font-size: clamp(48px, 8vw, 110px);
-  line-height: .85;
-  letter-spacing: -.07em;
+  font-size: clamp(38px, 5.8vw, 84px);
+  line-height: .9;
+  letter-spacing: -.05em;
   font-weight: 700;
   margin: 0;
   color: var(--ink);
