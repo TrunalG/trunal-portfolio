@@ -20,25 +20,6 @@ export function FooterReel() {
     setMounted(true)
   }, [])
 
-  // Only enable fixed bottom TRUNAL layer when footer card is actually in viewport
-  useEffect(() => {
-    const el = footerRef.current
-    if (!el) return
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsFooterVisible(entry.isIntersecting)
-      },
-      {
-        rootMargin: '0px 0px 0px 0px',
-        threshold: 0.02,
-      }
-    )
-
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
   // Measure text height on load & resize for exact curtain reveal distance
   useEffect(() => {
     const updateBrandHeight = () => {
@@ -66,6 +47,9 @@ export function FooterReel() {
           if (!el) return
           const rect = el.getBoundingClientRect()
           const windowHeight = window.innerHeight
+
+          // Only enable fixed bottom TRUNAL layer when footer card has scrolled up into curtain reveal position
+          setIsFooterVisible(rect.top <= windowHeight * 0.35)
 
           // Entrance Skeleton Fade-In
           const fadeStart = windowHeight * 0.98
