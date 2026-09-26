@@ -2,7 +2,7 @@
 
 import { ProjectCard } from '@/components/ProjectCard'
 import { TextReveal } from '@/components/TextReveal'
-import { SimpleFooter } from '@/components/layout/SimpleFooter'
+import { FooterReel } from '@/components/sections/FooterReel'
 import { projectsData } from '@/lib/data/projects'
 
 export default function WorkPage() {
@@ -25,7 +25,7 @@ export default function WorkPage() {
           </div>
         </section>
 
-        <SimpleFooter backLink="/" backText="← Back to Home" />
+        <FooterReel />
       </div>
     </main>
   )

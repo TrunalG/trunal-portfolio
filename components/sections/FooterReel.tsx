@@ -8,7 +8,7 @@ import { usePageTransition } from '@/components/layout/PageTransition'
 export function FooterReel() {
   const footerRef = useRef<HTMLElement | null>(null)
   const textRef = useRef<HTMLHeadingElement | null>(null)
-  const { triggerSectionTransition } = usePageTransition()
+  const { triggerSectionTransition, navigateWithTransition } = usePageTransition()
 
   const [mounted, setMounted] = useState(false)
   const [isFooterVisible, setIsFooterVisible] = useState(false)
@@ -94,7 +94,11 @@ export function FooterReel() {
     if (href.includes('#')) {
       e.preventDefault()
       const targetId = href.split('#')[1]
-      triggerSectionTransition(targetId)
+      if (typeof window !== 'undefined' && window.location.pathname === '/') {
+        triggerSectionTransition(targetId)
+      } else {
+        navigateWithTransition(`/#${targetId}`)
+      }
     }
   }
 

@@ -3,7 +3,7 @@ import { ProjectCard } from '@/components/ProjectCard'
 import { AnimatedCTA } from '@/components/AnimatedCTA'
 import { StickyCaseStudySection } from '@/components/StickyCaseStudySection'
 import { TextReveal } from '@/components/TextReveal'
-import { SimpleFooter } from '@/components/layout/SimpleFooter'
+import { FooterReel } from '@/components/sections/FooterReel'
 import { CurvedMaskImage } from '@/components/CurvedMaskImage'
 import { projectsData } from '@/lib/data/projects'
 
@@ -160,7 +160,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
 
         </section>
 
-        <SimpleFooter backLink="/work" backText="← All Projects" />
+        <FooterReel />
       </div>
     </main>
   )
