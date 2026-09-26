@@ -923,7 +923,7 @@ body.page-reveal-active .mask-reveal-item {
   font-family: inherit;
 }
 
-/* Custom Frosted Glassmorphism Pointer Badge Button (+ VIEW PROJECT) */
+/* Custom Pill Difference Blend Mode Pointer Badge (view project) */
 .custom-card-pointer {
   position: fixed;
   top: 0;
@@ -932,35 +932,25 @@ body.page-reveal-active .mask-reveal-item {
   pointer-events: none;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  background: rgba(18, 18, 16, 0.68);
-  backdrop-filter: blur(14px) saturate(180%);
-  -webkit-backdrop-filter: blur(14px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  border-radius: 6px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  justify-content: center;
+  padding: 8px 18px;
+  background: #ffffff;
+  color: #000000;
+  mix-blend-mode: difference;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: lowercase;
+  border-radius: 9999px;
   white-space: nowrap;
   flex-shrink: 0;
   transform: translate(-50%, -50%) scale(0);
-  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   will-change: transform, left, top;
 }
 
 .custom-card-pointer.is-active {
   transform: translate(-50%, -50%) scale(1);
-}
-
-.custom-card-pointer-icon {
-  font-size: 15px;
-  font-weight: 600;
-  line-height: 1;
-  color: #590711;
 }
 
 .hover-brand-inline {

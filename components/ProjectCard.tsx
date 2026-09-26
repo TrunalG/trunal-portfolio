@@ -74,7 +74,7 @@ export function ProjectCard({ project, className = '' }: ProjectCardProps) {
         </div>
       </article>
 
-      {/* Custom Pointer Badge Button (+ VIEW PROJECT) in #590711 */}
+      {/* Custom Pill Pointer Badge (view project) */}
       <div
         className={`custom-card-pointer ${pointerState.visible ? 'is-active' : ''}`}
         style={{
@@ -82,8 +82,7 @@ export function ProjectCard({ project, className = '' }: ProjectCardProps) {
           top: `${pointerState.y}px`,
         }}
       >
-        <span className="custom-card-pointer-icon">+</span>
-        <span>VIEW PROJECT</span>
+        <span>view project</span>
       </div>
     </a>
   )

@@ -270,7 +270,7 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
           <AnimatedCTA href="/work" text="View all work" variant="dark" />
         </div>
 
-        {/* Custom Mouse Follower Pointer (+ VIEW PROJECT) in #590711 */}
+        {/* Custom Pill Pointer Badge (view project) */}
         <div
           className={`custom-card-pointer ${pointerState.visible ? 'is-active' : ''}`}
           style={{
@@ -278,8 +278,7 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
             top: `${pointerState.y}px`,
           }}
         >
-          <span className="custom-card-pointer-icon">+</span>
-          <span>VIEW PROJECT</span>
+          <span>view project</span>
         </div>
       </div>
     </section>
