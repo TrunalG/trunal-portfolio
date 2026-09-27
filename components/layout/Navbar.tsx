@@ -94,6 +94,8 @@ export function Navbar({ variant = 'light' }: NavbarProps) {
         <a className="wordmark" href="/" onClick={(e) => handleNavClick(e, '/')}>
           T<span>®</span>
         </a>
+
+        {/* Desktop Navbar Links (Hidden on mobile) */}
         <div className="nav-links">
           {navItems.map((item) => (
             <a
@@ -111,6 +113,8 @@ export function Navbar({ variant = 'light' }: NavbarProps) {
             </a>
           ))}
         </div>
+
+        {/* Mobile Single Toggle Button (2 lines morphing to X) */}
         <button
           className="menu-toggle"
           aria-label="Toggle menu"
