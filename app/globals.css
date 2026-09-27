@@ -1321,13 +1321,52 @@ body.page-reveal-active .mask-reveal-item {
     gap: 14px;
   }
 
-  .mobile-nav-item {
+  /* Disable Custom Cursor completely on mobile viewports (< 768px) */
+  .global-cursor-dot,
+  .global-cursor-ring,
+  .custom-card-pointer {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* Mobile Drawer Nav Item Vertical Text Roll Animation */
+  .mobile-nav-link-item {
+    display: inline-block;
+    overflow: hidden;
+    height: 42px;
+    line-height: 42px;
+    position: relative;
+    text-decoration: none;
+  }
+
+  .mobile-nav-roll {
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+  }
+
+  .mobile-nav-link-item:hover .mobile-nav-roll,
+  .mobile-nav-link-item:active .mobile-nav-roll {
+    transform: translateY(-50%);
+  }
+
+  .mobile-nav-text {
+    display: block;
+    height: 42px;
+    line-height: 42px;
+    white-space: nowrap;
     font-size: 34px;
     font-weight: 500;
     letter-spacing: -0.04em;
     color: #eeeae2;
-    text-decoration: none;
     transition: color 0.2s ease;
+  }
+
+  .mobile-nav-link-item:hover .mobile-nav-text,
+  .mobile-nav-link-item:active .mobile-nav-text {
+    color: #ffffff;
   }
 
   .mobile-info-block {

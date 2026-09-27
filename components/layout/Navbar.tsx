@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { usePageTransition } from './PageTransition'
 import { usePathname } from 'next/navigation'
+import { AnimatedCTA } from '@/components/AnimatedCTA'
 
 interface NavbarProps {
   variant?: 'light' | 'dark'
@@ -129,7 +130,7 @@ export function Navbar({ variant = 'light' }: NavbarProps) {
       {/* Full-Screen Mobile Menu Drawer (Right to Left Slide-In) */}
       <div className={`mobile-menu-drawer ${menuOpen ? 'is-open' : ''}`} aria-hidden={!menuOpen}>
         <div className="mobile-menu-container">
-          {/* Main Navigation Links */}
+          {/* Main Navigation Links with Text Roll Animations */}
           <div className="mobile-nav-block">
             <span className="mobile-section-label">(Navigation)</span>
             <ul className="mobile-nav-list">
@@ -138,9 +139,14 @@ export function Navbar({ variant = 'light' }: NavbarProps) {
                   <a
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className="mobile-nav-item"
+                    className="mobile-nav-link-item"
                   >
-                    {item.label}
+                    <span className="mobile-nav-roll">
+                      <span className="mobile-nav-text">{item.label}</span>
+                      <span className="mobile-nav-text" aria-hidden="true">
+                        {item.label}
+                      </span>
+                    </span>
                   </a>
                 </li>
               ))}
@@ -151,9 +157,13 @@ export function Navbar({ variant = 'light' }: NavbarProps) {
           <div className="mobile-info-block">
             <div className="mobile-contact-subblock">
               <span className="mobile-section-label">(Contact)</span>
-              <a href="mailto:dsgnclave@gmail.com" className="mobile-email-link">
-                dsgnclave@gmail.com
-              </a>
+              <AnimatedCTA
+                href="mailto:dsgnclave@gmail.com"
+                text="dsgnclave@gmail.com"
+                variant="light"
+                showArrow={false}
+                className="!text-lg sm:!text-xl font-medium"
+              />
             </div>
 
             <div className="mobile-socials-subblock">
