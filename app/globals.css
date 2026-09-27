@@ -1462,7 +1462,7 @@ body.page-reveal-active .mask-reveal-item {
   }
 }
 
-/* Desktop Default Styles for Project Detail Pages */
+/* Desktop Default Styles for Project Detail Pages (Original) */
 .project-hero-curved-wrap {
   width: 100vw;
   position: relative;
@@ -1471,28 +1471,27 @@ body.page-reveal-active .mask-reveal-item {
   margin-left: -50vw;
   margin-right: -50vw;
   height: clamp(450px, 75vh, 850px);
-  margin-bottom: 48px;
+  margin-bottom: 100px;
 }
 
 .case-study-split {
-  margin-bottom: 48px;
+  margin-bottom: 0px;
 }
 
 .case-study-gallery {
   display: flex;
   flex-direction: column;
-  gap: 48px;
 }
 
 .project-showcase-section {
-  margin: 48px 0;
+  margin: 140px 0 100px;
 }
 
 .gallery-showcase-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 48px;
-  margin-bottom: 48px;
+  gap: 24px;
+  margin-bottom: 100px;
 }
 
 .final-thoughts-grid {
