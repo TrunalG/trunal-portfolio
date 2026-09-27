@@ -1602,15 +1602,16 @@ body.page-reveal-active .mask-reveal-item {
   .hero-statement-block.mobile-only-statement {
     display: block !important;
     align-self: flex-end !important;
-    max-width: 65% !important;
+    max-width: 68% !important;
     margin: 0 !important;
     text-align: left !important;
   }
 
   .hero-statement-block.mobile-only-statement .statement-text {
-    font-size: clamp(12px, 3.2vw, 14px) !important;
-    line-height: 1.4 !important;
-    font-weight: 400 !important;
+    font-size: clamp(15px, 4.2vw, 19px) !important;
+    line-height: 1.45 !important;
+    font-weight: 450 !important;
+    letter-spacing: -0.025em !important;
     color: rgba(238, 234, 226, 0.95) !important;
     text-align: left !important;
   }
