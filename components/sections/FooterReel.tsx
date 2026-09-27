@@ -95,9 +95,18 @@ export function FooterReel() {
   ]
 
   const socialLinks = [
-    { label: 'LinkedIn', href: 'https://linkedin.com' },
-    { label: 'GitHub', href: 'https://github.com' },
-    { label: 'X / Twitter', href: 'https://x.com' },
+    {
+      label: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/designclave?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
+    },
+    {
+      label: 'Instagram',
+      href: 'https://www.instagram.com/designclave?igsh=MWdvaG85dmx1bDhtYw==',
+    },
+    {
+      label: 'X',
+      href: 'https://x.com/designClave',
+    },
   ]
 
   return (
@@ -189,9 +198,14 @@ export function FooterReel() {
                       <a
                         href={link.href}
                         onClick={(e) => handleFooterNavClick(e, link.href)}
-                        className="text-sm md:text-base text-[#eeeae2]/80 hover:text-white transition-colors duration-200 block"
+                        className="footer-nav-link-item"
                       >
-                        {link.label}
+                        <span className="footer-nav-roll">
+                          <span className="footer-nav-text">{link.label}</span>
+                          <span className="footer-nav-text" aria-hidden="true">
+                            {link.label}
+                          </span>
+                        </span>
                       </a>
                     </li>
                   ))}
@@ -213,11 +227,13 @@ export function FooterReel() {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm md:text-base text-[#eeeae2]/80 hover:text-white transition-colors duration-200 inline-flex items-center gap-1 group"
+                        className="footer-social-link-item group"
                       >
-                        <span>{link.label}</span>
-                        <span className="text-xs opacity-60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200">
-                          ↗
+                        <span className="footer-social-text">{link.label}</span>
+                        <span className="footer-social-arrow-box">
+                          <span className="footer-social-arrow-icon" aria-hidden="true">
+                            ↗
+                          </span>
                         </span>
                       </a>
                     </li>
