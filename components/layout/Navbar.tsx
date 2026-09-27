@@ -121,8 +121,10 @@ export function Navbar({ variant = 'light' }: NavbarProps) {
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen(!menuOpen)}
         >
-          <span className="hamburger-line line-1" />
-          <span className="hamburger-line line-2" />
+          <span className="hamburger-box">
+            <span className="hamburger-line line-1" />
+            <span className="hamburger-line line-2" />
+          </span>
         </button>
       </nav>
 

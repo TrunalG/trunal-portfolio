@@ -1260,29 +1260,43 @@ body.page-reveal-active .mask-reveal-item {
     margin-left: auto;
   }
 
+  .hamburger-box {
+    position: relative;
+    width: 22px;
+    height: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .hamburger-line {
     display: block;
     width: 22px;
-    height: 2px;
+    height: 1.5px;
     background-color: currentColor;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
-    transform-origin: center;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), top 0.3s ease, bottom 0.3s ease;
+    transform-origin: center center;
+    position: absolute;
+    left: 0;
   }
 
   .hamburger-line.line-1 {
-    transform: translateY(-4px);
+    top: 2px;
   }
 
   .hamburger-line.line-2 {
-    transform: translateY(4px);
+    bottom: 2px;
   }
 
   .menu-toggle.is-active .line-1 {
-    transform: translateY(0px) rotate(45deg);
+    top: 6px;
+    transform: rotate(45deg);
   }
 
   .menu-toggle.is-active .line-2 {
-    transform: translateY(-2px) rotate(-45deg);
+    bottom: 6px;
+    transform: rotate(-45deg);
   }
 
   .mobile-menu-overlay {
@@ -1297,7 +1311,7 @@ body.page-reveal-active .mask-reveal-item {
     padding: 100px 24px 44px;
     opacity: 0;
     pointer-events: none;
-    transform: translateY(-100%);
+    transform: translateX(100%);
     transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
     mix-blend-mode: normal !important;
     will-change: transform, opacity;
@@ -1306,7 +1320,7 @@ body.page-reveal-active .mask-reveal-item {
   .mobile-menu-overlay.is-open {
     opacity: 1;
     pointer-events: auto;
-    transform: translateY(0%);
+    transform: translateX(0%);
   }
 
   .mobile-menu-container {
@@ -1378,20 +1392,33 @@ body.page-reveal-active .mask-reveal-item {
     gap: 18px;
   }
 
-  /* Project Detail Page Mobile Overrides */
+  /* Project Detail Page Mobile Overrides & Uniform Image Spacing */
   .project-hero-curved-wrap {
-    height: clamp(260px, 45vh, 420px) !important;
-    margin-bottom: 50px !important;
+    height: clamp(240px, 42vh, 380px) !important;
+    margin-bottom: 24px !important;
+  }
+
+  .case-study-split {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    margin-bottom: 24px !important;
+  }
+
+  .case-study-gallery {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
   }
 
   .project-showcase-section {
-    margin: 60px 0 60px !important;
+    margin: 24px 0 !important;
   }
 
   .gallery-showcase-grid {
     grid-template-columns: 1fr !important;
-    gap: 16px !important;
-    margin-bottom: 50px !important;
+    gap: 24px !important;
+    margin-bottom: 24px !important;
   }
 
   .final-thoughts-grid {
@@ -1402,12 +1429,6 @@ body.page-reveal-active .mask-reveal-item {
   .final-thoughts-text {
     font-size: 18px !important;
     margin-bottom: 24px !important;
-  }
-
-  .case-study-split {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 40px !important;
   }
 }
 
@@ -1420,18 +1441,28 @@ body.page-reveal-active .mask-reveal-item {
   margin-left: -50vw;
   margin-right: -50vw;
   height: clamp(450px, 75vh, 850px);
-  margin-bottom: 100px;
+  margin-bottom: 48px;
+}
+
+.case-study-split {
+  margin-bottom: 48px;
+}
+
+.case-study-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
 }
 
 .project-showcase-section {
-  margin: 140px 0 100px;
+  margin: 48px 0;
 }
 
 .gallery-showcase-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  margin-bottom: 100px;
+  gap: 48px;
+  margin-bottom: 48px;
 }
 
 .final-thoughts-grid {
