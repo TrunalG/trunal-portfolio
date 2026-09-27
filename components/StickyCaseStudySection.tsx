@@ -38,8 +38,8 @@ export function StickyCaseStudySection({
     }, 100)
 
     const ctx = gsap.context(() => {
-      // Only pin left sidebar on desktop screens (> 768px)
-      if (window.innerWidth > 768) {
+      const isMobile = window.innerWidth <= 768
+      if (!isMobile) {
         ScrollTrigger.create({
           trigger: sectionEl,
           start: 'top top+=90px',
