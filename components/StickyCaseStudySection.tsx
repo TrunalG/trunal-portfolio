@@ -38,14 +38,17 @@ export function StickyCaseStudySection({
     }, 100)
 
     const ctx = gsap.context(() => {
-      ScrollTrigger.create({
-        trigger: sectionEl,
-        start: 'top top+=90px',
-        end: 'bottom bottom',
-        pin: leftEl,
-        pinSpacing: false,
-        invalidateOnRefresh: true,
-      })
+      // Only pin left sidebar on desktop screens (> 768px)
+      if (window.innerWidth > 768) {
+        ScrollTrigger.create({
+          trigger: sectionEl,
+          start: 'top top+=90px',
+          end: 'bottom bottom',
+          pin: leftEl,
+          pinSpacing: false,
+          invalidateOnRefresh: true,
+        })
+      }
     }, sectionRef)
 
     return () => {

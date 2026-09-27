@@ -52,18 +52,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           </div>
 
           {/* STAGE 1 Hero Cover Image with Full Viewport Width Curved Mask Animation */}
-          <div
-            style={{
-              width: '100vw',
-              position: 'relative',
-              left: '50%',
-              right: '50%',
-              marginLeft: '-50vw',
-              marginRight: '-50vw',
-              height: 'clamp(450px, 75vh, 850px)',
-              marginBottom: '100px',
-            }}
-          >
+          <div className="project-hero-curved-wrap">
             {project.heroImage || project.gallery[0] ? (
               <CurvedMaskImage
                 src={project.heroImage || project.gallery[0]}
@@ -104,13 +93,8 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           />
 
           {/* STAGE 3: Full-Width Showcase & Conclusion */}
-          <div style={{ margin: '140px 0 100px' }}>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              gap: '24px',
-              marginBottom: '100px'
-            }}>
+          <div className="project-showcase-section">
+            <div className="gallery-showcase-grid">
               {(project.gallery.length >= 4 ? project.gallery.slice(2, 4) : project.gallery.slice(0, 2)).map((imgSrc, idx) => (
                 <div key={idx} className="gallery-image-wrap" style={{ aspectRatio: '16 / 10' }}>
                   <img src={imgSrc} alt={`${project.title} detail ${idx + 1}`} />
@@ -119,23 +103,11 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             </div>
 
             {/* Final Thoughts & Animated CTA Button */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '40px',
-              alignItems: 'end'
-            }}>
-              <div />
+            <div className="final-thoughts-grid">
+              <div className="hidden md:block" />
               <div>
                 <span className="case-study-label">(Final thoughts)</span>
-                <p style={{
-                  fontSize: 'clamp(18px, 2.2vw, 28px)',
-                  lineHeight: '1.4',
-                  fontWeight: 500,
-                  letterSpacing: '-.03em',
-                  color: 'var(--ink)',
-                  marginBottom: '40px'
-                }}>
+                <p className="final-thoughts-text">
                   {project.finalThoughts}
                 </p>
 

@@ -272,7 +272,7 @@ export function FooterReel() {
       >
         <h1
           ref={textRef}
-          className="text-[clamp(75px,18.5vw,360px)] font-extrabold uppercase tracking-[-0.07em] leading-[0.72] text-[#eeeae2]/55 whitespace-nowrap text-center block w-full"
+          className="text-[clamp(100px,26vw,360px)] font-extrabold uppercase tracking-[-0.07em] leading-[0.72] text-[#eeeae2]/55 whitespace-nowrap text-center block w-full"
         >
           TRUNAL
         </h1>
