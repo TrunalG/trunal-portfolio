@@ -232,7 +232,18 @@ export function FooterReel() {
                         <span className="footer-social-text">{link.label}</span>
                         <span className="footer-social-arrow-box">
                           <span className="footer-social-arrow-icon" aria-hidden="true">
-                            ↗
+                            <svg
+                              className="w-[18px] h-[18px]"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="1.8"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <line x1="7" y1="17" x2="17" y2="7" />
+                              <polyline points="7 7 17 7 17 17" />
+                            </svg>
                           </span>
                         </span>
                       </a>
