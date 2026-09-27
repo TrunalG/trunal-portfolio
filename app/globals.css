@@ -1531,6 +1531,24 @@ body.page-reveal-active .mask-reveal-item {
     outline: 1px solid #0f0f0e;
     border-bottom: 1px solid #0f0f0e;
   }
+
+  /* 4. About Section Mobile Clean View (No scrub delay on text & portrait PNG) */
+  .about-portrait-wrap {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .about-word-bg {
+    color: #171715 !important;
+    opacity: 1 !important;
+  }
+  .about-word-fg {
+    display: none !important;
+  }
+  .about-signature {
+    clip-path: inset(0 0% 0 0) !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 

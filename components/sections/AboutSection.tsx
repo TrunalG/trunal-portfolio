@@ -21,13 +21,27 @@ const PARAGRAPH_2 =
 export function AboutSection() {
   const containerRef = useRef<HTMLDivElement | null>(null)
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
+
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
     gsap.registerPlugin(ScrollTrigger)
 
     const el = containerRef.current
     if (!el) return
+
+    if (window.innerWidth <= 768) {
+      return () => {
+        window.removeEventListener('resize', checkMobile)
+      }
+    }
 
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
@@ -41,7 +55,10 @@ export function AboutSection() {
       })
     }, el)
 
-    return () => ctx.revert()
+    return () => {
+      window.removeEventListener('resize', checkMobile)
+      ctx.revert()
+    }
   }, [])
 
   // Tokenize paragraphs into word arrays for left-to-right writing reveal
@@ -49,20 +66,19 @@ export function AboutSection() {
   const p2Words = PARAGRAPH_2.split(' ')
   const totalWords = p1Words.length + p2Words.length
 
-  // Body text reveal completes 100% within the first 88% of scroll progress
-  const textProgress = Math.min(1, scrollProgress / 0.88)
-
-  // Signature animation starts strictly AFTER body text completes (scrollProgress >= 0.88)
-  const isSignatureActive = scrollProgress >= 0.88
+  // On mobile screens, display text & image cleanly by default without scroll-lag.
+  // On desktop screens, preserve full scroll-driven writing reveal.
+  const textProgress = isMobile ? 1 : Math.min(1, scrollProgress / 0.88)
+  const isSignatureActive = isMobile ? true : scrollProgress >= 0.88
 
   return (
     <section
       id="about"
       ref={containerRef}
-      className="about-me-editorial bg-[#eeeae2] text-[#171715] min-h-screen py-24 md:py-36 lg:py-44 px-6 md:px-16 lg:px-24 relative z-30 overflow-hidden flex flex-col justify-center"
+      className="about-me-editorial bg-[#eeeae2] text-[#171715] min-h-screen py-16 md:py-36 lg:py-44 px-6 md:px-16 lg:px-24 relative z-30 overflow-hidden flex flex-col justify-center"
     >
       <div className="max-w-7xl mx-auto w-full relative">
-        {/* Static Header Stack: Spaced Light Kicker Centered Directly Over Giant Title (No Entrance Animation) */}
+        {/* Static Header Stack: Spaced Light Kicker Centered Directly Over Giant Title */}
         <div className="relative w-full text-center select-none pointer-events-none mb-4 md:mb-6 z-0">
           {/* Spaced Light Kicker Line */}
           <div className="mb-2 md:mb-4">
@@ -78,16 +94,16 @@ export function AboutSection() {
         </div>
 
         {/* Layered Composite: Cutout PNG overlapping A & B + Scroll-Driven Body Writing Flow */}
-        <div className="relative z-10 -mt-8 sm:-mt-12 md:-mt-16 lg:-mt-20 grid grid-cols-1 md:grid-cols-12 items-start gap-4 md:gap-8 lg:gap-12 w-full">
-          {/* Left / Middle: Cutout PNG - Fades in smoothly as you scroll into viewport */}
+        <div className="relative z-10 -mt-6 sm:-mt-12 md:-mt-16 lg:-mt-20 grid grid-cols-1 md:grid-cols-12 items-start gap-6 md:gap-8 lg:gap-12 w-full">
+          {/* Left / Middle: Cutout PNG */}
           <div className="md:col-span-5 lg:col-span-5 flex justify-center md:justify-end pr-0">
             <div
               style={{
-                opacity: Math.min(1, textProgress * 1.15),
-                transform: `translateY(${(1 - Math.min(1, textProgress * 1.15)) * 32}px)`,
-                transition: 'opacity 0.15s linear, transform 0.15s linear',
+                opacity: textProgress,
+                transform: `translateY(${(1 - textProgress) * 32}px)`,
+                transition: 'opacity 0.25s linear, transform 0.25s linear',
               }}
-              className="relative w-[240px] sm:w-[300px] md:w-[360px] lg:w-[410px] aspect-[3/4] flex-shrink-0"
+              className="about-portrait-wrap relative w-[220px] sm:w-[300px] md:w-[360px] lg:w-[410px] aspect-[3/4] flex-shrink-0"
             >
               <Image
                 src="/about sec img.png"
@@ -100,8 +116,8 @@ export function AboutSection() {
             </div>
           </div>
 
-          {/* Right: Body Text starting right next to Cutout with scroll-driven left-to-right writing reveal */}
-          <div className="md:col-span-7 lg:col-span-7 pl-0 pt-6 md:pt-14 lg:pt-18 space-y-6 md:space-y-8 max-w-[560px] lg:max-w-[620px]">
+          {/* Right: Body Text */}
+          <div className="md:col-span-7 lg:col-span-7 pl-0 pt-2 md:pt-14 lg:pt-18 space-y-6 md:space-y-8 max-w-[560px] lg:max-w-[620px]">
             {/* Scroll-Driven Writing Reveal Body Copy */}
             <div className="text-base md:text-lg lg:text-[19px] leading-relaxed font-medium space-y-4 md:space-y-5">
               {/* Paragraph 1 */}
@@ -116,10 +132,10 @@ export function AboutSection() {
                   const isLast = index === p1Words.length - 1
 
                   return (
-                    <span key={`p1-${index}`} className="relative inline-block white-space-pre mr-[0.28em]">
-                      <span className="text-[#171715]/20">{word}</span>
+                    <span key={`p1-${index}`} className="about-word-wrap relative inline-block white-space-pre mr-[0.28em]">
+                      <span className="about-word-bg text-[#171715]/20">{word}</span>
                       <span
-                        className="absolute top-0 left-0 text-[#171715] pointer-events-none transition-opacity duration-75"
+                        className="about-word-fg absolute top-0 left-0 text-[#171715] pointer-events-none transition-opacity duration-75"
                         style={{ opacity: fill }}
                         aria-hidden="true"
                       >
@@ -144,10 +160,10 @@ export function AboutSection() {
                   const isLast = index === p2Words.length - 1
 
                   return (
-                    <span key={`p2-${index}`} className="relative inline-block white-space-pre mr-[0.28em]">
-                      <span className="text-[#171715]/20">{word}</span>
+                    <span key={`p2-${index}`} className="about-word-wrap relative inline-block white-space-pre mr-[0.28em]">
+                      <span className="about-word-bg text-[#171715]/20">{word}</span>
                       <span
-                        className="absolute top-0 left-0 text-[#171715] pointer-events-none transition-opacity duration-75"
+                        className="about-word-fg absolute top-0 left-0 text-[#171715] pointer-events-none transition-opacity duration-75"
                         style={{ opacity: fill }}
                         aria-hidden="true"
                       >
@@ -160,7 +176,7 @@ export function AboutSection() {
               </p>
             </div>
 
-            {/* Signature: Starts AFTER text completion with a smooth, unhurried 1.2s calligraphic pen stroke reveal */}
+            {/* Signature: Starts AFTER text completion with a smooth calligraphic pen stroke reveal */}
             <div className="pt-2 overflow-hidden">
               <span
                 style={{
@@ -170,7 +186,7 @@ export function AboutSection() {
                   transform: isSignatureActive ? 'translateY(0) skewX(0deg)' : 'translateY(6px) skewX(-5deg)',
                   transition: 'clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease',
                 }}
-                className={`font-signature-nautigal ${nautigalFont.className} text-5xl sm:text-6xl md:text-7xl lg:text-[78px] text-[#171715]/95 select-none block font-bold text-left leading-none tracking-normal`}
+                className={`about-signature font-signature-nautigal ${nautigalFont.className} text-5xl sm:text-6xl md:text-7xl lg:text-[78px] text-[#171715]/95 select-none block font-bold text-left leading-none tracking-normal`}
               >
                 Trunal
               </span>
@@ -181,4 +197,3 @@ export function AboutSection() {
     </section>
   )
 }
-
