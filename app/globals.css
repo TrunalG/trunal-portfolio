@@ -1283,6 +1283,11 @@ body.page-reveal-active .mask-reveal-item {
   margin-bottom: 40px;
 }
 
+.related-works-section {
+  padding-top: 120px;
+  border-top: 1px solid var(--line);
+}
+
 /* ==========================================================================
    Mobile Responsive Optimizations (@media (max-width: 768px))
    ========================================================================== */
@@ -1508,12 +1513,17 @@ body.page-reveal-active .mask-reveal-item {
     flex-direction: column !important;
     gap: 24px !important;
     margin-top: 36px !important;
+    margin-bottom: 24px !important;
   }
 
-  .project-final-thoughts-text {
-    font-size: 20px !important;
-    line-height: 1.45 !important;
-    margin-bottom: 28px !important;
+  .project-final-thoughts-grid .animated-cta {
+    margin-bottom: 36px !important;
+  }
+
+  .related-works-section {
+    padding-top: 60px !important;
+    margin-top: 60px !important;
+    border-top: 1px solid var(--line) !important;
   }
 
   /* 3. Footer Reel 1px Sub-pixel Border Bleed Fix */

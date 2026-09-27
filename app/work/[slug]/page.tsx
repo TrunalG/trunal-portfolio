@@ -117,7 +117,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           </div>
 
           {/* STAGE 4: Related Works Section (7.png, 8.png, 9.png) */}
-          <div style={{ paddingTop: '120px', borderTop: '1px solid var(--line)' }}>
+          <div className="related-works-section">
             <div className="related-works-header">
               <span className="case-study-label">(SELECTED CASE STUDIES)</span>
               <h2>Related Works</h2>
