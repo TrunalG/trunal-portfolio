@@ -1234,6 +1234,56 @@ body.page-reveal-active .mask-reveal-item {
 }
 
 /* ==========================================================================
+   Desktop Default Styles for Project Detail Pages
+   ========================================================================== */
+.project-hero-curved-wrap {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  height: clamp(450px, 75vh, 850px);
+  margin-bottom: 100px;
+}
+
+.case-study-split {
+  margin-bottom: 0px;
+}
+
+.case-study-gallery {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-detail-stage3-wrap {
+  margin: 140px 0 100px;
+}
+
+.project-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 100px;
+}
+
+.project-final-thoughts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: end;
+}
+
+.project-final-thoughts-text {
+  font-size: clamp(18px, 2.2vw, 28px);
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: -.03em;
+  color: var(--ink);
+  margin-bottom: 40px;
+}
+
+/* ==========================================================================
    Mobile Responsive Optimizations (@media (max-width: 768px))
    ========================================================================== */
 
