@@ -11,10 +11,25 @@
 
 :root { --ink: #171715; --paper: #eeeae2; --paper-deep: #dfd8cc; --night: #191917; --night-soft: #252522; --acid: #cbbd8a; --rust: #92745d; --muted: #77746d; --line: color-mix(in srgb, var(--ink) 20%, transparent); --radius: 0px; }
 @theme inline { --color-background: var(--paper); --color-foreground: var(--ink); --color-border: var(--line); --color-ring: var(--acid); }
-* { box-sizing: border-box; -ms-overflow-style: none !important; scrollbar-width: none !important; scrollbar-gutter: auto !important; }
+* {
+  box-sizing: border-box;
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+  scrollbar-gutter: auto !important;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 *::-webkit-scrollbar, ::-webkit-scrollbar, ::-webkit-scrollbar-track, ::-webkit-scrollbar-thumb { display: none !important; width: 0px !important; height: 0px !important; background: transparent !important; }
 html { scroll-behavior: smooth; -ms-overflow-style: none !important; scrollbar-width: none !important; scrollbar-gutter: auto !important; width: 100%; max-width: 100vw; overflow-x: clip; }
 body { margin: 0; background: var(--paper); color: var(--ink); font-family: Arial, Helvetica, sans-serif; font-size: 17px; -ms-overflow-style: none !important; scrollbar-width: none !important; scrollbar-gutter: auto !important; width: 100%; max-width: 100vw; overflow-x: clip; }
+input, textarea {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
 a { color: inherit; text-decoration: none; }
 .site-shell { width: 100%; max-width: 100vw; overflow-x: clip; -ms-overflow-style: none !important; scrollbar-width: none !important; scrollbar-gutter: auto !important; }
 .site-nav { position: fixed; z-index: 990; top: 0; left: 0; width: 100%; padding: 28px max(16px, 3.5vw); display: flex; align-items: center; gap: 40px; color: #ffffff; mix-blend-mode: difference; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; pointer-events: none; }
