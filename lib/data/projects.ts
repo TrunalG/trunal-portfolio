@@ -29,7 +29,7 @@ export const projectsData: Project[] = [
     role: 'Product Design & Development',
     type: 'Product Design / Development / MVP',
     description: 'A peer-to-peer platform where people can share what they know, discover skills they want to learn, and connect with others to grow.',
-    image: '/selected work projects/agora/agora.png',
+    image: '/selected work projects/agora/agora.webp',
     className: 'project-agora',
     featured: true,
     year: '(©26)',
@@ -41,12 +41,12 @@ export const projectsData: Project[] = [
     services: 'UI/UX, Web Development',
     finalThoughts: 'Agora started with a simple belief: knowledge becomes more valuable when people share it. Building it turned that idea into a real product, where learning is no longer something you do alone, but something you discover through other people.',
     liveUrl: 'https://agora-skill-exchange-network.vercel.app',
-    heroImage: '/selected work projects/agora/agora.png',
+    heroImage: '/selected work projects/agora/agora.webp',
     gallery: [
-      '/selected work projects/agora/homepage.png',
-      '/selected work projects/agora/request page.png',
-      '/selected work projects/agora/profile view.png',
-      '/selected work projects/agora/message chat.png',
+      '/selected work projects/agora/homepage.webp',
+      '/selected work projects/agora/request page.webp',
+      '/selected work projects/agora/profile view.webp',
+      '/selected work projects/agora/message chat.webp',
     ]
   },
   {
@@ -56,7 +56,7 @@ export const projectsData: Project[] = [
     role: 'Product Design & Strategy',
     type: 'Development / Web App',
     description: 'A quoting tool for freelancers that helps them understand what a project really means before putting a price on it.',
-    image: '/selected work projects/ledger studio/ledger studio.png',
+    image: '/selected work projects/ledger studio/ledger studio.webp',
     className: 'project-ledger',
     featured: true,
     year: '(©26)',
@@ -68,12 +68,12 @@ export const projectsData: Project[] = [
     services: 'Web Development',
     finalThoughts: 'Ledger Studio turns quoting from a simple pricing task into a clearer way to understand the work behind a project. It helps freelancers see the numbers, scope, and hidden work before the quote reaches the client.',
     liveUrl: 'https://ledger-studio-ashen.vercel.app',
-    heroImage: '/selected work projects/ledger studio/ledger studio.png',
+    heroImage: '/selected work projects/ledger studio/ledger studio.webp',
     gallery: [
-      '/selected work projects/ledger studio/homepage.png',
-      '/selected work projects/ledger studio/quote page.png',
-      '/selected work projects/ledger studio/lab page.png',
-      '/selected work projects/ledger studio/playbook page.png',
+      '/selected work projects/ledger studio/homepage.webp',
+      '/selected work projects/ledger studio/quote page.webp',
+      '/selected work projects/ledger studio/lab page.webp',
+      '/selected work projects/ledger studio/playbook page.webp',
     ]
   },
   {
@@ -83,7 +83,7 @@ export const projectsData: Project[] = [
     role: 'Product Concept & UX',
     type: 'Product Design / Development / Web App',
     description: 'A financial decision tool that helps users think beyond the price of a purchase.',
-    image: '/selected work projects/should i buy this/should i buy this.png',
+    image: '/selected work projects/should i buy this/should i buy this.webp',
     className: 'project-should-i-buy',
     featured: true,
     year: '(©26)',
@@ -95,12 +95,12 @@ export const projectsData: Project[] = [
     services: 'Product Design, UI/UX, Web Development',
     finalThoughts: 'Should I Buy This? turns a simple “should I get it?” into a moment to actually think. It’s a small tool, but the idea behind it is simple: make better decisions before spending, not after.',
     liveUrl: 'https://should-i-buy-this-liard.vercel.app',
-    heroImage: '/selected work projects/should i buy this/should i buy this.png',
+    heroImage: '/selected work projects/should i buy this/should i buy this.webp',
     gallery: [
-      '/selected work projects/should i buy this/homepage.png',
-      '/selected work projects/should i buy this/step 1.png',
-      '/selected work projects/should i buy this/step 2.png',
-      '/selected work projects/should i buy this/verdic.png',
+      '/selected work projects/should i buy this/homepage.webp',
+      '/selected work projects/should i buy this/step 1.webp',
+      '/selected work projects/should i buy this/step 2.webp',
+      '/selected work projects/should i buy this/verdic.webp',
     ]
   },
   {
@@ -110,7 +110,7 @@ export const projectsData: Project[] = [
     role: 'Tool Design & Interactive Dev',
     type: 'Development / Web App',
     description: 'A job-posting analysis tool that helps people spot potential ghost jobs before applying.',
-    image: '/selected work projects/ghost filter/ghost filter.png',
+    image: '/selected work projects/ghost filter/ghost filter.webp',
     className: 'project-ghost',
     featured: true,
     year: '(©26)',
@@ -122,12 +122,12 @@ export const projectsData: Project[] = [
     services: 'Web Development',
     finalThoughts: 'GhostFilter turns a vague feeling about a job posting into something you can actually examine. It’s a simple way to look past the listing and understand the signals hiding underneath it.',
     liveUrl: 'https://ghost-filter-seven.vercel.app',
-    heroImage: '/selected work projects/ghost filter/ghost filter.png',
+    heroImage: '/selected work projects/ghost filter/ghost filter.webp',
     gallery: [
-      '/selected work projects/ghost filter/home.png',
-      '/selected work projects/ghost filter/filter.png',
-      '/selected work projects/ghost filter/history.png',
-      '/selected work projects/ghost filter/privacy.png',
+      '/selected work projects/ghost filter/home.webp',
+      '/selected work projects/ghost filter/filter.webp',
+      '/selected work projects/ghost filter/history.webp',
+      '/selected work projects/ghost filter/privacy.webp',
     ]
   }
 ]

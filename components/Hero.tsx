@@ -9,7 +9,7 @@ export function Hero() {
     <section className="hero" id="home">
       <div className="hero-bg-image" aria-hidden="true">
         <Image
-          src="/bg.jpeg"
+          src="/bg.webp"
           alt="Hero background texture"
           fill
           priority

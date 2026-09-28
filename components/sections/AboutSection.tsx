@@ -106,7 +106,7 @@ export function AboutSection() {
               className="about-portrait-wrap relative w-[220px] sm:w-[300px] md:w-[360px] lg:w-[410px] aspect-[3/4] flex-shrink-0"
             >
               <Image
-                src="/about sec img.png"
+                src="/about sec img.webp"
                 alt="Trunal Portrait Cutout"
                 fill
                 loading="lazy"
