@@ -81,8 +81,8 @@ export function AboutSection() {
         {/* Static Header Stack: Spaced Light Kicker Centered Directly Over Giant Title */}
         <div className="relative w-full text-center select-none pointer-events-none mb-4 md:mb-6 z-0">
           {/* Spaced Light Kicker Line */}
-          <div className="mb-2 md:mb-4">
-            <span className="text-xs md:text-sm font-normal tracking-[0.25em] md:tracking-[0.32em] text-[#77746d] uppercase inline-block">
+          <div className="mb-2 md:mb-4 overflow-hidden">
+            <span className="text-[9px] sm:text-xs md:text-sm font-normal tracking-[0.12em] sm:tracking-[0.22em] md:tracking-[0.32em] text-[#77746d] uppercase whitespace-nowrap inline-block max-w-full">
               PASSIONATE ABOUT CREATING, DEVELOPING AND ART
             </span>
           </div>
