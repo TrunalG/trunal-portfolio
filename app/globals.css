@@ -1152,6 +1152,17 @@ body.page-reveal-active .mask-reveal-item {
   transform: scale(0);
 }
 
+/* Disable Custom Cursor elements on pure touchscreens */
+@media (hover: none) and (pointer: coarse) {
+  .global-cursor-dot,
+  .global-cursor-ring,
+  .custom-card-pointer {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+}
+
 /* ==========================================================================
    How I Think Section Styles (3D Roll-Up Statement & Center Image Zoom Reveal)
    ========================================================================== */
@@ -1376,14 +1387,6 @@ body.page-reveal-active .mask-reveal-item {
     gap: 14px;
   }
 
-  /* Disable Custom Cursor completely on mobile viewports (< 768px) */
-  .global-cursor-dot,
-  .global-cursor-ring,
-  .custom-card-pointer {
-    display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-  }
 
   /* Mobile Drawer Nav Item Vertical Text Roll Animation */
   .mobile-nav-link-item {

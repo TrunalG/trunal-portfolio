@@ -12,9 +12,9 @@ export function CustomCursor() {
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    // Touch device & small screen check: skip custom cursor completely on mobile screens
-    const isTouchOrMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches || window.innerWidth <= 768
-    if (isTouchOrMobile) return
+    // Touch device check: skip custom cursor on mobile touchscreens
+    const isTouch = window.matchMedia('(hover: none) and (pointer: coarse)').matches
+    if (isTouch) return
 
     const dot = dotRef.current
     const ring = ringRef.current
