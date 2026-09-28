@@ -22,13 +22,13 @@ export function PageLoader() {
       document.body.classList.remove('loader-wiping', 'loader-done', 'page-reveal-active')
     }
 
-    // Stage 1: Hold solid red screen
+    // Stage 1: Hold solid red screen & brand logo T®
     const timer1 = setTimeout(() => {
       setStage('wiping')
       document.body.classList.add('loader-wiping')
-    }, 40)
+    }, 350)
 
-    // Stage 2: All strips go up off the homepage screen -> start homepage animations!
+    // Stage 2: All 5 staggered strips rise UP off the screen -> trigger smooth hero entrance!
     const timer2 = setTimeout(() => {
       document.body.classList.add('loader-done')
       document.body.classList.add('page-reveal-active')
@@ -48,7 +48,7 @@ export function PageLoader() {
         }
         document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`)
       }
-    }, 240)
+    }, 950)
 
     // Stage 3: Unmount loader overlay cleanly & refresh GSAP triggers
     const timer3 = setTimeout(() => {
@@ -56,7 +56,7 @@ export function PageLoader() {
       if (typeof window !== 'undefined' && (window as any).gsap && (window as any).gsap.plugins?.ScrollTrigger) {
         ;(window as any).gsap.plugins.ScrollTrigger.refresh()
       }
-    }, 480)
+    }, 1300)
 
     return () => {
       clearTimeout(timer1)
