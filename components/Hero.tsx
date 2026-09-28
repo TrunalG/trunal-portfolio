@@ -8,7 +8,6 @@ export function Hero() {
     <section className="hero" id="home">
       <div className="hero-bg-image" aria-hidden="true" />
       <div className="hero-atmosphere" aria-hidden="true" />
-      <div className="hero-grid" aria-hidden="true" />
 
       <div className="hero-viewport-layout">
         {/* Middle-Right H2 Subheadline Block */}
