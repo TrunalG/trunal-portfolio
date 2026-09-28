@@ -48,8 +48,17 @@ export function FooterReel() {
           const rect = el.getBoundingClientRect()
           const windowHeight = window.innerHeight
 
+          const isMobile = window.innerWidth <= 768
+
           // Only enable fixed bottom TRUNAL layer when footer card has scrolled up into curtain reveal position
           setIsFooterVisible(rect.top <= windowHeight * 0.35)
+
+          if (isMobile) {
+            setFadeInProgress(1)
+            setScrollProgress(1)
+            ticking = false
+            return
+          }
 
           // Entrance Skeleton Fade-In
           const fadeStart = windowHeight * 0.98
