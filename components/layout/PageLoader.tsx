@@ -26,7 +26,7 @@ export function PageLoader() {
     const timer1 = setTimeout(() => {
       setStage('wiping')
       document.body.classList.add('loader-wiping')
-    }, 400)
+    }, 120)
 
     // Stage 2: All strips go up off the homepage screen -> start homepage animations!
     const timer2 = setTimeout(() => {
@@ -48,7 +48,7 @@ export function PageLoader() {
         }
         document.documentElement.style.setProperty('--scroll-y', `${window.scrollY}px`)
       }
-    }, 1100)
+    }, 420)
 
     // Stage 3: Unmount loader overlay cleanly & refresh GSAP triggers
     const timer3 = setTimeout(() => {
@@ -56,7 +56,7 @@ export function PageLoader() {
       if (typeof window !== 'undefined' && (window as any).gsap && (window as any).gsap.plugins?.ScrollTrigger) {
         ;(window as any).gsap.plugins.ScrollTrigger.refresh()
       }
-    }, 1500)
+    }, 700)
 
     return () => {
       clearTimeout(timer1)

@@ -1,12 +1,23 @@
 'use client'
 
+import Image from 'next/image'
 import { AnimatedCTA } from '@/components/AnimatedCTA'
 import { TextReveal } from '@/components/TextReveal'
 
 export function Hero() {
   return (
     <section className="hero" id="home">
-      <div className="hero-bg-image" aria-hidden="true" />
+      <div className="hero-bg-image" aria-hidden="true">
+        <Image
+          src="/bg.jpeg"
+          alt="Hero background texture"
+          fill
+          priority
+          quality={80}
+          sizes="100vw"
+          className="object-cover object-center w-full h-full pointer-events-none select-none"
+        />
+      </div>
       <div className="hero-atmosphere" aria-hidden="true" />
 
       <div className="hero-viewport-layout">
