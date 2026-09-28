@@ -25,9 +25,8 @@ export function FooterReel() {
     const updateBrandHeight = () => {
       if (textRef.current) {
         const h = textRef.current.offsetHeight
-        const isMob = window.innerWidth <= 768
         if (h > 0) {
-          setMaxBrandHeight(isMob ? Math.max(h + 48, 150) : h + 24)
+          setMaxBrandHeight(h + 24)
         }
       }
     }
@@ -49,12 +48,12 @@ export function FooterReel() {
           const rect = el.getBoundingClientRect()
           const windowHeight = window.innerHeight
 
-          const isMob = window.innerWidth <= 768
+          const isMobile = window.innerWidth <= 768
 
-          // Enable fixed bottom TRUNAL layer when footer card has scrolled into curtain reveal position
-          setIsFooterVisible(rect.top <= windowHeight * 0.75)
+          // Only enable fixed bottom TRUNAL layer when footer card has scrolled up into curtain reveal position
+          setIsFooterVisible(rect.top <= windowHeight * 0.35)
 
-          if (isMob) {
+          if (isMobile) {
             setFadeInProgress(1)
             setScrollProgress(1)
             ticking = false
@@ -271,19 +270,18 @@ export function FooterReel() {
         </div>
       </footer>
 
-      {/* Lower Z-Index Fixed Bottom Brand Wordmark Layer (z-0) with 300px overscroll extension */}
+      {/* Lower Z-Index Fixed Bottom Brand Wordmark Layer (z-0) - Only visible when footer is near viewport */}
       <div
         style={{
-          height: maxBrandHeight + 300,
-          bottom: -300,
+          height: maxBrandHeight,
           visibility: isFooterVisible ? 'visible' : 'hidden',
           opacity: isFooterVisible ? 1 : 0,
         }}
-        className="fixed left-0 right-0 z-0 w-full bg-[#0f0f0e] flex items-start justify-center select-none overflow-hidden pt-2 md:pt-0 pb-40 px-4 md:px-12 lg:px-16 transition-opacity duration-300"
+        className="fixed bottom-0 left-0 right-0 z-0 w-full bg-[#0f0f0e] flex items-end justify-center select-none overflow-hidden pb-3 md:pb-6 px-4 md:px-12 lg:px-16 transition-opacity duration-300"
       >
         <h1
           ref={textRef}
-          className="text-[clamp(72px,18vw,360px)] font-extrabold uppercase tracking-[-0.07em] leading-[0.72] text-[#eeeae2]/55 whitespace-nowrap text-center block w-full mt-2 md:mt-0"
+          className="text-[clamp(75px,18.5vw,360px)] font-extrabold uppercase tracking-[-0.07em] leading-[0.72] text-[#eeeae2]/55 whitespace-nowrap text-center block w-full"
         >
           TRUNAL
         </h1>
