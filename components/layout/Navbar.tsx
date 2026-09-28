@@ -66,7 +66,7 @@ export function Navbar({ variant = 'light' }: NavbarProps) {
 
   const navItems = [
     { label: 'Home', href: '/#home' },
-    { label: 'Work', href: '/#work' },
+    { label: 'Work', href: '/work' },
     { label: 'About', href: '/#about' },
     { label: 'Contact', href: '/#contact' },
   ]
