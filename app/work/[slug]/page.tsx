@@ -93,8 +93,8 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           />
 
           {/* STAGE 3: Full-Width Showcase & Conclusion */}
-          <div className="project-detail-stage3-wrap">
-            <div className="project-gallery-grid">
+          <div className="project-showcase-section">
+            <div className="gallery-showcase-grid">
               {(project.gallery.length >= 4 ? project.gallery.slice(2, 4) : project.gallery.slice(0, 2)).map((imgSrc, idx) => (
                 <div key={idx} className="gallery-image-wrap" style={{ aspectRatio: '16 / 10' }}>
                   <img src={imgSrc} alt={`${project.title} detail ${idx + 1}`} />
@@ -103,11 +103,11 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             </div>
 
             {/* Final Thoughts & Animated CTA Button */}
-            <div className="project-final-thoughts-grid">
+            <div className="final-thoughts-grid">
               <div className="hidden md:block" />
               <div>
                 <span className="case-study-label">(Final thoughts)</span>
-                <p className="project-final-thoughts-text">
+                <p className="final-thoughts-text">
                   {project.finalThoughts}
                 </p>
 
@@ -117,7 +117,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           </div>
 
           {/* STAGE 4: Related Works Section (7.png, 8.png, 9.png) */}
-          <div className="related-works-section">
+          <div style={{ paddingTop: '120px', borderTop: '1px solid var(--line)' }}>
             <div className="related-works-header">
               <span className="case-study-label">(SELECTED CASE STUDIES)</span>
               <h2>Related Works</h2>

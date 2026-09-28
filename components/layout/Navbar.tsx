@@ -97,7 +97,7 @@ export function Navbar({ variant = 'light' }: NavbarProps) {
         </a>
 
         {/* Desktop Navbar Links (Hidden on mobile) */}
-        <div className="nav-links">
+        <div className="nav-links desktop-nav-links">
           {navItems.map((item) => (
             <a
               key={item.label}

@@ -1551,13 +1551,6 @@ body.page-reveal-active .mask-reveal-item {
   }
 
   /* 5. Hero Section Mobile Layout (TRUNAL top, subheadline left, CTA right) */
-  .desktop-only-statement {
-    display: block;
-  }
-  .mobile-only-statement {
-    display: none;
-  }
-
   .hero {
     padding: 90px 20px 36px !important;
     min-height: 100svh !important;
@@ -1571,16 +1564,20 @@ body.page-reveal-active .mask-reveal-item {
   }
 
   .hero-bottom-row {
-    display: flex !important;
-    flex-direction: column !important;
+    display: grid !important;
+    grid-template-areas:
+      "title title"
+      "statement cta" !important;
+    grid-template-columns: 1fr auto !important;
+    align-items: end !important;
     width: 100% !important;
-    gap: 0 !important;
+    gap: 12px !important;
   }
 
   .title-reveal-wrap {
-    order: 1 !important;
+    grid-area: title !important;
+    margin-bottom: 12px !important;
     width: 100% !important;
-    margin-bottom: 16px !important;
   }
 
   .hero-title-blend {
@@ -1589,25 +1586,15 @@ body.page-reveal-active .mask-reveal-item {
     letter-spacing: -0.075em !important;
   }
 
-  .hero-mobile-footer-row {
-    order: 2 !important;
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: flex-end !important;
-    justify-content: space-between !important;
-    gap: 12px !important;
-    width: 100% !important;
-  }
-
-  .hero-statement-block.mobile-only-statement {
-    display: block !important;
+  .hero-statement-block {
+    grid-area: statement !important;
     align-self: flex-end !important;
-    max-width: 68% !important;
+    max-width: 100% !important;
     margin: 0 !important;
     text-align: left !important;
   }
 
-  .hero-statement-block.mobile-only-statement .statement-text {
+  .hero-statement-block .statement-text {
     font-size: clamp(15px, 4.2vw, 19px) !important;
     line-height: 1.45 !important;
     font-weight: 450 !important;
@@ -1616,11 +1603,8 @@ body.page-reveal-active .mask-reveal-item {
     text-align: left !important;
   }
 
-  .hero-statement-block.desktop-only-statement {
-    display: none !important;
-  }
-
   .hero-cta-corner {
+    grid-area: cta !important;
     margin: 0 !important;
     align-self: flex-end !important;
     flex-shrink: 0 !important;
