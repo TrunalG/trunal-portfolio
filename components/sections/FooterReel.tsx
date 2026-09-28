@@ -15,16 +15,9 @@ export function FooterReel() {
   const [fadeInProgress, setFadeInProgress] = useState(0)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [maxBrandHeight, setMaxBrandHeight] = useState(300)
-  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setMounted(true)
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768)
-    }
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   // Measure text height on load & resize for exact curtain reveal distance
@@ -32,8 +25,9 @@ export function FooterReel() {
     const updateBrandHeight = () => {
       if (textRef.current) {
         const h = textRef.current.offsetHeight
+        const isMob = window.innerWidth <= 768
         if (h > 0) {
-          setMaxBrandHeight(h + 24)
+          setMaxBrandHeight(isMob ? Math.max(h + 48, 150) : h + 24)
         }
       }
     }
@@ -57,8 +51,8 @@ export function FooterReel() {
 
           const isMob = window.innerWidth <= 768
 
-          // Only enable fixed bottom TRUNAL layer when footer card has scrolled up into curtain reveal position
-          setIsFooterVisible(rect.top <= windowHeight * 0.35)
+          // Enable fixed bottom TRUNAL layer when footer card has scrolled into curtain reveal position
+          setIsFooterVisible(rect.top <= windowHeight * 0.75)
 
           if (isMob) {
             setFadeInProgress(1)
@@ -131,7 +125,7 @@ export function FooterReel() {
       <footer
         ref={footerRef}
         id="contact"
-        style={{ marginBottom: isMobile ? 0 : maxBrandHeight }}
+        style={{ marginBottom: maxBrandHeight }}
         className="relative z-10 w-full bg-[#0f0f0e] text-[#eeeae2] min-h-screen pt-12 md:pt-16 pb-8 px-6 md:px-16 lg:px-24 flex flex-col justify-between"
       >
         <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between pt-6 md:pt-10 mb-8 md:mb-12">
@@ -274,36 +268,26 @@ export function FooterReel() {
           <div className="border-t border-white/10 pt-6 pb-4 text-xs text-[#77746d] uppercase tracking-[0.15em] w-full">
             <span>© TRUNAL 2026</span>
           </div>
-
-          {/* On mobile screens, render TRUNAL wordmark statically inside footer to eliminate overscroll white line gap */}
-          {isMobile && (
-            <div className="w-full bg-[#0f0f0e] flex items-end justify-center select-none overflow-hidden pt-6 pb-2 text-center">
-              <h1 className="text-[clamp(52px,16vw,110px)] font-extrabold uppercase tracking-[-0.07em] leading-[0.72] text-[#eeeae2]/55 whitespace-nowrap text-center block w-full">
-                TRUNAL
-              </h1>
-            </div>
-          )}
         </div>
       </footer>
 
-      {/* Lower Z-Index Fixed Bottom Brand Wordmark Layer (z-0) - Only visible on Desktop when footer is near viewport */}
-      {!isMobile && (
-        <div
-          style={{
-            height: maxBrandHeight,
-            visibility: isFooterVisible ? 'visible' : 'hidden',
-            opacity: isFooterVisible ? 1 : 0,
-          }}
-          className="fixed bottom-0 left-0 right-0 z-0 w-full bg-[#0f0f0e] flex items-end justify-center select-none overflow-hidden pb-3 md:pb-6 px-4 md:px-12 lg:px-16 transition-opacity duration-300"
+      {/* Lower Z-Index Fixed Bottom Brand Wordmark Layer (z-0) with 300px overscroll extension */}
+      <div
+        style={{
+          height: maxBrandHeight + 300,
+          bottom: -300,
+          visibility: isFooterVisible ? 'visible' : 'hidden',
+          opacity: isFooterVisible ? 1 : 0,
+        }}
+        className="fixed left-0 right-0 z-0 w-full bg-[#0f0f0e] flex items-start justify-center select-none overflow-hidden pt-2 md:pt-0 pb-40 px-4 md:px-12 lg:px-16 transition-opacity duration-300"
+      >
+        <h1
+          ref={textRef}
+          className="text-[clamp(72px,18vw,360px)] font-extrabold uppercase tracking-[-0.07em] leading-[0.72] text-[#eeeae2]/55 whitespace-nowrap text-center block w-full mt-2 md:mt-0"
         >
-          <h1
-            ref={textRef}
-            className="text-[clamp(75px,18.5vw,360px)] font-extrabold uppercase tracking-[-0.07em] leading-[0.72] text-[#eeeae2]/55 whitespace-nowrap text-center block w-full"
-          >
-            TRUNAL
-          </h1>
-        </div>
-      )}
+          TRUNAL
+        </h1>
+      </div>
     </div>
   )
 }
