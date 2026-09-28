@@ -233,6 +233,8 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
                           'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1400&q=85'
                         }
                         alt={project.title}
+                        loading="lazy"
+                        decoding="async"
                         className="stacked-card-img"
                       />
                     </div>

@@ -27,7 +27,7 @@ export function ProjectCard({ project, className = '' }: ProjectCardProps) {
       <article className="project-card">
         <div className={`project-card-image ${project.className || ''}`}>
           {project.image ? (
-            <img src={project.image} alt={project.title} className="card-img" />
+            <img src={project.image} alt={project.title} loading="lazy" decoding="async" className="card-img" />
           ) : (
             <div className="product-ui" aria-label={`${project.title} presentation`}>
               <span className="ui-topline">{project.kicker}</span>

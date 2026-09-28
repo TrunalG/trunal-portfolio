@@ -1,21 +1,29 @@
-'use client'
-
-import React, { useRef } from 'react'
+import React from 'react'
+import dynamic from 'next/dynamic'
 import { Hero } from '@/components/Hero'
 import { PageLoader } from '@/components/layout/PageLoader'
 import { StickyIntro } from '@/components/StickyIntro'
 import { WorkSection } from '@/components/sections/WorkSection'
-import { ThinkingSection } from '@/components/sections/ThinkingSection'
-import { CapabilitiesSection } from '@/components/sections/CapabilitiesSection'
-import { AboutSection } from '@/components/sections/AboutSection'
-import { CurrentlySection } from '@/components/sections/CurrentlySection'
-import { ArchiveSection } from '@/components/sections/ArchiveSection'
-import { PlaygroundSection } from '@/components/sections/PlaygroundSection'
-import dynamic from 'next/dynamic'
+
+// Dynamically split below-the-fold sections into separate lightweight JS chunks
+const ThinkingSection = dynamic(
+  () => import('@/components/sections/ThinkingSection').then((mod) => mod.ThinkingSection),
+  { ssr: true }
+)
+
+const CapabilitiesSection = dynamic(
+  () => import('@/components/sections/CapabilitiesSection').then((mod) => mod.CapabilitiesSection),
+  { ssr: true }
+)
+
+const AboutSection = dynamic(
+  () => import('@/components/sections/AboutSection').then((mod) => mod.AboutSection),
+  { ssr: true }
+)
 
 const FooterReel = dynamic(
   () => import('@/components/sections/FooterReel').then((mod) => mod.FooterReel),
-  { ssr: false }
+  { ssr: true }
 )
 
 export default function Page() {
@@ -28,6 +36,7 @@ export default function Page() {
         <StickyIntro />
         
         <WorkSection />
+
         {/* How I Think -> What I Work On Card Stack Wrapper */}
         <div className="sticky-thinking-wrapper relative w-full h-[calc(200vh+2400px)]">
           <div className="sticky top-0 h-screen w-full z-10 overflow-hidden">
@@ -39,15 +48,10 @@ export default function Page() {
         <div className="what-i-work-on-wrapper relative z-30 bg-[#eeeae2] min-h-screen -mt-[100vh] shadow-2xl">
           <CapabilitiesSection className="capabilities section-pad bg-[#eeeae2]" />
         </div>
+
         <AboutSection />
-        {/*
-        <CurrentlySection />
-        <ArchiveSection />
-        <PlaygroundSection />
-        */}
         <FooterReel />
       </div>
     </main>
   )
 }
-

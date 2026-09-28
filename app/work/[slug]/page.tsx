@@ -97,7 +97,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             <div className="gallery-showcase-grid">
               {(project.gallery.length >= 4 ? project.gallery.slice(2, 4) : project.gallery.slice(0, 2)).map((imgSrc, idx) => (
                 <div key={idx} className="gallery-image-wrap" style={{ aspectRatio: '16 / 10' }}>
-                  <img src={imgSrc} alt={`${project.title} detail ${idx + 1}`} />
+                  <img src={imgSrc} alt={`${project.title} detail ${idx + 1}`} loading="lazy" decoding="async" />
                 </div>
               ))}
             </div>

@@ -109,7 +109,7 @@ export function AboutSection() {
                 src="/about sec img.png"
                 alt="Trunal Portrait Cutout"
                 fill
-                priority
+                loading="lazy"
                 className="object-contain object-bottom pointer-events-none select-none"
                 sizes="(max-width: 768px) 100vw, 410px"
               />
