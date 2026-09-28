@@ -1452,8 +1452,7 @@ body.page-reveal-active .mask-reveal-item {
     gap: 16px;
   }
 
-  /* 2. Project Detail Page Case Study Fixes */
-  /* Full Bleed Edge-to-Edge Hero Cover Image (0px side padding) */
+  /* 2. Project Detail Page Case Study Fixes (Mobile <= 768px) */
   .project-hero-curved-wrap {
     width: 100vw !important;
     max-width: 100vw !important;
@@ -1462,10 +1461,9 @@ body.page-reveal-active .mask-reveal-item {
     right: 50% !important;
     margin-left: -50vw !important;
     margin-right: -50vw !important;
-    height: auto !important;
-    aspect-ratio: 16 / 10 !important;
+    height: clamp(240px, 42vh, 380px) !important;
     margin-top: 24px !important;
-    margin-bottom: 32px !important;
+    margin-bottom: 24px !important;
     border-radius: 0 !important;
     overflow: hidden !important;
   }
@@ -1473,8 +1471,8 @@ body.page-reveal-active .mask-reveal-item {
   .case-study-split {
     display: flex !important;
     flex-direction: column !important;
-    gap: 28px !important;
-    margin-bottom: 20px !important;
+    gap: 24px !important;
+    margin-bottom: 24px !important;
   }
 
   .case-study-sidebar {
@@ -1488,19 +1486,23 @@ body.page-reveal-active .mask-reveal-item {
     line-height: 1.4 !important;
   }
 
-  /* Consistent 20px Vertical Spacing Between All Gallery Showcase Images */
-  .case-study-gallery,
-  .project-gallery-grid {
+  .case-study-gallery {
     width: 100% !important;
     display: flex !important;
     flex-direction: column !important;
     gap: 20px !important;
-    margin-bottom: 20px !important;
   }
 
-  .project-detail-stage3-wrap {
-    margin: 0 !important;
-    padding: 0 !important;
+  .project-showcase-section {
+    margin: 24px 0 !important;
+  }
+
+  .gallery-showcase-grid {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    margin-bottom: 24px !important;
   }
 
   .gallery-image-wrap {
@@ -1511,22 +1513,22 @@ body.page-reveal-active .mask-reveal-item {
     overflow: hidden !important;
   }
 
-  .project-final-thoughts-grid {
+  .final-thoughts-grid {
     display: flex !important;
     flex-direction: column !important;
     gap: 24px !important;
-    margin-top: 36px !important;
+    margin-top: 24px !important;
     margin-bottom: 24px !important;
   }
 
-  .project-final-thoughts-grid .animated-cta {
-    margin-bottom: 36px !important;
+  .final-thoughts-text {
+    font-size: 18px !important;
+    line-height: 1.45 !important;
+    margin-bottom: 24px !important;
   }
 
-  .related-works-section {
-    padding-top: 60px !important;
-    margin-top: 60px !important;
-    border-top: 1px solid var(--line) !important;
+  .final-thoughts-grid .animated-cta {
+    margin-bottom: 36px !important;
   }
 
   /* 3. Footer Reel 1px Sub-pixel Border Bleed Fix */
@@ -1612,6 +1614,54 @@ body.page-reveal-active .mask-reveal-item {
     align-self: flex-end !important;
     flex-shrink: 0 !important;
   }
+}
+
+/* Desktop Default Styles for Project Detail Pages (Original) */
+.project-hero-curved-wrap {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  height: clamp(450px, 75vh, 850px);
+  margin-bottom: 100px;
+}
+
+.case-study-split {
+  margin-bottom: 0px;
+}
+
+.case-study-gallery {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-showcase-section {
+  margin: 140px 0 100px;
+}
+
+.gallery-showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 100px;
+}
+
+.final-thoughts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: end;
+}
+
+.final-thoughts-text {
+  font-size: clamp(18px, 2.2vw, 28px);
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: -.03em;
+  color: var(--ink);
+  margin-bottom: 40px;
 }
 
 
