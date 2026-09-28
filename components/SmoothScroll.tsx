@@ -11,6 +11,11 @@ if (typeof window !== 'undefined') {
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    // On mobile devices, use native touch scrolling to eliminate main-thread CPU scripting overhead
+    if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+      return
+    }
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -18,7 +23,7 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       gestureOrientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1,
-      touchMultiplier: 2,
+      touchMultiplier: 1.5,
     })
 
     // Attach to global window object for immediate scroll resets during navigation
