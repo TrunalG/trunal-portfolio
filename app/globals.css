@@ -1456,20 +1456,30 @@ body.page-reveal-active .mask-reveal-item {
   .project-detail-hero {
     display: flex !important;
     flex-direction: column !important;
+    align-items: flex-start !important;
     gap: 16px !important;
-    margin-bottom: 24px !important;
+    margin-bottom: 28px !important;
+  }
+
+  .project-detail-hero .title-reveal-wrap {
+    order: 1 !important;
+    width: 100% !important;
+    margin-bottom: 0 !important;
   }
 
   .project-detail-heading {
     font-size: clamp(36px, 9.5vw, 54px) !important;
     line-height: 0.94 !important;
     letter-spacing: -0.05em !important;
+    text-align: left !important;
+    margin: 0 !important;
   }
 
   .project-intro-text {
     font-size: clamp(15px, 4vw, 18px) !important;
     line-height: 1.5 !important;
-    margin-top: 8px !important;
+    margin-top: 6px !important;
+    text-align: left !important;
   }
 
   .project-hero-curved-wrap {
@@ -1580,7 +1590,7 @@ body.page-reveal-active .mask-reveal-item {
     transform: none !important;
   }
 
-  /* 5. Hero Section Mobile Layout (TRUNAL left, subheadline right-aligned above CTA, CTA bottom-right) */
+  /* 5. Hero Section Mobile Layout (TRUNAL top, subheadline middle, CTA bottom) */
   .hero {
     padding: 90px 20px 36px !important;
     min-height: 100svh !important;
@@ -1594,17 +1604,13 @@ body.page-reveal-active .mask-reveal-item {
   }
 
   .hero-bottom-row {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    width: 100% !important;
-    gap: 8px !important;
+    display: contents !important;
   }
 
   .title-reveal-wrap {
     order: 1 !important;
     width: 100% !important;
-    margin-bottom: 4px !important;
+    margin-bottom: 8px !important;
   }
 
   .hero-title-blend {
@@ -1620,7 +1626,7 @@ body.page-reveal-active .mask-reveal-item {
     max-width: 88% !important;
     margin-left: auto !important;
     margin-right: 0 !important;
-    margin-bottom: 6px !important;
+    margin-bottom: 14px !important;
     text-align: right !important;
   }
 
