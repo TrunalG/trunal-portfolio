@@ -15,9 +15,16 @@ export function FooterReel() {
   const [fadeInProgress, setFadeInProgress] = useState(0)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [maxBrandHeight, setMaxBrandHeight] = useState(300)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
   }, [])
 
   // Measure text height on load & resize for exact curtain reveal distance
@@ -48,12 +55,12 @@ export function FooterReel() {
           const rect = el.getBoundingClientRect()
           const windowHeight = window.innerHeight
 
-          const isMobile = window.innerWidth <= 768
+          const isMob = window.innerWidth <= 768
 
           // Only enable fixed bottom TRUNAL layer when footer card has scrolled up into curtain reveal position
           setIsFooterVisible(rect.top <= windowHeight * 0.35)
 
-          if (isMobile) {
+          if (isMob) {
             setFadeInProgress(1)
             setScrollProgress(1)
             ticking = false
@@ -124,7 +131,7 @@ export function FooterReel() {
       <footer
         ref={footerRef}
         id="contact"
-        style={{ marginBottom: maxBrandHeight }}
+        style={{ marginBottom: isMobile ? 0 : maxBrandHeight }}
         className="relative z-10 w-full bg-[#0f0f0e] text-[#eeeae2] min-h-screen pt-12 md:pt-16 pb-8 px-6 md:px-16 lg:px-24 flex flex-col justify-between"
       >
         <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between pt-6 md:pt-10 mb-8 md:mb-12">
@@ -270,22 +277,24 @@ export function FooterReel() {
         </div>
       </footer>
 
-      {/* Lower Z-Index Fixed Bottom Brand Wordmark Layer (z-0) - Only visible when footer is near viewport */}
-      <div
-        style={{
-          height: maxBrandHeight,
-          visibility: isFooterVisible ? 'visible' : 'hidden',
-          opacity: isFooterVisible ? 1 : 0,
-        }}
-        className="fixed bottom-0 left-0 right-0 z-0 w-full bg-[#0f0f0e] flex items-end justify-center select-none overflow-hidden pb-3 md:pb-6 px-4 md:px-12 lg:px-16 transition-opacity duration-300"
-      >
-        <h1
-          ref={textRef}
-          className="text-[clamp(75px,18.5vw,360px)] font-extrabold uppercase tracking-[-0.07em] leading-[0.72] text-[#eeeae2]/55 whitespace-nowrap text-center block w-full"
+      {/* Lower Z-Index Fixed Bottom Brand Wordmark Layer (z-0) - Desktop Only */}
+      {!isMobile && (
+        <div
+          style={{
+            height: maxBrandHeight,
+            visibility: isFooterVisible ? 'visible' : 'hidden',
+            opacity: isFooterVisible ? 1 : 0,
+          }}
+          className="fixed bottom-0 left-0 right-0 z-0 w-full bg-[#0f0f0e] flex items-end justify-center select-none overflow-hidden pb-3 md:pb-6 px-4 md:px-12 lg:px-16 transition-opacity duration-300"
         >
-          TRUNAL
-        </h1>
-      </div>
+          <h1
+            ref={textRef}
+            className="text-[clamp(75px,18.5vw,360px)] font-extrabold uppercase tracking-[-0.07em] leading-[0.72] text-[#eeeae2]/55 whitespace-nowrap text-center block w-full"
+          >
+            TRUNAL
+          </h1>
+        </div>
+      )}
     </div>
   )
 }
