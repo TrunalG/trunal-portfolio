@@ -14,15 +14,38 @@ export function Navbar({ variant = 'light' }: NavbarProps) {
   const { navigateWithTransition, triggerSectionTransition } = usePageTransition()
   const pathname = usePathname()
 
-  // Lock body scroll when mobile menu drawer is active
+  // Strictly lock body scroll & freeze page scroll Y position when mobile menu drawer is open
   useEffect(() => {
+    if (typeof window === 'undefined') return
+
     if (menuOpen) {
+      const scrollY = window.scrollY
+      document.documentElement.style.overflow = 'hidden'
       document.body.style.overflow = 'hidden'
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${scrollY}px`
+      document.body.style.width = '100%'
+      document.body.style.touchAction = 'none'
     } else {
+      const scrollY = Math.abs(parseInt(document.body.style.top || '0', 10))
+      document.documentElement.style.overflow = ''
       document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.touchAction = ''
+      if (scrollY > 0) {
+        window.scrollTo(0, scrollY)
+      }
     }
+
     return () => {
+      document.documentElement.style.overflow = ''
       document.body.style.overflow = ''
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.touchAction = ''
     }
   }, [menuOpen])
 
