@@ -29,15 +29,19 @@ export function Navbar({ variant = 'light' }: NavbarProps) {
       document.body.style.width = '100%'
     } else {
       const restoreY = scrollPosRef.current
+      document.documentElement.style.scrollBehavior = 'auto'
       document.documentElement.style.overflow = ''
       document.body.style.overflow = ''
       document.body.style.position = ''
       document.body.style.top = ''
       document.body.style.width = ''
       if (restoreY > 0) {
-        window.scrollTo(0, restoreY)
+        window.scrollTo({ top: restoreY, behavior: 'instant' })
         scrollPosRef.current = 0
       }
+      setTimeout(() => {
+        document.documentElement.style.scrollBehavior = ''
+      }, 50)
     }
   }, [menuOpen])
 
