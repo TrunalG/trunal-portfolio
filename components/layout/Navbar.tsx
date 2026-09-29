@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { usePageTransition } from './PageTransition'
 import { usePathname } from 'next/navigation'
 import { AnimatedCTA } from '@/components/AnimatedCTA'
@@ -13,39 +13,31 @@ export function Navbar({ variant = 'light' }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false)
   const { navigateWithTransition, triggerSectionTransition } = usePageTransition()
   const pathname = usePathname()
+  const scrollPosRef = useRef(0)
 
   // Strictly lock body scroll & freeze page scroll Y position when mobile menu drawer is open
   useEffect(() => {
     if (typeof window === 'undefined') return
 
     if (menuOpen) {
-      const scrollY = window.scrollY
+      scrollPosRef.current = window.scrollY
+      const currentY = scrollPosRef.current
       document.documentElement.style.overflow = 'hidden'
       document.body.style.overflow = 'hidden'
       document.body.style.position = 'fixed'
-      document.body.style.top = `-${scrollY}px`
+      document.body.style.top = `-${currentY}px`
       document.body.style.width = '100%'
-      document.body.style.touchAction = 'none'
     } else {
-      const scrollY = Math.abs(parseInt(document.body.style.top || '0', 10))
+      const restoreY = scrollPosRef.current
       document.documentElement.style.overflow = ''
       document.body.style.overflow = ''
       document.body.style.position = ''
       document.body.style.top = ''
       document.body.style.width = ''
-      document.body.style.touchAction = ''
-      if (scrollY > 0) {
-        window.scrollTo(0, scrollY)
+      if (restoreY > 0) {
+        window.scrollTo(0, restoreY)
+        scrollPosRef.current = 0
       }
-    }
-
-    return () => {
-      document.documentElement.style.overflow = ''
-      document.body.style.overflow = ''
-      document.body.style.position = ''
-      document.body.style.top = ''
-      document.body.style.width = ''
-      document.body.style.touchAction = ''
     }
   }, [menuOpen])
 
