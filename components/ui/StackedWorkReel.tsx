@@ -102,11 +102,12 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
       })
 
       // 2. PHASE 2: Character-by-Character Progressive Scroll Fill (S -> E -> L -> E -> C -> T -> E -> D -> W -> O -> R -> K)
+      // Completely finishes filling to 100% by progress 0.15
       const charFills = charFillsRef.current.filter(Boolean) as HTMLSpanElement[]
       if (charFills.length > 0) {
         const charCount = charFills.length
-        const fillWindow = 0.16
-        const charDuration = 0.05
+        const fillWindow = 0.12
+        const charDuration = 0.03
         const staggerTime = fillWindow / charCount
 
         tl.to(
@@ -121,15 +122,15 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
         )
       }
 
-      // 3. PHASE 3: Horizontal Flow of Cards (starts early at progress 0.08 while title fills, ends at 0.98)
+      // 3. PHASE 3: Horizontal Flow of Cards (starts exactly once the text has completely filled at 0.15)
       tl.to(
         trackEl,
         {
           x: targetEndX,
           ease: 'none',
-          duration: 0.90,
+          duration: 0.83,
         },
-        0.08
+        0.15
       )
 
       // 4. PHASE 4: Fade out Big Title smoothly as Card 1 glides over center
@@ -139,9 +140,9 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
           {
             opacity: 0,
             ease: 'power2.inOut',
-            duration: 0.14,
+            duration: 0.12,
           },
-          0.22
+          0.26
         )
       }
     })
