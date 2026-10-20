@@ -23,10 +23,11 @@ export function StickyIntro() {
       ScrollTrigger.create({
         trigger: textEl,
         start: 'center center',
-        end: '+=900',
+        end: () => `+=${window.innerWidth <= 768 ? 480 : 700}`,
         pin: sectionEl,
         pinSpacing: true,
-        scrub: true,
+        scrub: 0.3,
+        invalidateOnRefresh: true,
         onUpdate: (self) => {
           setProgress(self.progress)
         },
