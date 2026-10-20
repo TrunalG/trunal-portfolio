@@ -66,8 +66,9 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
         })
       }
 
-      // Initial position: Horizontal track starts at 105vw (completely off-screen right so NO cards are visible initially)
-      const startX = window.innerWidth * 1.05
+      // Initial position: Horizontal track starts right at viewport edge
+      const isMobile = window.innerWidth <= 768
+      const startX = window.innerWidth * (isMobile ? 1.02 : 1.04)
       gsap.set(trackEl, { x: startX })
 
       if (headerRef.current) {
@@ -85,7 +86,8 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
 
       const { targetEndX } = getScrollDistance()
 
-      const scrollDistance = 3200 // Smooth scrubbed distance
+      // Brisk, responsive scroll distance (reduced from 3200px so visitors reach the next section quickly without fatigue)
+      const scrollDistance = isMobile ? 1200 : 1700
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -94,7 +96,7 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
           end: `+=${scrollDistance}`,
           pin: true,
           pinSpacing: true,
-          scrub: 0.6, // Smooth 1:1 scroll scrub
+          scrub: 0.4, // Responsive 1:1 scroll scrub
           invalidateOnRefresh: true,
         },
       })
@@ -103,8 +105,8 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
       const charFills = charFillsRef.current.filter(Boolean) as HTMLSpanElement[]
       if (charFills.length > 0) {
         const charCount = charFills.length
-        const fillWindow = 0.22
-        const charDuration = 0.08
+        const fillWindow = 0.16
+        const charDuration = 0.05
         const staggerTime = fillWindow / charCount
 
         tl.to(
@@ -119,27 +121,27 @@ export function StackedWorkReel({ projects }: StackedWorkReelProps) {
         )
       }
 
-      // 3. PHASE 3: Horizontal Flow of Cards (starts AFTER text animation completes at progress 0.25, ends at 0.98)
+      // 3. PHASE 3: Horizontal Flow of Cards (starts early at progress 0.08 while title fills, ends at 0.98)
       tl.to(
         trackEl,
         {
           x: targetEndX,
           ease: 'none',
-          duration: 0.73,
+          duration: 0.90,
         },
-        0.25
+        0.08
       )
 
-      // 4. PHASE 4: Fade out Big Title COMPLETELY to 0 opacity once Card 1 covers it (around progress 0.44 to 0.56)
+      // 4. PHASE 4: Fade out Big Title smoothly as Card 1 glides over center
       if (headerRef.current) {
         tl.to(
           headerRef.current,
           {
             opacity: 0,
             ease: 'power2.inOut',
-            duration: 0.12,
+            duration: 0.14,
           },
-          0.44
+          0.22
         )
       }
     })
